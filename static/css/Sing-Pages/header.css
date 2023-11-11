@@ -1,0 +1,95 @@
+header {
+    background-color: #F1F1F1;
+    width: 100%;
+    height: 60px;
+}
+header .navbar {
+    height: 100%;
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+header .navbar .nav-items {
+    width: 70%;
+}
+header .navbar .icon-bars {
+    display: none;
+}
+header .navbar .nav-items ul {   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    margin-left: -80px;
+}
+header .navbar .nav-items ul li{
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+header .navbar .search-box {
+    height: 100%;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+header .navbar .search-box input {
+    width: 90%;
+    height: 40px;
+    border-radius: 10px 0 0 10px;
+    -webkit-border-radius: 10px 0 0 10px;
+    -moz-border-radius: 10px 0 0 10px;
+    -ms-border-radius: 10px 0 0 10px;
+    -o-border-radius: 10px 0 0 10px;
+    outline: none;
+    padding: 5px 10px;
+    border: 1px solid #fff;
+}
+header .navbar .search-box button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    height: 40px;
+    width: 10%;
+    font-size: 1.2rem;
+    border-radius: 0 10px 10px 0;
+    -webkit-border-radius: 0 10px 10px 0;
+    -moz-border-radius: 0 10px 10px 0;
+    -ms-border-radius: 0 10px 10px 0;
+    -o-border-radius: 0 10px 10px 0;
+    outline: none;
+    border: 1px solid #fff;
+    background-color: #fff;
+    cursor: pointer;
+    color: #03A6EF
+}
+
+@media (max-width: 768px) {
+    header .navbar {
+        width: 90%;
+    }
+    header .navbar .icon-bars {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        cursor: pointer;
+        width: 20%;
+    }
+    header .navbar .nav-items {
+        display: none;
+    }
+    header .navbar .search-box {
+        width: 80%;
+    }
+    header .navbar .search-box input {
+        width: 80%;
+    }
+    header .navbar .search-box button {
+        width: 20%;
+    }
+}
