@@ -1,4 +1,4 @@
-.Sing-up {
+.Sing {
     width: 100%;
     height: 80vh;
     display: flex;
@@ -6,7 +6,7 @@
     align-items: center;
     gap: 10%;
 }
-.Sing-up .form-area {
+.Sing .form-area {
     background-color: #D9D9D9;
     border-radius: 8px;
     -webkit-border-radius: 8px;
@@ -16,7 +16,7 @@
     width: 40%;
     height: fit-content;
 }
-.Sing-up .form-area .form-title {
+.Sing .form-area .form-title {
     font-size: 2rem;
     font-weight: 500;
     margin: 1rem 0;
@@ -25,14 +25,14 @@
     align-items: center;
     gap: 10px;
 }
-.Sing-up .form-area form {
+.Sing .form-area form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 10px;
 }
-.Sing-up .form-area form input[type="text"] {
+.Sing .form-area form input[type="text"] {
     width: 198px;
     padding: 0.5rem;
     font-size: 1rem;
@@ -44,8 +44,8 @@
     border: none;
     outline: none;
 }
-.Sing-up .form-area form input[type="email"],
-.Sing-up .form-area form input[type="password"] {
+.Sing .form-area form input[type="email"],
+.Sing .form-area form input[type="password"] {
     width: 400px;
     padding: 0.5rem;
     font-size: 1rem;
@@ -57,7 +57,7 @@
     outline: none;
     border: none;
 }
-.Sing-up .form-area form input[type="submit"] {
+.Sing .form-area form input[type="submit"] {
     width: 150px;
     padding: 0.5rem;
     font-size: 1rem;
@@ -73,22 +73,22 @@
     cursor: pointer;
     margin-bottom: 40px;
 }
-.Sing-up .form-area .form-items p {
+.Sing .form-area .form-items p {
     font-size: 0.9rem;
     margin-bottom: 10px;
     text-align: center;
 }
-.Sing-up .form-area .form-items p a {
+.Sing .form-area .form-items p a {
     color: #1E90FF;
     text-decoration: none;
 }
 
-.Sing-up .pic-area {
+.Sing .pic-area {
     width: 50%;
     height: 100%;
 }
 
-.Sing-up .pic-area img {
+.Sing .pic-area img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -100,53 +100,53 @@
 }
 
 @media (max-width: 480px) {
-    .Sing-up {
+    .Sing {
         height: 70vh;
     }
-    .Sing-up .form-area {
+    .Sing .form-area {
         width: 90%;
     }
-    .Sing-up .form-area .form-title {
+    .Sing .form-area .form-title {
         font-size: 1.5rem;
     }
-    .Sing-up .form-area form input[type="text"] {
+    .Sing .form-area form input[type="text"] {
         width: 98px;
     }
-    .Sing-up .form-area form input[type="email"],
-    .Sing-up .form-area form input[type="password"] {
+    .Sing .form-area form input[type="email"],
+    .Sing .form-area form input[type="password"] {
         width: 200px;
     }
-    .Sing-up .form-area form input[type="submit"] {
+    .Sing .form-area form input[type="submit"] {
         width: 80px;
         margin-bottom: 20px;
     }
-    .Sing-up .pic-area {
+    .Sing .pic-area {
         display: none;
     }
 }
 
 @media (min-width: 480px) and (max-width: 900px) {
-    .Sing-up {
+    .Sing {
         height: 70vh;
     }
-    .Sing-up .form-area {
+    .Sing .form-area {
         width: 90%;
     }
-    .Sing-up .form-area .form-title {
+    .Sing .form-area .form-title {
         font-size: 1.5rem;
     }
-    .Sing-up .form-area form input[type="text"] {
+    .Sing .form-area form input[type="text"] {
         width: 198px;
     }
-    .Sing-up .form-area form input[type="email"],
-    .Sing-up .form-area form input[type="password"] {
+    .Sing .form-area form input[type="email"],
+    .Sing .form-area form input[type="password"] {
         width: 400px;
     }
-    .Sing-up .form-area form input[type="submit"] {
+    .Sing .form-area form input[type="submit"] {
         width: 120px;
         margin-bottom: 20px;
     }
-    .Sing-up .pic-area {
+    .Sing .pic-area {
         display: none;
     }
 }

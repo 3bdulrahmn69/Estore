@@ -1,0 +1,97 @@
+footer {
+    width: 100%;
+    min-height: 225px;
+    background-color: #D9D9D9;
+}
+
+footer .footer-content {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+footer .footer-content div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+footer .footer-content h4 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+footer .footer-content li {
+    margin: 10px 0;
+}
+
+footer .footer-content .main-name {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1E90FF;
+}
+
+footer .footer-content form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer .footer-content form input {
+    height: 30px;
+    width: 180px;
+    padding: 0 10px;
+    border: 1px solid #1f1f1f;
+    border-radius: 8px 0 0 8px;
+    -webkit-border-radius: 8px 0 0 8px;
+    -moz-border-radius: 8px 0 0 8px;
+    -ms-border-radius: 8px 0 0 8px;
+    -o-border-radius: 8px 0 0 8px;
+    outline: none;
+}
+
+footer .footer-content form button {
+    height: 30px;
+    width: 25px;
+    background-color: #fff;
+    border: 1px solid #1f1f1f;
+    border-left: none;
+    cursor: pointer;
+    color: #1E90FF;
+    border-radius: 0 8px 8px 0;
+    -webkit-border-radius: 0 8px 8px 0;
+    -moz-border-radius: 0 8px 8px 0;
+    -ms-border-radius: 0 8px 8px 0;
+    -o-border-radius: 0 8px 8px 0;
+}
+
+
+footer hr {
+    width: 80%;
+    margin: 0 auto;
+    border: 1px solid #fff;
+}
+
+footer .copy-rights {
+    padding: 10px 0;
+    text-align: center;
+    font-size: 12px;
+    color: #fff;
+}
+
+@media (max-width: 480px) {
+    footer .footer-content {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    footer .footer-content div {
+        width: 100%;
+        margin: 10px 0;
+        justify-content: start ;
+        align-items: center;
+    }
+}

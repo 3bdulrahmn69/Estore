@@ -12,7 +12,7 @@ header .navbar {
     justify-content: space-evenly;
 }
 header .navbar .nav-items {
-    width: 70%;
+    width: 50%;
 }
 header .navbar .icon-bars {
     display: none;
@@ -69,17 +69,36 @@ header .navbar .search-box button {
     color: #03A6EF
 }
 
-@media (max-width: 768px) {
+header .navbar .icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    gap: 20px;
+}
+
+header .navbar .icons .icon-item {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+header .navbar .icons .icon-item a {
+    color: #03A6EF;
+}
+
+@media (max-width: 320px) {
     header .navbar {
         width: 90%;
-    }
-    header .navbar .icon-bars {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-        cursor: pointer;
-        width: 20%;
     }
     header .navbar .nav-items {
         display: none;
@@ -91,6 +110,41 @@ header .navbar .search-box button {
         width: 80%;
     }
     header .navbar .search-box button {
+        width: 20%;
+    }
+    header .navbar .icon-bars {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        cursor: pointer;
+        width: 20%;
+    }
+}
+
+
+@media (max-width: 768px) {
+    header .navbar {
+        width: 90%;
+    }
+    header .navbar .nav-items {
+        display: none;
+    }
+    header .navbar .search-box {
+        width: 80%;
+    }
+    header .navbar .search-box input {
+        width: 80%;
+    }
+    header .navbar .search-box button {
+        width: 20%;
+    }
+    header .navbar .icon-bars {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        cursor: pointer;
         width: 20%;
     }
 }

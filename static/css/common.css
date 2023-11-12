@@ -15,6 +15,13 @@ html {
     margin: 0 auto;
 }
 
+@media (max-width: 320px) {
+    .container {
+        width: 100%;
+    }
+    
+}
+
 a {
     text-decoration: none;
     color: #000;
@@ -22,4 +29,53 @@ a {
 
 ul {
     list-style: none;
+}
+
+.banner {
+    width: 100%;
+    height: 70px;
+    background-color: #767676;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+}
+.banner .bg-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: #03A6EF;
+    font-size: 4rem;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+}
+.banner .banner-items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.banner .tag-line p {
+    position: absolute;
+    bottom: 0;
+    font-size: 1rem;
+    font-weight: 100;
+    text-transform: uppercase;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+}
+.banner h4 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    z-index: 1;
 }
