@@ -150,3 +150,18 @@
         display: none;
     }
 }
+
+.verification_text {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+    font-size: 2rem;
+}
+
+#verification_text {
+    color: red;
+    text-decoration: underline;
+}
