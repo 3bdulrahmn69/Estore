@@ -99,6 +99,7 @@
     -o-border-radius: 8px;
 }
 
+
 @media (max-width: 480px) {
     .Sing {
         height: 70vh;
@@ -149,4 +150,29 @@
     .Sing .pic-area {
         display: none;
     }
+}
+
+
+.verification_text {
+    width: 70%;
+    height: 70vh;
+}
+
+.verification_text p {
+    margin-top: 10px;
+    font-size: 1.7rem;
+    color: #767676;
+}
+
+#email {
+    color: #1E90FF;
+    text-decoration: underline;
+}
+
+.verification_text span {
+    font-size: 2rem;
+    font-weight: 500;
+}
+.verification_text span a {
+    text-decoration: underline;
 }

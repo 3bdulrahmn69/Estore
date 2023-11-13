@@ -17,7 +17,7 @@ html {
 
 @media (max-width: 320px) {
     .container {
-        width: 100%;
+        width: 90%;
     }
     
 }
