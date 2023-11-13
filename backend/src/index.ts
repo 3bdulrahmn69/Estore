@@ -2,7 +2,7 @@ require('dotenv').config();
 import { AppDataSource } from "./data-source"
 import * as express from 'express'
 import categoryRoute from './routes/categoryRoute'
-import productRotute from './routes/prouctRoute'
+import productRotute from './routes/productRoute'
 
 const app = express()
 app.use('/api', categoryRoute)
