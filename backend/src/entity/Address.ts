@@ -16,7 +16,7 @@ export class Address extends BaseModel{
   @Column({nullable: false})
   city: string
   
-  @PrimaryColumn({ type: 'string', name: 'userId', length: 36 })
+  @PrimaryColumn({ type: 'int', name: 'userId'})
   @ManyToOne(() => User, (user) => user.addresses, {onDelete: 'CASCADE'})
   @JoinColumn()
   user: User

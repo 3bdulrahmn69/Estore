@@ -18,7 +18,7 @@ export class Product extends BaseModel {
   @Column({nullable:false})
   product_name: string
   
-  @Column({nullable: false, length: 1024})
+  @Column({nullable: false, length: 2048})
   product_desc: string
   
   @Column('float' ,{nullable: false,default: 0})
