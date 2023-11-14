@@ -4,7 +4,9 @@ import * as express from 'express'
 import categoryRoute from './routes/categoryRoute'
 import productRotute from './routes/productRoute'
 
+
 const app = express()
+app.use(express.json())
 app.use('/api', categoryRoute)
 app.use('/api', productRotute)
 AppDataSource.initialize().then(async () => {
