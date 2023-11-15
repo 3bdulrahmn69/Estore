@@ -10,6 +10,6 @@ app.use(express.json())
 app.use('/api', categoryRoute)
 app.use('/api', productRotute)
 AppDataSource.initialize().then(async () => {
-    app.listen(80, ()=> console.log('app is running'))
+    app.listen(3000, ()=> console.log('app is running'))
 
 }).catch(error => console.log(error))
