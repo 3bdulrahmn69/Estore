@@ -50,3 +50,26 @@ orders.addEventListener("click", function () {
 users.addEventListener("click", function () {
     showSection(users_section, users);
 });
+
+const newCategory = document.getElementById("New_category");
+const categoryName = document.getElementById("category_name");
+$(document).ready(function() {
+    $("#New_category").click(function() {
+      const obj = {
+        "category_name": $("#category_name").val()
+      };
+  
+      $.ajax({
+        type: "POST",
+        url: "http://127.0.0.1:3000/api/categories",
+        contentType: "application/json",
+        Connection: "keep-alive",
+        data: JSON.stringify(obj),
+        success: function(resp) {
+          console.log(resp);
+        }
+      });
+  
+      $("#category_name").val("");
+    });
+  });
