@@ -140,6 +140,15 @@ header .user {
     flex-direction: column;
     gap: 10px;
 }
+.nav .elements .active {
+    background-color: #03A6EF;
+    color: #fff;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}
 .nav .elements .main {
     display: flex;
     align-items: center;
@@ -157,15 +166,6 @@ header .user {
     -moz-transition: 0.3s;
     -ms-transition: 0.3s;
     -o-transition: 0.3s;
-}
-.nav .elements .active {
-    background-color: #03A6EF;
-    color: #fff;
-    border-radius: 8px;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    -ms-border-radius: 8px;
-    -o-border-radius: 8px;
 }
 .nav .elements .main:hover:not(.active) {
     background-color: #03a4ef5a;
