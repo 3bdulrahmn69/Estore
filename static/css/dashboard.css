@@ -34,6 +34,22 @@ header {
     justify-content: space-evenly;
     align-items: center;
 }
+header .icon {
+    color: #fff;
+    background-color: #03A6EF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    display: none;
+    cursor: pointer;
+}
 header .site-name {
     font-size: 1.6rem;
     color: #03A6EF;
@@ -41,10 +57,10 @@ header .site-name {
 header .search-box {
     margin-left: 60px;
 }
-header .search-box form {
+header .search-box .form {
     display: flex;
 }
-header .search-box form input{
+header .search-box .form input{
     width: 400px;
     height: 35px;
     border: 1px solid #03A6EF;
@@ -58,7 +74,7 @@ header .search-box form input{
     padding: 5px 10px;
     font-size: 1.3rem;
 }
-header .search-box form button {
+header .search-box .form button {
     width: 40px;
     height: 35px;
     font-size: 1.2rem;
@@ -88,22 +104,6 @@ header .user {
     -o-border-radius: 50%;
     cursor: pointer;
 }
-@media (max-width: 480px) {
-    header .site-name {
-        font-size: 0.9rem;
-    }
-    header .search-box {
-        margin-left: 0;
-    }
-    header .search-box form input{
-        width: 100px;
-    }
-    header .user {
-        height: 30px;
-        width: 30px;
-        font-size: 1rem;
-    }
-}
 /* End Header */
 
 /* Start content-area */
@@ -113,6 +113,7 @@ header .user {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 /* End content-area */
 
@@ -126,6 +127,12 @@ header .user {
     flex-direction: column;
     background-color: #f1f1f1;
     border-top: 5px solid #fff;
+    transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    z-index: 1;
 }
 .nav .nav-title {
     font-size: 2rem;
@@ -182,14 +189,7 @@ header .user {
     font-size: 1.4rem;
     text-transform: uppercase;  
 }
-@media (max-width: 480px) {
-    .nav {
-        display: none;
-    }
-}
 /* End Nav */
-
-
 
 /* Start Content */
 .content {
@@ -207,12 +207,14 @@ header .user {
 .content .sub-sec {
     width: 100%;
     display: flex;
+    justify-content: start;
+    align-items: start;
     flex-wrap: wrap;
     gap: 10px;
     padding: 10px;
 }
 .content .sub-sec .item {
-    width: 250px;
+    width: calc(95% / 3);
     height: 200px;
     background-color: #03A6EF;
     color: #fff;
@@ -225,6 +227,9 @@ header .user {
     -moz-border-radius: 8px;
     -ms-border-radius: 8px;
     -o-border-radius: 8px;
+    position: relative;
+}
+#New_category {
     cursor: pointer;
 }
 .content .sub-sec .item .pic {
@@ -250,9 +255,317 @@ header .user {
 .content .sub-sec .item .details p {
     font-size: 1.3rem;
 }
+.content .sub-sec .item .details .iconsInItems {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    bottom: 5%;
+    right: 0;
+    background-color: #fff;
+    color: #03A6EF;
+    font-size: 1.5rem;
+    padding: 5px 10px;
+    border-radius: 16px 0 0 16px;
+    -webkit-border-radius: 16px 0 0 16px;
+    -moz-border-radius: 16px 0 0 16px;
+    -ms-border-radius: 16px 0 0 16px;
+    -o-border-radius: 16px 0 0 16px;
+    border: 1px solid #03A6EF;
+}
+.content .sub-sec .item .details .iconsInItems i {
+    cursor: pointer;
+    margin: 10px 0px;
+}
 .content .product-section,
 .content .order-section,
 .content .user-section{
     display: none;
 }
 /* End Content */
+
+/* Start Modal */
+.modal {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(5px);
+    background-color: #0000005a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    z-index: 999;
+}
+.modal .modal-content {
+    width: 40%;
+    height: 400px;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    -ms-border-radius: 16px;
+    -o-border-radius: 16px;
+    box-shadow: 0 0 10px 0px #000;
+    position: relative;
+    animation: modal 0.3s ease-in-out;
+    -webkit-animation: modal 0.3s ease-in-out;
+}
+@keyframes modal {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+.modal .modal-content .modal-title {
+    position: absolute;
+    top: 0px;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    background-color: #03A6EF;
+    color: #fff;
+    border-radius: 16px 16px 0 0;
+    -webkit-border-radius: 16px 16px 0 0;
+    -moz-border-radius: 16px 16px 0 0;
+    -ms-border-radius: 16px 16px 0 0;
+    -o-border-radius: 16px 16px 0 0;
+}
+.modal .modal-content .form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+.modal .modal-content .buttons {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.modal .modal-content .form input[type="text"],
+.modal .modal-content .form input[type="number"],
+.modal .modal-content .form select,
+#editModal .editModal-content input[type="text"] {
+    width: 90%;
+    height: 40px;
+    border: 1px solid #03A6EF;
+    padding: 5px 10px;
+    font-size: 1.3rem;
+    outline: none;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    margin-bottom: 5px;
+}
+.modal .modal-content .form input[type="submit"],
+.modal .modal-content .form input[type="button"],
+.modal .modal-content .buttons input[type="button"],
+.modal .modal-content .buttons input[type="submit"] {
+    width: 40%;
+    height: 30px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border: 1px solid #03A6EF;
+    background-color: #03A6EF;
+    color: #fff;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    margin-bottom: 5px;
+    transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+}
+.modal .modal-content .form input[value="Cancel"],
+.modal .modal-content .buttons input[value="Delete"] {
+    border: 1px solid #f00;
+    background-color: #fff;
+    color: #f00;
+}
+.modal .modal-content .form input[type="submit"]:hover,
+.modal .modal-content .buttons input[type="button"]:hover {
+    background-color: #00aeff;
+    opacity: 0.8;
+}
+.modal .modal-content .form input[value="Cancel"]:hover,
+.modal .modal-content .buttons input[value="Delete"]:hover {
+    background-color: rgba(255, 0, 0, 0.699);
+    color: #fff;
+}
+.modal .modal-content .form select option {
+    background-color: #03A6EF;
+    color: #fff;
+}
+/* End Modal */
+/* Start success */
+#success {
+    display: none;
+}
+#success .success-father,
+#confirmModal .confirm-father,
+#editModal .editModal-father {
+    gap: 20px;
+    flex-direction: column;
+}
+.modal .modal-content .success-title {
+    background-color: #5cb85c;
+}
+.modal .modal-content .success-content p {
+    font-size: 1.3rem;
+}
+.modal .modal-content .success-content span {
+    font-size: 1.3rem;
+    margin-left: 10px;
+    color: #5cb85c;
+    font-weight: bold;
+}
+#success input[type="button"] {
+    margin-top: 10px;
+    background-color: #5cb85c;
+    color: #fff;
+    border: none;
+    height: 40px;
+    width: 30%;
+    border-radius: 16px;
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    -ms-border-radius: 16px;
+    -o-border-radius: 16px;
+    cursor: pointer;
+}
+/* End success */
+/* Start confirm */
+#confirmModal {
+    display: none;
+}
+#confirmModal .confirm-title {
+    background-color: #f0ad4e;
+}
+#confirmModal .confirm-content h3 {
+    color: #f00;
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    text-align: center;
+}
+#confirmModal .confirm-content p {
+    font-size: 1.3rem;
+    text-align: center;
+    font-size: 1.8rem;
+}
+#confirmModal .buttons input[type="button"] {
+    background-color: #f0ad4e;
+    border: 1px solid #f0ad4e;
+}
+/* End confirm */
+/* Start edit*/
+#editModal{
+    display: none;
+}
+#editModal .editModal-content .edCatName {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+#editModal .editModal-content span {
+    color: #03A6EF;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+}
+#editModal input[value="Update"]:hover {
+    background-color: #00aeff;
+    opacity: 0.8;
+}
+/* END edit*/
+
+/* Start Media queries */
+@media (max-width: 480px) {
+    header .icon {
+        display: flex;
+    }
+    header .site-name {
+        font-size: 0.9rem;
+    }
+    header .search-box {
+        margin-left: 0;
+    }
+    header .search-box .form input{
+        width: 100px;
+    }
+    header .user {
+        height: 30px;
+        width: 30px;
+        font-size: 1rem;
+    }
+    .nav {
+        width: 80%;
+        position: absolute;
+        left: 0;
+        display: none;
+    }
+    .content {
+        width: 100%;
+    }
+    .content .sub-sec  {
+        justify-content: center;
+    }
+    .content .sub-sec .item {
+        width: 90%
+    }
+    .modal .modal-content {
+        width: 80%;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px){
+    header .icon {
+        display: flex;
+        width: 40px;
+        height: 40px;
+    }
+    .nav {
+        width: 40%;
+        position: absolute;
+        left: 0;
+        display: none;
+    }
+    .content {
+        width: 100%;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px){
+    .nav {
+        width: 20%;
+    }
+    .nav .nav-title {
+        font-size: 1.6rem;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 2.5px;
+    }
+    .content {
+        width: 80%;
+    }
+}
+/* End Media queries */

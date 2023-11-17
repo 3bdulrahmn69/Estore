@@ -11,14 +11,17 @@
 <body>
 
     <header>
+        <div class="icon" id="ic-show">
+            <i class="fa-solid fa-bars"></i>
+        </div>
         <div class="site-name">
             <h1>E-Store</h1>
         </div>
         <div class="search-box" title="Search">
-            <form action="">
+            <div class="form">
                 <input type="text">
                 <button><i class="fa-solid fa-magnifying-glass"></i></button>
-            </form>
+            </div>
         </div>
         <div class="user" title="Account">
             <i class="fa-solid fa-user"></i>
@@ -27,7 +30,7 @@
 
     <section class="content-area">
 
-        <div class="nav">
+        <div class="nav" id="nav">
             <div class="nav-title">
                 <h3>Dashboard</h3>
             </div>
@@ -89,39 +92,10 @@
                     </div>
                 </div>
 
-                <div class="inputFF">
-                    <input type="text" name="category_name" id="category_name">
-                </div>
-
-                <!-- <div class="item">
-                    <div class="pic">
-                        <i class="fa-solid fa-desktop"></i>
-                    </div>
-                    <div class="details">
-                        <p>Monitors</p>
-                        <div class="ic">
-                            <i class="fa-solid fa-ellipsis-vertical"></i>
-                        </div>
-                    </div>
-                </div> -->
-
-                <div class="item">
-                    <div class="pic">
-                        <img src="assets/icons/pc-case-svgrepo-com.svg" alt="">
-                    </div>
-                    <div class="details">
-                        <p>Computer Cases</p>
-                        <div class="ic">
-                            <i class="fa-solid fa-ellipsis-vertical"></i>
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
             <div class="sub-sec product-section" data-title="Products">
-
-                <div class="item">
+                <div class="item" id="New_product">
                     <div class="pic">
                         <i class="fa-solid fa-plus"></i>
                     </div>
@@ -147,11 +121,9 @@
                         <p>Delete Product</p>
                     </div>
                 </div>
-
             </div>
 
             <div class="sub-sec order-section" data-title="Orders">
-
                 <div class="item">
                     <div class="pic">
                         <i class="fa-solid fa-truck"></i>
@@ -169,11 +141,9 @@
                         <p>Orders History</p>
                     </div>
                 </div>
-
             </div>
 
             <div class="sub-sec user-section" data-title="Users">
-
                 <div class="item">
                     <div class="pic">
                         <i class="fa-solid fa-users"></i>
@@ -183,8 +153,99 @@
                     </div>
                 </div>
 
+                <div class="item">
+                    <div class="pic">
+                        <i class="fa-solid fa-users-slash"></i>
+                    </div>
+                    <div class="details">
+                        <p>Banned Users</p>
+                    </div>
+                </div>
             </div>
+        </div>
 
+        <div class="modal" id="modalCategory">
+            <div class="modal-content">
+                <div class="modal-title">
+                    <h5 class="modal-title-head">New Category</h5>
+                </div>
+                <div class="modal-form">
+                    <div class="form">
+                        <input type="text" name="category_name" id="category_name" placeholder="Category Name" required>
+                        <div class="buttons">
+                            <input type="submit" value="Create" id="createCategory">
+                            <input type="button" value="Cancel" class="cancel">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="modalProduct">
+            <div class="modal-content">
+                <div class="modal-title">
+                    <h5 class="modal-title-head">New Product</h5>
+                </div>
+                <div class="modal-form">
+                    <div class="form">
+                        <input type="text" name="product_name" id="product_name" placeholder="Product Name" required>
+                        <input type="text" name="product_description" id="product_description" placeholder="Product Description" required>
+                        <input type="number" min="0" name="product_price" id="product_price" placeholder="Product Price" required>
+                        <input type="number" min="0" name="Product_quantity" id="Product_quantity" placeholder="Product Quantity" required>
+                        <select name="Category" id="product_category">
+                            <option value="Choose Category">Choose</option>
+                        </select>
+                        <div class="buttons">
+                            <input type="submit" value="Create" id="createProduct">
+                            <input type="button" value="Cancel" class="cancel">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="success">
+            <div class="modal-content success-father">
+                <div class="modal-title success-title">
+                    <h5 class="modal-title-head">Success</h5>
+                </div>
+                <div class="success-content">
+                </div>
+                <input type="button" value="Ok" class="cancel close">
+            </div>
+        </div>
+
+        <div class="modal" id="confirmModal">
+            <div class="modal-content confirm-father">
+                <div class="modal-title confirm-title">
+                    <h5 class="modal-title-head">Confirm</h5>
+                </div>
+                <div class="confirm-content">
+                    <h3>are you sure you wan to delete ?</h3>
+                    <p class="delCatName"></p>
+                </div>
+                <div class="buttons">
+                    <input type="submit" value="Delete" id="deleteCat">
+                    <input type="button" value="Cancel" class="cancel">
+                </div> 
+            </div>
+        </div>
+
+        <div class="modal" id="editModal">
+            <div class="modal-content editModal-father">
+                <div class="modal-title editModal-title">
+                    <h5 class="modal-title-head">Edit Category</h5>
+                </div>
+                <div class="editModal-content">
+                    <p class="edCatName"></p>
+                    <span>to</span>
+                    <input type="text" name="newCatName" id="newCatName">
+                </div>
+                <div class="buttons">
+                    <input type="submit" value="Update" id="UpdateCatName">
+                    <input type="button" value="Cancel" class="cancel">
+                </div>
+            </div>
         </div>
 
     </section>
