@@ -2,7 +2,8 @@ import {Response, Request, NextFunction} from 'express'
 import {ApiService} from '../utils/ApiService'
 import { Category } from '../entity/Category'
 import { AppDataSource } from '../data-source'
-import { categorySchema } from '../utils/valiation'
+import { categorySchema } from '../validators/valiation'
+import AppError from '../utils/appError'
 
 const service = new ApiService(Category)
 
@@ -16,14 +17,14 @@ class CategoryController {
   getCategoryById = async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params
     const category = await service.getOneById(id)
-    if (!category) return res.status(404).json({'Messsage': 'Not Found'})
+    if (!category) next(new AppError('Category not found', 404))
     return res.status(200).json(category)
   }
   
   deleteCategoryById = async (req: Request, res: Response, next: NextFunction) => {
     const {id} = req.params
     const category = await service.getOneById(id)
-    if (!category) return res.status(404).json({'Messsage': 'Not Found'})
+    if (!category) next(new AppError('Category not found', 404))
     service.deleteById(id)
     .execute()
     .then(() => res.status(200).json({'Message': 'Deleted'}))
@@ -40,7 +41,7 @@ class CategoryController {
         category_name: name
       }
     })
-    if (!category) return res.status(404).json({'Message': 'Not Found'})
+    if (!category) next(new AppError('Category not found', 404))
     return res.status(200).json(category.products)
   }
   
@@ -49,12 +50,9 @@ class CategoryController {
     
     const category = new Category()
     category.category_name = category_name
-    try {
-      await category.save()
-      res.status(201).json(category)
-    } catch (err) {
-      res.status(404).json({'Message': `${err}`})
-    }
+    await category.save()
+    res.status(201).json(category)
+  
   }
   
   updateCategory =  (req: Request, res: Response, next: NextFunction) => {

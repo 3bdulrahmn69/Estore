@@ -2,7 +2,7 @@ import { Router } from "express";
 import categoryController from "../controllers/CategoryController";
 import asyncHandler from "../utils/asyncHandle";
 import joiAsyncMiddleWare from "../middlewares/JoiMiddleware";
-import { categorySchema } from "../utils/valiation";
+import { categorySchema } from "../validators/valiation";
 
 
 const router = Router()

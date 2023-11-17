@@ -8,5 +8,6 @@ export default class AppError extends Error {
     this.status = `${statusCode}`.startsWith('4') ? 'fail' : 'error';
     this.isOpertional = true
     
+    Object.setPrototypeOf(this, AppError.prototype);
   }
 }

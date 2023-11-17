@@ -1,9 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 import { ApiService } from "../utils/ApiService";
 import { Product } from "../entity/Product";
-import { productSchema, updateSchema } from "../utils/valiation";
+import { productSchema, updateSchema } from "../validators/valiation";
 import { Category } from "../entity/Category";
 import { AppDataSource } from "../data-source";
+import AppError from "../utils/appError";
 
 const service = new ApiService(Product)
 
@@ -17,7 +18,7 @@ class ProductController {
     const {id} = req.params
     const product = await service.getOneById(id)
     
-    if (!product) return res.status(404).json({'Message': 'Not found'})
+    if (!product) next(new AppError('Product not found', 404))
     
     return res.status(200).json(product)
   }
@@ -26,7 +27,7 @@ class ProductController {
     const { id } = req.params
     const product = await service.getOneById(id)
     
-    if (!product) return res.status(404).json({'Message': 'Not found'})
+    if (!product) next(new AppError('Product not found', 404))
     service.deleteById(id)
     .execute()
     .then(() => res.status(200).json({'Message': 'Deleted'}))
@@ -38,7 +39,7 @@ class ProductController {
     const category = await Category.findOneBy({
       category_name
     })
-    if (!category) return res.status(404).json({'Message': 'Category not found you must create it before assign to product'})
+    if (!category) next(new AppError('Category not found you must create it before assign to product', 404))
     const product = new Product()
     product.product_name = product_name
     product.product_desc = product_desc

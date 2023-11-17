@@ -1,7 +1,7 @@
 import { Router } from "express";
 import productController from "../controllers/ProductController";
 import  JoiMiddleware  from "../middlewares/JoiMiddleware";
-import { productSchema } from "../utils/valiation";
+import { productSchema } from "../validators/valiation";
 import asyncHandler from "../utils/asyncHandle";
 
 const router = Router()
