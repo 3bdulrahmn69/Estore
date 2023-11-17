@@ -1,18 +1,20 @@
 import { Router } from "express";
-import { 
-  getAllProducts,
-  getProductById,
-  deleteProductById,
-  createProduct,
-  updateProduct
-} from "../controllers/ProductController";
+import productController from "../controllers/ProductController";
+import  JoiMiddleware  from "../middlewares/JoiMiddleware";
+import { productSchema } from "../utils/valiation";
+import asyncHandler from "../utils/asyncHandle";
 
 const router = Router()
 
-router.get('/products', getAllProducts)
-router.post('/products', createProduct)
-router.get('/products/:id', getProductById)
-router.delete('/products/:id', deleteProductById)
-router.put('/products/:id', updateProduct)
+router.route('/products')
+  .get(asyncHandler(productController.getAllProducts))
+  .post(
+    JoiMiddleware(productSchema),
+    asyncHandler(productController.createProduct)
+    )
+router.route('/products/:id')
+  .get(asyncHandler(productController.getProductById))
+  .delete(asyncHandler(productController.deleteProductById))
+  .put(asyncHandler(productController.updateProduct))
 
 export default router

@@ -1,21 +1,19 @@
 import { Router } from "express";
-import { 
-  getAllCategories,
-  getCategoryById,
-  deleteCategoryById,
-  getAllProductByCategoryName,
-  createCategory,
-  updateCategory
-} from "../controllers/CategoryController";
+import categoryController from "../controllers/CategoryController";
+import asyncHandler from "../utils/asyncHandle";
+import joiAsyncMiddleWare from "../middlewares/JoiMiddleware";
+import { categorySchema } from "../utils/valiation";
 
 
 const router = Router()
-router.get('/categories', getAllCategories)
-router.get('/category/:name', getAllProductByCategoryName)
-router.get('/categories/:id', getCategoryById)
-router.delete('/categories/:id', deleteCategoryById)
-router.post('/categories', createCategory)
-router.put('/categories/:id', updateCategory)
+router.route('/categories')
+  .get(asyncHandler(categoryController.getAllCategories))
+  .post(joiAsyncMiddleWare(categorySchema) ,asyncHandler(categoryController.createCategory))
 
+router.route('/categories/:id')
+  .get(asyncHandler(categoryController.getCategoryById))
+  .delete(asyncHandler(categoryController.deleteCategoryById))
+  .put(asyncHandler(categoryController.updateCategory))
+router.get('/category/:name',asyncHandler(categoryController.getAllProductByCategoryName))
 
 export default router
