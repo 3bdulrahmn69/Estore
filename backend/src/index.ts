@@ -3,6 +3,7 @@ import { AppDataSource } from "./data-source"
 import * as express from 'express'
 import categoryRoute from './routes/categoryRoute'
 import productRotute from './routes/productRoute'
+import authRouter from './routes/authRoute'
 import * as cors from 'cors';
 import AppError from './utils/appError'
 import handleErrors = require('./controllers/errorController')
@@ -13,6 +14,7 @@ app.use(express.json())
 app.use(cors());
 app.use('/api', categoryRoute)
 app.use('/api', productRotute)
+app.use('/api', authRouter)
 
 app.all('*', (req, res, next) => {
     // const err: any= new Error(`Cant't find ${req.originalUrl} on server`);

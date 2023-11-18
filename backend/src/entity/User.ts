@@ -9,7 +9,7 @@ import {
   ManyToOne
 } from 'typeorm'
 import { BaseModel } from './BaseModel'
-import bcrypt from 'bcrypt'
+import * as bcrypt from 'bcrypt'
 import { Cart } from './Cart'
 import { Wishlist } from './Wishlist'
 import { Address } from './Address'
