@@ -1,4 +1,4 @@
-import { User } from "../entity/User";
+import { User, UserRole } from "../entity/User";
 import { AppDataSource } from "../data-source";
 import { NextFunction, Request, Response } from "express";
 import AppError from "../utils/appError";
@@ -13,13 +13,14 @@ const signToken = (id) => {
 
 class AuthController {
   async createUser(req: Request, res: Response, next: NextFunction) {
-    const { first_name, last_name, email, password } = req.body;
+    const { first_name, last_name, email, password, role } = req.body;
     const user = new User();
     user.first_name = first_name;
     user.last_name = last_name;
     user.email = email;
     user.password = password;
-    
+  
+    if (role === UserRole.ADMIN) user.role = UserRole.ADMIN 
     let token = signToken(user.id)
     
     await user.save()

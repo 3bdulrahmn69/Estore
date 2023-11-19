@@ -3,23 +3,26 @@ import categoryController from "../controllers/CategoryController";
 import asyncHandler from "../utils/asyncHandle";
 import joiAsyncMiddleWare from "../middlewares/JoiMiddleware";
 import { categorySchema } from "../validators/valiation";
-import authenticate from "../middlewares/authenticate";
+import authentication from "../middlewares/authenticate";
 
 const router = Router()
 router.route('/categories')
   .get(asyncHandler(categoryController.getAllCategories))
   .post(
-    asyncHandler(authenticate),
+    asyncHandler(authentication.authenticated),
+    asyncHandler(authentication.authorized),
     joiAsyncMiddleWare(categorySchema),
     asyncHandler(categoryController.createCategory))
 
 router.route('/categories/:id')
   .get(asyncHandler(categoryController.getCategoryById))
   .delete(
-    asyncHandler(authenticate),
+    asyncHandler(authentication.authenticated),
+    asyncHandler(authentication.authorized),
     asyncHandler(categoryController.deleteCategoryById))
   .put(
-    asyncHandler(authenticate),
+    asyncHandler(authentication.authenticated),
+    asyncHandler(authentication.authorized),
     asyncHandler(categoryController.updateCategory))
 router.get('/category/:name',asyncHandler(categoryController.getAllProductByCategoryName))
 
