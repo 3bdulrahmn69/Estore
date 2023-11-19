@@ -1,3 +1,4 @@
+import { Like } from "typeorm";
 import { AppDataSource } from "../data-source";
 
 export class ApiService {
@@ -22,5 +23,11 @@ export class ApiService {
     .delete()
     .from(this.Model)
     .where('id = :id', {id: id})
+  }
+  
+  search(name) {
+    return this.Model.findBy({
+        "category_name": Like(`%${name}%`)
+    })
   }
 }

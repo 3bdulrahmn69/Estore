@@ -26,4 +26,6 @@ router.route('/categories/:id')
     asyncHandler(categoryController.updateCategory))
 router.get('/category/:name',asyncHandler(categoryController.getAllProductByCategoryName))
 
+router.get('/search-category/:name', asyncHandler(categoryController.searchAboutCategory))
+
 export default router

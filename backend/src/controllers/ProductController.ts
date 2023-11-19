@@ -1,10 +1,11 @@
 import { NextFunction, Request, Response } from "express";
 import { ApiService } from "../utils/ApiService";
 import { Product } from "../entity/Product";
-import { productSchema, updateSchema } from "../validators/valiation";
+import { updateSchema } from "../validators/valiation";
 import { Category } from "../entity/Category";
 import { AppDataSource } from "../data-source";
 import AppError from "../utils/appError";
+import { Like } from "typeorm";
 
 const service = new ApiService(Product)
 
@@ -66,6 +67,18 @@ class ProductController {
       })
       res.status(200).json({product})
     })
+  }
+  
+  async searchAboutProduct(req: Request, res: Response, next: NextFunction){
+    const {name} = req.params;
+    const products = await Product.find({
+      where:{
+        product_name: Like(`%${name}%`)
+      },
+      take: 5
+    })
+    return res.status(200).json(products)
+    
   }
 }
 

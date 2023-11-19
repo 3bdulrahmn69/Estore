@@ -26,4 +26,5 @@ router.route('/products/:id')
     asyncHandler(authentication.authorized),
     asyncHandler(productController.updateProduct))
 
+router.get('/search-product/:name', asyncHandler(productController.searchAboutProduct))
 export default router

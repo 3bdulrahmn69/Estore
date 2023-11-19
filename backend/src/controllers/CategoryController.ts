@@ -4,6 +4,7 @@ import { Category } from '../entity/Category'
 import { AppDataSource } from '../data-source'
 import { categorySchema } from '../validators/valiation'
 import AppError from '../utils/appError'
+import { Like } from 'typeorm'
 
 const service = new ApiService(Category)
 
@@ -71,6 +72,18 @@ class CategoryController {
       })
       res.status(200).json(category)
     })
+  }
+  
+  async searchAboutCategory(req: Request, res: Response, next: NextFunction){
+    const {name} = req.params;
+    const categories = await Category.find({
+      where:{
+        category_name: Like(`%${name}%`)
+      },
+      take: 5
+    })
+    return res.status(200).json(categories)
+    
   }
 }
 
