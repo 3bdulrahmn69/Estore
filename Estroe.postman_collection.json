@@ -1,11 +1,10 @@
 {
 	"info": {
-		"_postman_id": "5fe4e04f-f92c-4d31-bfb8-2e90f7ff8e07",
+		"_postman_id": "69572587-5e3f-48e8-88c6-72f8a0502b47",
 		"name": "Estroe",
 		"description": "A documentation for Estoe endpoits",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "12005942",
-		"_collection_link": "https://bold-astronaut-127764.postman.co/workspace/319af882-316e-43ca-99fe-b9d2788229d3/collection/12005942-5fe4e04f-f92c-4d31-bfb8-2e90f7ff8e07?action=share&source=collection_link&creator=12005942"
+		"_exporter_id": "12005942"
 	},
 	"item": [
 		{
@@ -17,14 +16,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "127.0.0.1:3000/api/categories",
+							"raw": "{{URL}}/api/categories",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{URL}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"categories"
@@ -40,14 +35,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "127.0.0.1:3000/api/categories/2",
+							"raw": "{{URL}}/api/categories/2",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{URL}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"categories",
@@ -64,14 +55,10 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "127.0.0.1:3000/api/categories/2",
+							"raw": "{{URL}}/api/categories/2",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{URL}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"categories",
@@ -86,10 +73,17 @@
 					"name": "createCategory",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OSwiaWF0IjoxNzAwMzk4MTYzLCJleHAiOjE3MDI5OTAxNjN9.Z9Fzj47jp2s6mmCWh5U70j4IgkUQV4iiH8cvOFAlOgo",
+								"type": "text",
+								"disabled": true
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"category_name\": \"category_name\"\r\n}",
+							"raw": "{\r\n    \"category_name\": \"cpu\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -97,14 +91,10 @@
 							}
 						},
 						"url": {
-							"raw": "127.0.0.1:3000/api/categories",
+							"raw": "{{URL}}/api/categories",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{URL}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"categories"
@@ -129,14 +119,10 @@
 							}
 						},
 						"url": {
-							"raw": "127.0.0.1:3000/api/categories/2",
+							"raw": "{{URL}}/api/categories/2",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{URL}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"categories",
@@ -153,14 +139,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "127.0.0.1:3000/api/category/Laptops",
+							"raw": "{{URL}}/api/category/Laptops",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{URL}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"category",
@@ -168,6 +150,26 @@
 							]
 						},
 						"description": "return all product in specific category"
+					},
+					"response": []
+				},
+				{
+					"name": "search about category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/search-category/cp",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"search-category",
+								"cp"
+							]
+						},
+						"description": "end point to search about category"
 					},
 					"response": []
 				}
@@ -181,16 +183,18 @@
 					"name": "products",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNzAwMzMyOTA0LCJleHAiOjE3MDgxMDg5MDR9.9bgfYczyuLD1ydIz9Dw03M7R57QAiwsZvRKKnMr_swo",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "127.0.0.1:3000/api/products",
+							"raw": "{{URL}}/api/products",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{URL}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"products"
@@ -206,14 +210,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "127.0.0.1:3000/api/products/2",
+							"raw": "{{URL}}/api/products/2",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{URL}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"products",
@@ -239,14 +239,10 @@
 							}
 						},
 						"url": {
-							"raw": "127.0.0.1:3000/api/products",
+							"raw": "{{URL}}/api/products",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{URL}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"products"
@@ -271,14 +267,10 @@
 							}
 						},
 						"url": {
-							"raw": "127.0.0.1:3000/api/products/2",
+							"raw": "{{URL}}/api/products/2",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{URL}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"products",
@@ -295,14 +287,10 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "127.0.0.1:3000/api/products/2",
+							"raw": "{{URL}}/api/products/2",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{URL}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"products",
@@ -312,9 +300,177 @@
 						"description": "Delete product by id"
 					},
 					"response": []
+				},
+				{
+					"name": "search about product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/search-product/d",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"search-product",
+								"d"
+							]
+						},
+						"description": "endpoint to search about product"
+					},
+					"response": []
 				}
 			],
 			"description": "product endpoints"
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Create New User",
+					"request": {
+						"auth": {
+							"type": "jwt",
+							"jwt": [
+								{
+									"key": "algorithm",
+									"value": "HS256",
+									"type": "string"
+								},
+								{
+									"key": "isSecretBase64Encoded",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "payload",
+									"value": "{}",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "queryParamKey",
+									"value": "token",
+									"type": "string"
+								},
+								{
+									"key": "header",
+									"value": "{}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\": \"ahmed\",\r\n    \"last_name\": \"walid\",\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\": \"ahmedwalid\",\r\n    \"role\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/signup",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"signup"
+							]
+						},
+						"description": "endpoint to create new user"
+					},
+					"response": []
+				},
+				{
+					"name": "Log in",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\": \"ahmedwalid\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/signin",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"signin"
+							]
+						},
+						"description": "endpoint to sign in with existing user"
+					},
+					"response": []
+				},
+				{
+					"name": "Log out",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/logout",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"logout"
+							]
+						},
+						"description": "endpoint to logout"
+					},
+					"response": []
+				}
+			],
+			"description": "Auhtentication endpoints"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "127.0.0.1:3000",
+			"type": "string"
 		}
 	]
 }
