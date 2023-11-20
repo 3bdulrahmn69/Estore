@@ -50,46 +50,11 @@ class AuthController {
     user.last_name = last_name;
     user.email = email;
     user.password = password;
-<<<<<<< HEAD
-  
-    if (role === UserRole.ADMIN) user.role = UserRole.ADMIN 
-    let token = signToken(user.id)
-    
-    await user.save()
-    return res.status(200)
-    .json({
-      message: "done",
-      token,
-      data: user
-    })
-  }
-  
-  async signIn (req: Request, res: Response, next: NextFunction) {
-    const {email, password} = req.body;
-    const user = await User.findOneBy({
-      email
-    })
-    
-    if (!user) return next(new AppError('User not found', 401))
-    
-    const result = await bcrypt.compare(password, user.password)
-    if (!result) return next(new AppError('Password is wrong', 401))
-    
-    let token = signToken(user.id)
-    
-    return res.status(200)
-    .json({
-      message: "done",
-      token,
-      data: user
-    })
-=======
 
     if (role === UserRole.ADMIN) user.role = UserRole.ADMIN;
 
     await user.save();
     createSendToken(user, 200, res);
->>>>>>> handle-authentication
   }
 
   async signIn(req: Request, res: Response, next: NextFunction) {
