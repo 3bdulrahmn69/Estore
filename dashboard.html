@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="static/css/dashboard.css">
 </head>
 <body>
-
     <header>
         <div class="icon" id="ic-show">
             <i class="fa-solid fa-bars"></i>
@@ -19,7 +18,7 @@
         </div>
         <div class="search-box" title="Search">
             <div class="form">
-                <input type="text">
+                <input type="text" placeholder="Search">
                 <button><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
         </div>
@@ -27,16 +26,13 @@
             <i class="fa-solid fa-user"></i>
         </div>
     </header>
-
     <section class="content-area">
-
         <div class="nav" id="nav">
             <div class="nav-title">
                 <h3>Dashboard</h3>
             </div>
 
             <div class="elements">
-
                 <div class="item active" id="categories">
                     <div class="main">
                         <div class="icon">
@@ -72,17 +68,18 @@
                         <p>Users</p>
                     </div>
                 </div>
-
             </div>
         </div>
 
         <div class="content">
             <div class="title">
+                <div class="back_arrow hideThings" title="Back">
+                    <i class="fa-solid fa-arrow-left-long"></i>
+                </div>
                 <h2 class="head-title">Categories</h2>
             </div>
 
             <div class="sub-sec category-section" data-title="Categories">
-
                 <div class="item" id="New_category">
                     <div class="pic">
                         <i class="fa-solid fa-plus"></i>
@@ -91,7 +88,6 @@
                         <p>New Category</p>
                     </div>
                 </div>
-
             </div>
 
             <div class="sub-sec product-section" data-title="Products">
@@ -104,23 +100,30 @@
                     </div>
                 </div>
 
-                <div class="item">
+                <div class="item" id="All_products">
                     <div class="pic">
-                        <i class="fa-solid fa-pen-to-square"></i>
+                        <i class="fa-solid fa-border-all"></i>
                     </div>
                     <div class="details">
-                        <p>Edit Product</p>
+                        <p>All Products</p>
                     </div>
                 </div>
+            </div>
 
-                <div class="item">
-                    <div class="pic">
-                        <i class="fa-solid fa-trash"></i>
-                    </div>
-                    <div class="details">
-                        <p>Delete Product</p>
-                    </div>
-                </div>
+            <div class="sub-sec allProducts-section" data-title="All Products">
+                <table>
+                    <thead>
+                        <td>Image</td>
+                        <td>Id</td>
+                        <td>Name</td>
+                        <td>Description</td>
+                        <td>Price</td>
+                        <td>Quantity</td>
+                        <td>Edit</td>
+                    </thead>
+                    <tbody id="allProducts-sce">
+                    </tbody>
+                </table>
             </div>
 
             <div class="sub-sec order-section" data-title="Orders">
@@ -197,6 +200,7 @@
                         </select>
                         <div class="buttons">
                             <input type="submit" value="Create" id="createProduct">
+                            <input type="submit" value="Update" id="updateProduct">
                             <input type="button" value="Cancel" class="cancel">
                         </div>
                     </div>
@@ -247,7 +251,6 @@
                 </div>
             </div>
         </div>
-
     </section>
     <script src="static/js/jquery-3.7.1.js"></script>
     <script src="static/js/script.js"></script>
