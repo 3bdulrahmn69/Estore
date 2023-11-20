@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="assets/images/All.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/images/All.png" type="image/x-icon">
     <title>E-Store | Sing Up</title>
     <link rel="stylesheet" href="../static/css/all.min.css">
     <link rel="stylesheet" href="../static/css/common.css">
@@ -42,16 +42,16 @@
                     <i class="fa-solid fa-right-to-bracket"></i>
                 </div>
                 <div class="form-items">
-                    <form action="">
+                    <div class="form">
                         <div class="names">
                             <input type="text" placeholder="First Name" id="Fname" maxlength="16" required>
                             <input type="text" placeholder="Last Name" id="Lname" maxlength="16" required>
                         </div>
                         <input type="email" placeholder="Email" id="email" required>
-                        <input type="password" placeholder="Password" id="passwod" required>
-                        <input type="password" placeholder="Confirm Password" required>
-                        <input type="submit" value="Sing Up">
-                    </form>
+                        <input type="password" placeholder="Password" id="Password" required>
+                        <input type="password" placeholder="Confirm Password" id="cPassword" required>
+                        <input type="submit" value="Sing Up" id="createUserBtn">
+                    </div>
                     <p>Have an account ? <a href="SingIn.html">Sing In</a></p>
                 </div>
             </div>
@@ -64,7 +64,6 @@
     </div>
 
     <footer>
-
         <div class="footer-content">
             <div>
                 <h4 class="main-name">E-Store</h4>
@@ -112,6 +111,7 @@
             <p>&copy; 2023 E-Store. All rights reserved.</p>
         </div>
     </footer>
-
+    <script src="../static/js/jquery-3.7.1.js"></script>
+    <script src="../static/js/singup.js"></script>
 </body>
 </html>

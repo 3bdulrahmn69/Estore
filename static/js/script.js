@@ -1,3 +1,7 @@
+/* Start all const var */
+const beforeAuth = "Bearer ";
+const authToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzAwNDk2OTMwLCJleHAiOjE3MDMwODg5MzB9.N4F1n5zUx8jN2uCCRomY-WavsdfOSx-BYvLpyo98nCg";
+/* End all const var */
 /* Start nav buttons */
 const categories = document.getElementById("categories");
 const products = document.getElementById("products");
@@ -164,6 +168,9 @@ function getCategories() {
 function delCategory(CategoryID) {
   $.ajax({
     type: "DELETE",
+    beforeSend: function(request) {
+      request.setRequestHeader("Authorization", beforeAuth + authToken);
+    },
     url: 'http://127.0.0.1:3000/api/categories/' + CategoryID,
     success: function(resp) {
       $('#confirmModal').css('display', 'none');
@@ -180,6 +187,9 @@ function updateCategory(CategoryID, CategoryName) {
   };
   $.ajax({
     type: "PUT",
+    beforeSend: function(request) {
+      request.setRequestHeader("Authorization", beforeAuth + authToken);
+    },
     url: 'http://127.0.0.1:3000/api/categories/' + CategoryID,
     contentType: "application/json",
     Connection: "keep-alive",
@@ -193,7 +203,7 @@ function updateCategory(CategoryID, CategoryName) {
 };
 /* End Update Category function */
 /* Start Create Product item */
-function createProductItem(productId, productName,productDescription ,productPrice, productAmount) {
+function createProductItem(productId, productName,productDescription ,productPrice, productAmount, productCategory) {
   const allProducts_section = document.getElementById('allProducts-sce')
   const boxItem = document.createElement("tr");
 
@@ -230,6 +240,10 @@ function createProductItem(productId, productName,productDescription ,productPri
   pQuantity.classList.add("pQuantity");
   pQuantity.textContent = productAmount;
 
+  const pCategory = document.createElement("td");
+  pCategory.classList.add("pCategory");
+  pCategory.textContent = productCategory;
+
   const iconsInItems = document.createElement("td");
   iconsInItems.classList.add("ProductIcons");
   const editIcon = document.createElement("i");
@@ -242,11 +256,12 @@ function createProductItem(productId, productName,productDescription ,productPri
       $('#product_description').val(productDescription);
       $('#product_price').val(productPrice);
       $('#Product_quantity').val(productAmount);
+      $('#product_category').css('display', 'none');
       $('#createProduct').css('display', 'none');
       const updateProductBtn = $('#modalProduct .buttons input[value="Update"]#updateProduct')
       updateProductBtn.css('display', 'block');
       updateProductBtn.click(function() {
-        updateProduct(productId, $('#product_name').val(),$('#product_description').val, $('#product_price').val(), $('#Product_quantity').val());
+        updateProduct(productId, $('#product_name').val(),$('#product_description').val(), $('#product_price').val(), $('#Product_quantity').val());
       });
   });
   editIcon.title = "Edit Product";
@@ -270,6 +285,7 @@ function createProductItem(productId, productName,productDescription ,productPri
   boxItem.appendChild(pDescription);
   boxItem.appendChild(pPrice);
   boxItem.appendChild(pQuantity);
+  boxItem.appendChild(pCategory);
   boxItem.appendChild(iconsInItems);
   allProducts_section.appendChild(boxItem);
 };
@@ -278,7 +294,7 @@ function createProductItem(productId, productName,productDescription ,productPri
 function getProducts() {
   $.get("http://127.0.0.1:3000/api/products", function (data) {
     data.forEach(product => {
-      createProductItem(product.id, product.product_name, product.product_desc, product.product_price, product.product_amount);
+      createProductItem(product.id, product.product_name, product.product_desc, product.product_price, product.product_amount, product.category.category_name);
     });
   });
 };
@@ -287,6 +303,9 @@ function getProducts() {
 function deleteProduct(productId){
   $.ajax({
     type: "DELETE",
+    beforeSend: function(request) {
+      request.setRequestHeader("Authorization", beforeAuth + authToken);
+    },
     url: 'http://127.0.0.1:3000/api/products/' + productId  ,
     success: function(resp) {
       $('#confirmModal').css('display', 'none');
@@ -297,15 +316,19 @@ function deleteProduct(productId){
 };
 /* End delete Product function */
 /* Start Update Product function */
-function updateProduct(productId, productName, productDescription, productPrice, productAmount) {
+function updateProduct(productId, productName, productDescription, productPrice, productAmount, productCategory) {
   const obj = {
     "product_name": productName,
     "product_desc": productDescription,
     "product_amount": productAmount,
-    "product_price": productPrice
+    "product_price": productPrice,
+    "category_name": productCategory
   };
   $.ajax({
     type: "PUT",
+    beforeSend: function(request) {
+      request.setRequestHeader("Authorization", beforeAuth + authToken);
+    },
     url: 'http://127.0.0.1:3000/api/products/' + productId,
     contentType: "application/json",
     Connection: "keep-alive",
@@ -336,6 +359,9 @@ $(document).ready(function() {
   
         $.ajax({
           type: "POST",
+          beforeSend: function(request) {
+            request.setRequestHeader("Authorization", beforeAuth + authToken);
+          },
           url: "http://127.0.0.1:3000/api/categories",
           contentType: "application/json",
           Connection: "keep-alive",
@@ -389,6 +415,9 @@ $(document).ready(function() {
 
     $.ajax({
       type: "POST",
+      beforeSend: function(request) {
+        request.setRequestHeader("Authorization", beforeAuth + authToken);
+      },
       url: "http://127.0.0.1:3000/api/products",
       contentType: "application/json",
       data: JSON.stringify(obj),

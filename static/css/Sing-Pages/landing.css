@@ -25,14 +25,14 @@
     align-items: center;
     gap: 10px;
 }
-.Sing .form-area form {
+.Sing .form-area .form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 10px;
 }
-.Sing .form-area form input[type="text"] {
+.Sing .form-area .form input[type="text"] {
     width: 198px;
     padding: 0.5rem;
     font-size: 1rem;
@@ -44,8 +44,8 @@
     border: none;
     outline: none;
 }
-.Sing .form-area form input[type="email"],
-.Sing .form-area form input[type="password"] {
+.Sing .form-area .form input[type="email"],
+.Sing .form-area .form input[type="password"] {
     width: 400px;
     padding: 0.5rem;
     font-size: 1rem;
@@ -57,7 +57,7 @@
     outline: none;
     border: none;
 }
-.Sing .form-area form input[type="submit"] {
+.Sing .form-area .form input[type="submit"] {
     width: 150px;
     padding: 0.5rem;
     font-size: 1rem;
@@ -82,12 +82,10 @@
     color: #1E90FF;
     text-decoration: none;
 }
-
 .Sing .pic-area {
     width: 50%;
     height: 100%;
 }
-
 .Sing .pic-area img {
     width: 100%;
     height: 100%;
@@ -98,8 +96,7 @@
     -ms-border-radius: 8px;
     -o-border-radius: 8px;
 }
-
-
+/* Start Media */
 @media (max-width: 480px) {
     .Sing {
         height: 70vh;
@@ -125,7 +122,6 @@
         display: none;
     }
 }
-
 @media (min-width: 480px) and (max-width: 900px) {
     .Sing {
         height: 70vh;
@@ -151,24 +147,21 @@
         display: none;
     }
 }
-
-
+/* End Media */
+/* Start verification */
 .verification_text {
     width: 70%;
     height: 70vh;
 }
-
 .verification_text p {
     margin-top: 10px;
     font-size: 1.7rem;
     color: #767676;
 }
-
-#email {
+.verification_text #email {
     color: #1E90FF;
     text-decoration: underline;
 }
-
 .verification_text span {
     font-size: 2rem;
     font-weight: 500;
@@ -176,3 +169,4 @@
 .verification_text span a {
     text-decoration: underline;
 }
+/* End verification */

@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="../static/css/footer.css">
 </head>
 <body>
-
     <header>
             <div class="navbar">
                 <div class="nav-items">
@@ -33,7 +32,6 @@
     </header>
 
     <div class="container">
-
         <section class="Sing">
             <div class="pic-area">
                 <img src="../assets/images/singin.jpg" alt="Sing-in Pic">
@@ -45,11 +43,11 @@
                     <i class="fa-solid fa-right-to-bracket"></i>
                 </div>
                 <div class="form-items">
-                    <form action="">
+                    <div class="form">
                         <input type="email" placeholder="Email" id="email" required>
-                        <input type="password" placeholder="Password" id="passwod" required>
-                        <input type="submit" value="Sing In">
-                    </form>
+                        <input type="password" placeholder="Password" id="password" required>
+                        <input type="submit" value="Sing In" id="singInBtn">
+                    </>
                     <p>Need an account ? <a href="SingUp.html">Sing Up</a></p>
                 </div>
             </div>
@@ -58,7 +56,6 @@
     </div>
 
     <footer>
-
         <div class="footer-content">
             <div>
                 <h4 class="main-name">E-Store</h4>
@@ -106,6 +103,7 @@
             <p>&copy; 2023 E-Store. All rights reserved.</p>
         </div>
     </footer>
-
+    <script src="../static/js/jquery-3.7.1.js"></script>
+    <script src="../static/js/signin.js"></script>
 </body>
 </html>

@@ -38,10 +38,10 @@ class AuthController {
       email
     })
     
-    if (!user) return next(new AppError('User not found', 404))
+    if (!user) return next(new AppError('User not found', 401))
     
     const result = await bcrypt.compare(password, user.password)
-    if (!result) return next(new AppError('Password is wrong', 404))
+    if (!result) return next(new AppError('Password is wrong', 401))
     
     let token = signToken(user.id)
     
