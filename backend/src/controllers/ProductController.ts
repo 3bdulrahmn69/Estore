@@ -11,7 +11,11 @@ const service = new ApiService(Product)
 
 class ProductController {
   async getAllProducts(req: Request, res: Response, next: NextFunction) {
-    const products = await service.getAll()
+    const products = await Product.find({
+      relations: {
+        category: true
+      }
+    })
     return res.status(200).json(products)
   }
   
