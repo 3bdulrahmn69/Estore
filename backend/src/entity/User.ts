@@ -21,7 +21,6 @@ export enum UserRole {
 }
 
 @Entity()
-@Unique(['email'])
 export class User extends BaseModel {
   @Column({nullable: false, length: 45})
   first_name: string
