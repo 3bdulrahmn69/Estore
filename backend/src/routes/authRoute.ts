@@ -4,16 +4,16 @@ import asyncHandler from "../utils/asyncHandle";
 import { createUser } from "../validators/valiation";
 import { Router } from "express";
 
-const router = Router()
+const router = Router();
 
 router
-  .route('/signup')
+  .route("/signup")
   .post(
     joiAsyncMiddleWare(createUser),
     asyncHandler(authController.createUser)
-    )
-    
-router
-    .route('/signin')
-    .post(asyncHandler(authController.signIn))
+  );
+
+router.route("/signin").post(asyncHandler(authController.signIn));
+
+router.route("/logout").get(authController.logout);
 export default router;
