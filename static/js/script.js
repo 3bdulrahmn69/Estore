@@ -18,6 +18,8 @@ function showSection(section, button) {
     products_section.style.cssText = "display: none;";
     orders_section.style.cssText = "display: none;";
     users_section.style.cssText = "display: none;";
+    $('.allProducts-section').css('display', 'none');
+    $('.back_arrow').addClass('hideThings');
 
     // Display the selected section
     if (section) {
@@ -47,10 +49,24 @@ users.addEventListener("click", function () {
     showSection(users_section, users);
 });
 
+$('#All_products').click(function(){
+  head_title.textContent = "All Products"
+  $('.back_arrow').removeClass('hideThings');
+  $('.product-section').css('display','none');
+  $('.allProducts-section').css('display','flex');
+  document.getElementById('allProducts-sce').innerHTML = '';
+  getProducts();
+});
 
-/* Create categories items */
+$('.back_arrow').click(function(){
+  head_title.textContent = "Products"
+  $('.back_arrow').addClass('hideThings');
+  $('.product-section').css('display','flex');
+  $('.allProducts-section').css('display','none');
+});
+
+/* Start Create categories items */
 function createCategoryItem(passedName, passedID) {
-  const categoryID = passedID;
   const categorySection = document.querySelector(".category-section");
   
   const boxItem = document.createElement("div");
@@ -71,6 +87,10 @@ function createCategoryItem(passedName, passedID) {
   catName.textContent = passedName;
   details.appendChild(catName);
 
+  const catID = document.createElement("p");
+  catID.classList.add("catID");
+  catID.textContent = passedID;
+
   const iconsInItems = document.createElement("div");
   iconsInItems.classList.add("iconsInItems");
 
@@ -81,8 +101,13 @@ function createCategoryItem(passedName, passedID) {
     $('#editModal').css('display', 'flex');
     document.querySelector('.edCatName').textContent = passedName;
     $('#UpdateCatName').click(function() {
-      updateCategory(categoryID, $('#newCatName').val());
+      if($('#newCatName').val() == "") {
+        $('#newCatName').css('border', '1px solid red');
+        alert('Please enter a category name');
+      }else{
+        updateCategory(categoryID, $('#newCatName').val());
       $('#confirmModal').css('display', 'none');
+      };
     });
   });
 
@@ -93,7 +118,7 @@ function createCategoryItem(passedName, passedID) {
     $('#confirmModal').css('display', 'flex');
     document.querySelector('.delCatName').textContent = passedName;
     $('#deleteCat').click(function() {
-      delCategory(categoryID);
+      delCategory(passedID);
       $('#confirmModal').css('display', 'none');
     });
   });
@@ -101,11 +126,31 @@ function createCategoryItem(passedName, passedID) {
   iconsInItems.appendChild(editIcon);
   iconsInItems.appendChild(deleteIcon);
   details.appendChild(iconsInItems);
-
+  details.appendChild(catID);
   boxItem.appendChild(boxItemImg);
   boxItem.appendChild(details);
   categorySection.appendChild(boxItem);
 }
+/* End Create categories items */
+/* start get Category In Selector */
+function getCatInSelect() {
+  $.get("http://127.0.0.1:3000/api/categories", function (data) {
+      // Assuming data is an array of objects with a 'category_name' property
+      const $productCategorySelect = $("#product_category");
+
+      // Clear existing options
+      $productCategorySelect.empty();
+
+      // Add a default option
+      $productCategorySelect.append('<option value="Choose Category">Choose</option>');
+
+      // Loop through the data and append each category_name as an option
+      data.forEach(function (category) {
+          $productCategorySelect.append(`<option value="${category.category_name}">${category.category_name}</option>`);
+      });
+    });
+}
+/* End get Category In Selector */
 /* Start get Category function */
 function getCategories() {
   $.get("http://127.0.0.1:3000/api/categories", function (data) {
@@ -115,7 +160,6 @@ function getCategories() {
   });
 }
 /* End get Category function */
-
 /* Start delete Category function */
 function delCategory(CategoryID) {
   $.ajax({
@@ -129,8 +173,7 @@ function delCategory(CategoryID) {
   });
 };
 /* End delete Category function */
-
-/* End Update Category function */
+/* Start Update Category function */
 function updateCategory(CategoryID, CategoryName) {
   const obj = {
     "category_name": CategoryName
@@ -148,32 +191,140 @@ function updateCategory(CategoryID, CategoryName) {
     },
   });
 };
-/* Start Update Category function */
+/* End Update Category function */
+/* Start Create Product item */
+function createProductItem(productId, productName,productDescription ,productPrice, productAmount) {
+  const allProducts_section = document.getElementById('allProducts-sce')
+  const boxItem = document.createElement("tr");
+
+  const boxItemImg = document.createElement("td");
+  boxItemImg.classList.add("pImage");
+
+  const img = document.createElement("img");
+  img.src = "assets/images/card.png";
+  boxItemImg.appendChild(img);
+
+  const pId = document.createElement("td");
+  pId.classList.add("pId");
+  pId.textContent = productId
+
+  const pName = document.createElement("td");
+  pName.classList.add("pName");
+  pName.textContent = productName;
+
+  const pDescription = document.createElement("td");
+  pDescription.classList.add("pDescription");
+  if(productDescription.length > 10) {
+    pDescription.textContent = `${productDescription.substring(0,15)}... `;
+    pDescription.title = productDescription;
+  }else {
+    pDescription.textContent = productDescription;
+  }
+  
+
+  const pPrice = document.createElement("td");
+  pPrice.classList.add("pPrice");
+  pPrice.textContent = productPrice;
+  
+  const pQuantity = document.createElement("td");
+  pQuantity.classList.add("pQuantity");
+  pQuantity.textContent = productAmount;
+
+  const iconsInItems = document.createElement("td");
+  iconsInItems.classList.add("ProductIcons");
+  const editIcon = document.createElement("i");
+  editIcon.classList.add("fa-solid", "fa-pen-to-square");
+  editIcon.addEventListener("click", function () {
+      getCatInSelect()
+      $('#modalProduct').css('display', 'flex');
+      $('#modalProduct .modal-title-head').text('Edit Product');
+      $('#product_name').val(productName);
+      $('#product_description').val(productDescription);
+      $('#product_price').val(productPrice);
+      $('#Product_quantity').val(productAmount);
+      $('#createProduct').css('display', 'none');
+      const updateProductBtn = $('#modalProduct .buttons input[value="Update"]#updateProduct')
+      updateProductBtn.css('display', 'block');
+      updateProductBtn.click(function() {
+        updateProduct(productId, $('#product_name').val(),$('#product_description').val, $('#product_price').val(), $('#Product_quantity').val());
+      });
+  });
+  editIcon.title = "Edit Product";
+  iconsInItems.appendChild(editIcon)
+  const deleteIcon = document.createElement("i");
+  deleteIcon.classList.add("fa-solid", "fa-trash");
+  deleteIcon.addEventListener("click", function () {
+    $('#confirmModal').css('display', 'flex');
+    document.querySelector('.delCatName').textContent = productName;
+    $('#deleteCat').click(function() {
+      deleteProduct(productId)
+      $('#confirmModal').css('display', 'none');
+    });
+  });
+  deleteIcon.title = "Delete Product";
+  iconsInItems.appendChild(deleteIcon)
+
+  boxItem.appendChild(boxItemImg);
+  boxItem.appendChild(pId);
+  boxItem.appendChild(pName);
+  boxItem.appendChild(pDescription);
+  boxItem.appendChild(pPrice);
+  boxItem.appendChild(pQuantity);
+  boxItem.appendChild(iconsInItems);
+  allProducts_section.appendChild(boxItem);
+};
+/* End  Create Product item */
+/* Start  get Products function*/
+function getProducts() {
+  $.get("http://127.0.0.1:3000/api/products", function (data) {
+    data.forEach(product => {
+      createProductItem(product.id, product.product_name, product.product_desc, product.product_price, product.product_amount);
+    });
+  });
+};
+/* End get Products function */
+/* Start delete Product function */
+function deleteProduct(productId){
+  $.ajax({
+    type: "DELETE",
+    url: 'http://127.0.0.1:3000/api/products/' + productId  ,
+    success: function(resp) {
+      $('#confirmModal').css('display', 'none');
+      $('#success').css('display', 'flex');
+      $(".success-content").append(`<p>Product Deleted Successfully</p>`);
+    },
+  });
+};
+/* End delete Product function */
+/* Start Update Product function */
+function updateProduct(productId, productName, productDescription, productPrice, productAmount) {
+  const obj = {
+    "product_name": productName,
+    "product_desc": productDescription,
+    "product_amount": productAmount,
+    "product_price": productPrice
+  };
+  $.ajax({
+    type: "PUT",
+    url: 'http://127.0.0.1:3000/api/products/' + productId,
+    contentType: "application/json",
+    Connection: "keep-alive",
+    data: JSON.stringify(obj),
+    success: function(resp) {
+      $('#editModal').css('display', 'none');
+      $('#success').css('display', 'flex');
+      $(".success-content").append(`<p>Product Updated Successfully</p>`);
+      console.log(resp)
+    },
+  });
+};
+/* End Update Product function */
 
 $(document).ready(function() {
-
-  /* start get option */
-    $('#New_product').click(function() {
-      $.get("http://127.0.0.1:3000/api/categories", function (data) {
-          // Assuming data is an array of objects with a 'category_name' property
-          const $productCategorySelect = $("#product_category");
-
-          // Clear existing options
-          $productCategorySelect.empty();
-
-          // Add a default option
-          $productCategorySelect.append('<option value="Choose Category">Choose</option>');
-
-          // Loop through the data and append each category_name as an option
-          data.forEach(function (category) {
-              $productCategorySelect.append(`<option value="${category.category_name}">${category.category_name}</option>`);
-          });
-        });
-    });
-    /* End get option */
-
     getCategories();
-
+    /* start get option */
+    $('#New_product').click(getCatInSelect());
+    /* End get option */
     $("#createCategory").click(function() {
       if ($("#category_name").val() == "") {
         $("#category_name").css("border", "1px solid red");
@@ -207,7 +358,6 @@ $(document).ready(function() {
         $("#category_name").val("");
       }
     });
-
     $("#createProduct").click(function() {
       if ($("#product_name").val() == "") {
         $("#product_name").css("border", "1px solid red");
@@ -272,7 +422,6 @@ $(document).ready(function() {
       $("#product_price").val("");
       $("#product_category").val("Choose Category");
     });
-
     /* Start NavBar Hider*/
     $('#ic-show').click(function () {
       $('#nav').animate({width: 'toggle'}, 350);
