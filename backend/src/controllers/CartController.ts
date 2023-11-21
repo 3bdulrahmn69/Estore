@@ -17,15 +17,27 @@ class CartController {
       },
     });
 
+    const productCart = await CartProduct.find({
+      where: {
+        cartId: user.cart.id,
+      },
+    });
+
+    console.log(productCart);
+
+    const total = cart.products.reduce((acc, product, idx) => {
+      return acc + product.product_price * productCart[idx].amount;
+    }, 0);
+
     res.status(200).json({
       status: "success",
+      total,
       data: cart.products,
     });
   }
 
   async addProductToCart(req: Request, res: Response, next: NextFunction) {
     const { id } = req.params;
-    const { amount } = req.body;
     const product = await Product.findOneBy({
       id: Number(id),
     });
@@ -42,7 +54,6 @@ class CartController {
       },
     });
     if (!cart.products.includes(product)) cart.products.push(product);
-    product.product_amount--;
     await cart.save();
     res.status(200).json({
       status: "success",
