@@ -83,7 +83,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"category_name\": \"cpu\"\r\n}",
+							"raw": "{\r\n    \"category_name\": \"Laptops\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -231,7 +231,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"product_name\": \"product_name\",\r\n    \"product_desc\": \"product_desc\",\r\n    \"product_amount\": \"product_amount\",\r\n    \"product_price\": \"product_price\",\r\n    \"category_name\": \"category_name\"\r\n}",
+							"raw": "{\r\n    \"product_name\": \"Intel i9\",\r\n    \"product_desc\": \"Intel proccessor\",\r\n    \"product_amount\": 5,\r\n    \"product_price\": 15000,\r\n    \"category_name\": \"cpu\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -374,7 +374,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"first_name\": \"ahmed\",\r\n    \"last_name\": \"walid\",\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\": \"ahmedwalid\",\r\n    \"role\": \"admin\"\r\n}",
+							"raw": "{\r\n    \"first_name\": \"abdo\",\r\n    \"last_name\": \"abdo\",\r\n    \"email\": \"abddso@gmail.com\",\r\n    \"password\": \"ahmedwalid\",\r\n    \"role\": \"admin\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -402,7 +402,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\": \"ahmedwalid\"\r\n}",
+							"raw": "{\r\n    \"email\": \"ahmedwalid@gmail.com\",\r\n    \"password\": \"ahmedwalid\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -444,6 +444,113 @@
 				}
 			],
 			"description": "Auhtentication endpoints"
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "Get all products in the cart",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/cart",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add product to cart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/cart/5",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"cart",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete all product in the cart",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/cart",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete one product form cart",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/cart/1",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"cart",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update amount of product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/cart/3",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"cart",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [
