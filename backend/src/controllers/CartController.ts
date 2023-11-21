@@ -16,16 +16,19 @@ class CartController {
         products: true,
       },
     });
-
+    const total = cart.products.reduce((acc, obj) => {
+      return acc + obj.product_price;
+    }, 0);
+    console.log(total);
     res.status(200).json({
       status: "success",
       data: cart.products,
+      total,
     });
   }
 
   async addProductToCart(req: Request, res: Response, next: NextFunction) {
     const { id } = req.params;
-    const { amount } = req.body;
     const product = await Product.findOneBy({
       id: Number(id),
     });
