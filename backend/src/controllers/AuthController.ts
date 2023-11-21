@@ -4,6 +4,8 @@ import { CookieOptions, NextFunction, Request, Response } from "express";
 import AppError from "../utils/appError";
 import * as bcrypt from "bcrypt";
 import * as Jwt from "jsonwebtoken";
+import { Cart } from "../entity/Cart";
+import { Wishlist } from "../entity/Wishlist";
 
 const signToken = (id) => {
   return Jwt.sign({ id: id }, process.env.JWT_SECRET, {
@@ -25,6 +27,8 @@ const createSendToken = (user, statusCode, res) => {
 
   res.cookie("jwt", token, cookieOptions);
 
+  user.password = undefined;
+
   res.status(statusCode).json({
     status: "success",
     token,
@@ -44,8 +48,11 @@ class AuthController {
 
     if (existingUser)
       return next(new AppError("This email already exists", 404));
-
     const user = new User();
+    const cart = new Cart();
+    cart.user = user;
+    const wishlist = new Wishlist();
+    wishlist.user = user;
     user.first_name = first_name;
     user.last_name = last_name;
     user.email = email;
@@ -54,20 +61,26 @@ class AuthController {
     if (role === UserRole.ADMIN) user.role = UserRole.ADMIN;
 
     await user.save();
+    if (user.role === UserRole.USER) {
+      await cart.save();
+      await wishlist.save();
+    }
+
     createSendToken(user, 200, res);
   }
 
   async signIn(req: Request, res: Response, next: NextFunction) {
     const { email, password } = req.body;
-    const user = await User.findOneBy({
-      email,
+    const user = await User.findOne({
+      where: {
+        email,
+      },
     });
 
     if (!user) return next(new AppError("User not found", 404));
 
     const result = await bcrypt.compare(password, user.password);
     if (!result) return next(new AppError("Password is wrong", 404));
-
     createSendToken(user, 200, res);
   }
 

@@ -22,8 +22,14 @@ class Authentication {
     }
 
     const decoded: any = Jwt.verify(token, process.env.JWT_SECRET);
-    const user = await User.findOneBy({
-      id: decoded.id,
+    const user = await User.findOne({
+      where: {
+        id: decoded.id,
+      },
+      relations: {
+        cart: true,
+        wishlist: true,
+      },
     });
 
     if (!user) {
