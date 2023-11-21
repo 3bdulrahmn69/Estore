@@ -3,7 +3,6 @@ import AppError from "../utils/appError";
 import { Cart } from "../entity/Cart";
 import { Product } from "../entity/Product";
 import { CartProduct } from "../entity/CartProduct";
-import { number } from "joi";
 
 class CartController {
   async getAllproductOfCard(req: Request, res: Response) {
@@ -16,14 +15,21 @@ class CartController {
         products: true,
       },
     });
-    const total = cart.products.reduce((acc, obj) => {
-      return acc + obj.product_price;
+
+    const productCart = await CartProduct.find({
+      where: {
+        cartId: user.cart.id,
+      },
+    });
+
+    const total = cart.products.reduce((acc, product, idx) => {
+      return acc + product.product_price * productCart[idx].amount;
     }, 0);
-    console.log(total);
+
     res.status(200).json({
       status: "success",
-      data: cart.products,
       total,
+      data: cart.products,
     });
   }
 
@@ -45,7 +51,6 @@ class CartController {
       },
     });
     if (!cart.products.includes(product)) cart.products.push(product);
-    product.product_amount--;
     await cart.save();
     res.status(200).json({
       status: "success",

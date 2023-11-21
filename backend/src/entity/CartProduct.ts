@@ -1,10 +1,14 @@
-import { Entity, Column, PrimaryColumn, BaseEntity } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryColumn,
+  BaseEntity,
+  BeforeInsert,
+  BeforeUpdate,
+} from "typeorm";
 
 @Entity("cart_product")
 export class CartProduct extends BaseEntity {
-  @Column({ default: 1 })
-  amount: number;
-
   @Column()
   @PrimaryColumn()
   cartId: number;
@@ -12,4 +16,7 @@ export class CartProduct extends BaseEntity {
   @Column()
   @PrimaryColumn()
   productId: number;
+
+  @Column({ default: 1 })
+  amount: number;
 }
