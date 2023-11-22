@@ -12,6 +12,7 @@ import { Image } from "./Image";
 import { Cart } from "./Cart";
 import { Wishlist } from "./Wishlist";
 import { Review } from "./Review";
+import { Order } from "./Order";
 
 @Entity()
 export class Product extends BaseModel {
@@ -32,6 +33,8 @@ export class Product extends BaseModel {
   })
   category: Category;
 
+  @ManyToMany(() => Order, (order) => order.products)
+  orders: Order[];
   @OneToMany(() => Image, (image) => image.product)
   images: Image[];
 
