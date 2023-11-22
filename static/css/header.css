@@ -14,9 +14,6 @@ header .navbar {
 header .navbar .nav-items {
     width: 50%;
 }
-header .navbar .icon-bars {
-    display: none;
-}
 header .navbar .nav-items ul {   
     display: flex;
     align-items: center;
@@ -68,7 +65,6 @@ header .navbar .search-box button {
     cursor: pointer;
     color: #03A6EF
 }
-
 header .navbar .icons {
     display: flex;
     align-items: center;
@@ -76,7 +72,21 @@ header .navbar .icons {
     font-size: 1.4rem;
     gap: 20px;
 }
-
+header .navbar .icon-bars {
+    width: 40px;
+    height: 40px;
+    background-color: var(--primaryColor);
+    color: var(--textIcons);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    display: none;
+}
 header .navbar .icons .icon-item {
     cursor: pointer;
     width: 40px;
@@ -91,7 +101,6 @@ header .navbar .icons .icon-item {
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
 }
-
 header .navbar .icons .icon-item a {
     color: #03A6EF;
 }
@@ -112,6 +121,9 @@ header .navbar .icons .icon-item a {
     header .navbar .search-box button {
         width: 20%;
     }
+    header .navbar .icons {
+        display: none;
+    }
     header .navbar .icon-bars {
         display: flex;
         align-items: center;
@@ -121,8 +133,6 @@ header .navbar .icons .icon-item a {
         width: 20%;
     }
 }
-
-
 @media (max-width: 768px) {
     header .navbar {
         width: 90%;

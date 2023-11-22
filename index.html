@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,20 +8,17 @@
     <link rel="stylesheet" href="static/css/all.min.css">
     <link rel="stylesheet" href="static/css/common.css">
     <link rel="stylesheet" href="static/css/header.css">
-    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/mainPage.css">
     <link rel="stylesheet" href="static/css/footer.css">
 </head>
-
 <body>
-
     <header>
         <div class="navbar">
             <div class="nav-items">
                 <ul>
-                    <li><a href="#">Hot</a></li>
-                    <li><a href="#">Categories</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#shop">Shop</a></li>
+                    <li><a href="#aboutus">About Us</a></li>
+                    <li><a href="#contactus">Contact Us</a></li>
                 </ul>
             </div>
             <div class="search-box" title="Search">
@@ -45,7 +41,6 @@
             </div>
         </div>
     </header>
-
     <section class="landing">
         <div class="con">
             <div class="landing-content">
@@ -53,256 +48,147 @@
                     <h1 class="main-name">Welcome to <span> E-Store </span></h1>
                     <p>Unleash The Power Of Technology At Your Fingertips</p>
                 </div>
-                <a href="#" class="btn"><button>Shop Now</button></a>
+                <a href="#shop" class="btn"><button>Shop Now</button></a>
             </div>
             <div class="landing-pic">
                 <img src="assets/images/All.png" alt="">
             </div>
         </div>
     </section>
-
-    <section class="hot">
+    <section class="shop" id="shop">
         <div class="banner">
-            <div class="bg-icon">
-                <i class="fa-solid fa-fire"></i>
-            </div>
             <div class="tag-line">
-                <p>Get the best deals on the latest tech</p>
+                <p>Our pretty Shop</p>
             </div>
-            <h4>Hot</h4>
+            <h4>Shop</h4>
         </div>
         <div class="container">
-            <div class="hot-content">
-
-                <div class="label-con" data-text="Best Sales">
-                    <div class="right">
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </div>
-                    <div class="left">
-                        <i class="fa-solid fa-arrow-left"></i>
-                    </div>
-                    <div class="sales">
-                        <div class="item">
-                            <div class="item-pic">
-                                <img src="assets/images/head.png" alt="">
-                            </div>
-                            <div class="item-name">
-                                <h4>Product Name</h4>
-                            </div>
-                            <div class="item-price">
-                                <p>$100</p>
-                            </div>
-                        </div>
-    
-                        <div class="item">
-                            <div class="item-pic">
-                                <img src="assets/images/Keyboard.png" alt="">
-                            </div>
-                            <div class="item-name">
-                                <h4>Product Name</h4>
-                            </div>
-                            <div class="item-price">
-                                <p>$100</p>
-                            </div>
-                        </div>
-    
-                        <div class="item">
-                            <div class="item-pic">
-                                <img src="assets/images/Mouse.png" alt="">
-                            </div>
-                            <div class="item-name">
-                                <h4>Product Name</h4>
-                            </div>
-                            <div class="item-price">
-                                <p>$100</p>
-                            </div>
-                        </div>
-    
-                        <div class="item">
-                            <div class="item-pic">
-                                <img src="assets/images/mon.png" alt="">
-                            </div>
-                            <div class="item-name">
-                                <h4>Product Name</h4>
-                            </div>
-                            <div class="item-price">
-                                <p>$100</p>
-                            </div>
-                        </div>
-    
-                        <div class="item">
-                            <div class="item-pic">
-                                <img src="assets/images/Pc-Bu.png" alt="">
-                            </div>
-                            <div class="item-name">
-                                <h4>Product Name</h4>
-                            </div>
-                            <div class="item-price">
-                                <p>$100</p>
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <div class="item-pic">
-                                <img src="assets/images/Pc-Bu.png" alt="">
-                            </div>
-                            <div class="item-name">
-                                <h4>Product Name</h4>
-                            </div>
-                            <div class="item-price">
-                                <p>$100</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="month-daily">
-                    <div class="label-con" data-text="Monthly Deals">
-                        <div class="sales">
-
-                            <div class="item">
-                                <div class="item-pic">
+            <section class="category">
+                <div class="arrows">
+                    <button class="icon-left" onclick="scrollLeftBy('.category-container')"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="icon-right" onclick="scrollRightBy('.category-container')"><i class="fa-solid fa-chevron-right"></i></button>
+                    <div class="category-container">
+                        <!-- <a href="">
+                            <div class="category-box">
+                                <div class="catImage">
+                                    <div class="image-circle">
+                                    </div>
                                     <img src="assets/images/mon.png" alt="">
                                 </div>
-                                <div class="item-name">
-                                    <h4>Product Name</h4>
+                                <div class="catName">
+                                    <h4>Test Category</h4>
                                 </div>
-                                <div class="item-price">
-                                    <p>$100</p>
-                                </div>
-                            </div>
-        
-                            <div class="item">
-                                <div class="item-pic">
-                                    <img src="assets/images/Pc-Bu.png" alt="">
-                                </div>
-                                <div class="item-name">
-                                    <h4>Product Name</h4>
-                                </div>
-                                <div class="item-price">
-                                    <p>$100</p>
-                                </div>
-                            </div>
-    
-                            <div class="item">
-                                <div class="item-pic">
-                                    <img src="assets/images/Pc-Bu.png" alt="">
-                                </div>
-                                <div class="item-name">
-                                    <h4>Product Name</h4>
-                                </div>
-                                <div class="item-price">
-                                    <p>$100</p>
-                                </div>
-                            </div>
-                        </div>
+                            </div> 
+                        </a> -->
                     </div>
-
-                    <div class="label-con" data-text="Today's Deal">
-                        <div class="sales none">
-                            <div class="item">
-                                <div class="item-pic">
-                                    <img src="assets/images/head.png" alt="">
-                                </div>
-                                <div class="details">
-                                    <div class="item-name">
-                                        <h4>Product Name</h4>
-                                    </div>
-                                    <div class="item-price">
-                                        <p>$100</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
                 </div>
+            </section>
+            <hr>
+            <!-- <section class="products" id="Pc">
+                <div class="arrows">
+                    <div class="title">
+                        <h4 class="Product-Category-Name">Pc</h4>
+                    </div>
+                    <button class="icon-left" onclick="scrollLeftBy('.Pc-con')"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="icon-right" onclick="scrollRightBy('.Pc-con')"><i class="fa-solid fa-chevron-right"></i></button>
+                    <div class="products-container Pc-con">
+                        <div class="product-box">
+                            <div class="product-image">
+                                <img src="assets/images/card.png" alt="">
+                            </div>
+                            <div class="product-name">
+                                <h4>Product Name</h4>
+                                <p class="price">150</p>
+                            </div>
+                            <div class="show-details">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </div>
+                            <div class="product-details">
+                                <p>it's a detalits for a proudct adnt some more words</p>
+                            </div>
+                            <div class="product-btn">
+                                <button title="Add To Cart">Cart <i class="fa-solid fa-cart-shopping"></i></button>
+                                <button title="Add To Wishlist">Wishlist <i class="fa-solid fa-heart"></i></button>
+                            </div>
+                        </div>
+                        <div class="product-box">
+                            <div class="product-image">
+                                <img src="assets/images/card.png" alt="">
+                            </div>
+                            <div class="product-name">
+                                <h4>Product Name</h4>
+                                <p class="price">150</p>
+                            </div>
+                            <div class="show-details">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </div>
+                            <div class="product-details">
+                                <p>it's a detalits for a proudct adnt some more words</p>
+                            </div>
+                            <div class="product-btn">
+                                <button title="Add To Cart">Cart <i class="fa-solid fa-cart-shopping"></i></button>
+                                <button title="Add To Wishlist">Wishlist <i class="fa-solid fa-heart"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section> -->
+        </div>
+    </section>
+    <section class="aboutUs" id="aboutus">
+        <div class="banner">
+            <div class="tag-line">
+                <p>you can know us well</p>
+            </div>
+            <h4>About Us</h4>
+        </div>
+        <div class="container">
+            <div class="categories-content">
                 
-                <div class="label-con" data-text="Exclusive">
-                    <div class="right">
-                        <i class="fa-solid fa-arrow-right"></i>
+            </div>
+        </div>
+    </section>
+    <section class="contactUs" id="contactus">
+        <div class="banner">
+            <div class="tag-line">
+                <p>Our details to contact</p>
+            </div>
+            <h4>Contact Us</h4>
+        </div>
+        <div class="container">
+            <div class="contactUs-content">
+                <div class="call">
+                    <div class="head-con">
+                        <div class="icon-s">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <p>Call Us</p>
                     </div>
-                    <div class="left">
-                        <i class="fa-solid fa-arrow-left"></i>
+                    <p>We are available 24/7 hours a week</p>
+                    <p>Phone: +2 123456789</p>
+                    <hr>
+                    <div class="head-con">
+                        <div class="icon-s">
+                            <i class="fa-regular fa-envelope"></i>
+                        </div>
+                        <p>Write Us</p>
                     </div>
-                    <div class="sales">
-                        <div class="item">
-                            <div class="item-pic">
-                                <img src="assets/images/head.png" alt="">
-                            </div>
-                            <div class="item-name">
-                                <h4>Product Name</h4>
-                            </div>
-                            <div class="item-price">
-                                <p>$100</p>
-                            </div>
-                        </div>
-    
-                        <div class="item">
-                            <div class="item-pic">
-                                <img src="assets/images/Keyboard.png" alt="">
-                            </div>
-                            <div class="item-name">
-                                <h4>Product Name</h4>
-                            </div>
-                            <div class="item-price">
-                                <p>$100</p>
-                            </div>
-                        </div>
-    
-                        <div class="item">
-                            <div class="item-pic">
-                                <img src="assets/images/Mouse.png" alt="">
-                            </div>
-                            <div class="item-name">
-                                <h4>Product Name</h4>
-                            </div>
-                            <div class="item-price">
-                                <p>$100</p>
-                            </div>
-                        </div>
-    
-                        <div class="item">
-                            <div class="item-pic">
-                                <img src="assets/images/mon.png" alt="">
-                            </div>
-                            <div class="item-name">
-                                <h4>Product Name</h4>
-                            </div>
-                            <div class="item-price">
-                                <p>$100</p>
-                            </div>
-                        </div>
-    
-                        <div class="item">
-                            <div class="item-pic">
-                                <img src="assets/images/Pc-Bu.png" alt="">
-                            </div>
-                            <div class="item-name">
-                                <h4>Product Name</h4>
-                            </div>
-                            <div class="item-price">
-                                <p>$100</p>
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <div class="item-pic">
-                                <img src="assets/images/Pc-Bu.png" alt="">
-                            </div>
-                            <div class="item-name">
-                                <h4>Product Name</h4>
-                            </div>
-                            <div class="item-price">
-                                <p>$100</p>
-                            </div>
-                        </div>
+                    <p>Fill out our form and we will contact you within 24 hours</p>
+                    <p>Emails: customer@estore.com</p>
+                    <p>Emails: support@estore.com</p>
+                </div>
+                <div class="message">
+                    <div>
+                        <input type="text" placeholder="Your Name">
+                        <input type="email" placeholder="Your Email">
+                        <input type="text" placeholder="Your Number">
                     </div>
+                    <textarea name="" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
+                    <button>Send Message</button>
                 </div>
             </div>
         </div>
     </section>
-
     <footer>
         <div class="footer-content">
             <div>
@@ -351,7 +237,7 @@
             <p>&copy; 2023 E-Store. All rights reserved.</p>
         </div>
     </footer>
-
+    <script src="static/js/jquery-3.7.1.js"></script>
+    <script src="static/js/mainPage.js"></script>
 </body>
-
 </html>
