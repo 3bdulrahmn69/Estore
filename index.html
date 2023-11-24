@@ -13,13 +13,16 @@
 </head>
 <body>
     <header>
-        <div class="navbar">
+        <nav class="navbar">
             <div class="nav-items">
                 <ul>
-                    <li><a href="#shop">Shop</a></li>
-                    <li><a href="#aboutus">About Us</a></li>
-                    <li><a href="#contactus">Contact Us</a></li>
+                    <li><a href="#shop" title="Shop">Shop</a></li>
+                    <li><a href="#aboutus " title="About Us">About Us</a></li>
+                    <li><a href="#contactus" title="Contact Us">Contact Us</a></li>
                 </ul>
+            </div>
+            <div class="icon-bars">
+                <i class="fa-solid fa-bars"></i>
             </div>
             <div class="search-box" title="Search">
                 <input type="text" placeholder="Search">
@@ -32,14 +35,25 @@
                 <div class="icon-item" title="Cart">
                     <a href="#"><i class="fas fa-shopping-cart"></i></a>
                 </div>
-                <div class="icon-item" title="Account">
-                    <a href="#"><i class="fas fa-user"></i></a>
-                </div>
             </div>
-            <div class="icon-bars">
-                <i class="fa-solid fa-bars"></i>
+            <div class="account">
+                <ul>
+                    <li><a href="Templates/SingIn.html" title="Sing In">Sing In</a></li>
+                    <li>/</li>
+                    <li><a href="Templates/SingUp.html" title="Sing Up">Sing Up</a></li>
+                </ul>
             </div>
-        </div>
+            <div class="account-name">
+                <p class="accountPassedName"></p>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="dropMenu">
+                <ul>
+                    <li>My Account</li>
+                    <li id="accountLogout">Log Out</li>
+                </ul>
+            </div>
+        </nav>
     </header>
     <section class="landing">
         <div class="con">
@@ -104,7 +118,7 @@
                                 <i class="fa-solid fa-circle-info"></i>
                             </div>
                             <div class="product-details">
-                                <p>it's a detalits for a proudct adnt some more words</p>
+                                <p>it's a shit for an for a product try some more words</p>
                             </div>
                             <div class="product-btn">
                                 <button title="Add To Cart">Cart <i class="fa-solid fa-cart-shopping"></i></button>
@@ -123,7 +137,7 @@
                                 <i class="fa-solid fa-circle-info"></i>
                             </div>
                             <div class="product-details">
-                                <p>it's a detalits for a proudct adnt some more words</p>
+                                <p>it's a shit for an for a product try some more words</p>
                             </div>
                             <div class="product-btn">
                                 <button title="Add To Cart">Cart <i class="fa-solid fa-cart-shopping"></i></button>
@@ -143,8 +157,49 @@
             <h4>About Us</h4>
         </div>
         <div class="container">
-            <div class="categories-content">
-                
+            <div class="aboutUs-content">
+                <div class="up">
+                    <div class="words">
+                        <h2>We are <span>E-Store</span></h2>
+                        <h4>A totally online store for all hardware things</h4>
+                        <h3>WE Are 000</h3>
+                        <p>0 &ThickSpace; Experience</p>
+                        <p>0 &ThickSpace; Lucky</p>
+                        <p>0 &ThickSpace; Power</p>
+                    </div>
+                    <div class="image">
+                        <img src="assets/images/About us page-bro.png" alt="About Us">
+                    </div>
+                </div>
+                <div class="dw">
+                    <div class="con">
+                        <div class="ic-bg">
+                            <div class="ic">
+                                <i class="fa-solid fa-truck-fast"></i>
+                            </div>
+                        </div>
+                        <h5>Free and fast delivery</h5>
+                        <p>Free delivery for all orders over 140$</p>
+                    </div>
+                    <div class="con">
+                        <div class="ic-bg">
+                            <div class="ic">
+                                <i class="fa-solid fa-headset"></i>
+                            </div>
+                        </div>
+                        <h5>24/7 Customer Service</h5>
+                        <p>Friendly 42/7 Customer Support</p>
+                    </div>
+                    <div class="con">
+                        <div class="ic-bg">
+                            <div class="ic">
+                                <i class="fa-solid fa-receipt"></i>
+                            </div>
+                        </div>
+                        <h5>Money Back Guarantee</h5>
+                        <p>Git back your money within 30 days</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

@@ -5,7 +5,7 @@ header {
 }
 header .navbar {
     height: 100%;
-    width: 70%;
+    width: 60%;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -31,7 +31,7 @@ header .navbar .search-box {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 10px;
+    margin: 0 10px;
 }
 header .navbar .search-box input {
     width: 90%;
@@ -50,9 +50,9 @@ header .navbar .search-box button {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 5px 10px;
+    padding: 5px 15px;
     height: 40px;
-    width: 10%;
+    width: 15%;
     font-size: 1.2rem;
     border-radius: 0 10px 10px 0;
     -webkit-border-radius: 0 10px 10px 0;
@@ -71,21 +71,7 @@ header .navbar .icons {
     justify-content: center;
     font-size: 1.4rem;
     gap: 20px;
-}
-header .navbar .icon-bars {
-    width: 40px;
-    height: 40px;
-    background-color: var(--primaryColor);
-    color: var(--textIcons);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-    display: none;
+    /* display: none; */
 }
 header .navbar .icons .icon-item {
     cursor: pointer;
@@ -104,13 +90,127 @@ header .navbar .icons .icon-item {
 header .navbar .icons .icon-item a {
     color: #03A6EF;
 }
+header .navbar .account {
+    width: 180px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 10px;
+    display: none;
+}
+header .navbar .account ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    cursor: default;
+}
+header .navbar .account-name {
+    width: 190px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: 10px;
+    color: var(--primaryColor);
+}
+header .navbar .account-name p {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+header .navbar ul li a:hover {
+    color: #03A6EF;
+    cursor: pointer;
+}
+header .navbar .icon-bars {
+    width: 45px;
+    height: 45px;
+    background-color: var(--primaryColor);
+    color: var(--textIcons);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    display: none;
+}
+header .navbar .dropMenu {
+    position: absolute;
+    top: 55px;
+    right: 22%;
+    background-color: var(--primaryColor);
+    z-index: 10;
+    width: 230px;
+    border-radius: 0 0 4px 4px;
+    -webkit-border-radius: 0 0 4px 4px;
+    -moz-border-radius: 0 0 4px 4px;
+    -ms-border-radius: 0 0 4px 4px;
+    -o-border-radius: 0 0 4px 4px;
+    display: none;
+}
+header .navbar .dropMenu ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+header .navbar .dropMenu ul li {
+    width: 90%;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: var(--textIcons);
+    padding: 5px 10px;
+    margin: 5px 10px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}
+header .navbar .dropMenu ul li:hover {
+    color: #03A6EF;
+    background-color: var(--textIcons);
+    cursor: pointer;
+}
 
 @media (max-width: 320px) {
+    header {
+        position: relative;
+    }
     header .navbar {
         width: 90%;
     }
     header .navbar .nav-items {
+        width: 0;
+    }
+    header .navbar .nav-items ul {
+        position: absolute;
+        top: 60px;
+        right: 0px;
+        display: flex;
+        align-items: start;
+        justify-content: start;
+        flex-direction: column;
+        background-color: var(--primaryColor);
+        width: 100%;
+        height: fit-content;
+        gap: 10px;
+        padding: 10px 30px;
+        z-index: 9;
+        padding-top: 60px;
         display: none;
+    }
+    header .navbar .nav-items ul a {
+        color: var(--textIcons);
     }
     header .navbar .search-box {
         width: 80%;
@@ -122,23 +222,72 @@ header .navbar .icons .icon-item a {
         width: 20%;
     }
     header .navbar .icons {
+        position: absolute;
+        display: flex;
+        top: 70px;
+        right: 20px;
+        z-index: 10;
         display: none;
     }
     header .navbar .icon-bars {
+        width: 40px;
+        height: 40px;
         display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-        cursor: pointer;
-        width: 20%;
+    }
+    header .navbar .account {
+        position: absolute;
+        display: flex;
+        left: 10px;
+        top: 60px;
+        z-index: 10;
+        color: var(--textIcons);
+        display: none;
+    }
+    header .navbar .account a {
+        color: var(--textIcons);
+    }
+    header .navbar .account-name {
+        position: absolute;
+        display: flex;
+        left: 30px;
+        top: 70px;
+        z-index: 10;
+        color: var(--textIcons);
+    }
+    header .navbar .account-name p:nth-child(2) {
+        font-weight: bold;
+        color: var(--textIcons);
     }
 }
-@media (max-width: 768px) {
+@media (min-width: 321px) and (max-width: 480px) {
+    header {
+        position: relative;
+    }
     header .navbar {
         width: 90%;
     }
     header .navbar .nav-items {
+        width: 0;
+    }
+    header .navbar .nav-items ul {
+        position: absolute;
+        top: 60px;
+        right: 0px;
+        display: flex;
+        align-items: start;
+        justify-content: start;
+        flex-direction: column;
+        background-color: var(--primaryColor);
+        width: 100%;
+        height: fit-content;
+        gap: 10px;
+        padding: 10px 30px;
+        z-index: 9;
+        padding-top: 60px;
         display: none;
+    }
+    header .navbar .nav-items ul a {
+        color: var(--textIcons);
     }
     header .navbar .search-box {
         width: 80%;
@@ -149,12 +298,105 @@ header .navbar .icons .icon-item a {
     header .navbar .search-box button {
         width: 20%;
     }
-    header .navbar .icon-bars {
+    header .navbar .icons {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-        cursor: pointer;
+        top: 70px;
+        right: 20px;
+        z-index: 10;
+        display: none;
+    }
+    header .navbar .icon-bars {
+        width: 40px;
+        height: 40px;
+        display: flex;
+    }
+    header .navbar .account {
+        position: absolute;
+        display: flex;
+        left: 10px;
+        top: 60px;
+        z-index: 10;
+        color: var(--textIcons);
+        display: none;
+    }
+    header .navbar .account a {
+        color: var(--textIcons);
+    }
+    header .navbar .account-name {
+        position: absolute;
+        display: flex;
+        left: 30px;
+        top: 70px;
+        z-index: 10;
+        color: var(--textIcons);
+        display: none;
+    }
+    header .navbar .account-name p:nth-child(2) {
+        font-weight: bold;
+        color: var(--textIcons);
+    }
+}
+@media (min-width: 481px) and (max-width: 768px) {
+    header {
+        position: relative;
+    }
+    header .navbar {
+        width: 90%;
+    }
+    header .navbar .nav-items {
+        width: 0;
+    }
+    header .navbar .nav-items ul {
+        position: absolute;
+        top: 60px;
+        right: 0px;
+        display: flex;
+        align-items: start;
+        justify-content: start;
+        flex-direction: column;
+        background-color: var(--primaryColor);
+        width: 100%;
+        height: fit-content;
+        gap: 10px;
+        padding: 10px 30px;
+        z-index: 9;
+        padding-top: 60px;
+        display: none;
+    }
+    header .navbar .nav-items ul a {
+        color: var(--textIcons);
+    }
+    header .navbar .search-box {
+        width: 80%;
+    }
+    header .navbar .search-box input {
+        width: 80%;
+    }
+    header .navbar .search-box button {
         width: 20%;
+    }
+    header .navbar .icons {
+        display: flex;
+        top: 70px;
+        right: 20px;
+        z-index: 10;
+        display: none;
+    }
+    header .navbar .icon-bars {
+        width: 40px;
+        height: 40px;
+        display: flex;
+    }
+    header .navbar .account {
+        position: absolute;
+        display: flex;
+        left: 10px;
+        top: 60px;
+        z-index: 10;
+        color: var(--textIcons);
+        display: none;
+    }
+    header .navbar .account a {
+        color: var(--textIcons);
     }
 }
