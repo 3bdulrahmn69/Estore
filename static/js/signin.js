@@ -1,5 +1,4 @@
-'use Strict';
-function singIn(email, password){
+function singIn(email, password) {
     const obj = {
         "email": email,
         "password": password
@@ -12,6 +11,7 @@ function singIn(email, password){
         data: JSON.stringify(obj),
         success: function(resp) {
             console.log(resp);
+            sessionStorage.setItem('userEmail', email);
             window.location.href = "file:///D:/aProjects/Projects/zMyGutHub/Estore/index.html";
         },
         error: function(err) {
@@ -20,7 +20,7 @@ function singIn(email, password){
             }
         }
     });
-};
+}
 
 $('#singInBtn').click(function(){
     const email = $('#email').val();

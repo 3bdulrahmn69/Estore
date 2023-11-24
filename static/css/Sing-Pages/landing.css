@@ -107,14 +107,21 @@
     .Sing .form-area .form-title {
         font-size: 1.5rem;
     }
+    .Sing .form-area .form-items .names {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
     .Sing .form-area form input[type="text"] {
         width: 98px;
     }
-    .Sing .form-area form input[type="email"],
-    .Sing .form-area form input[type="password"] {
+    .Sing .form-area .form input[type="email"],
+    .Sing .form-area .form input[type="password"] {
         width: 200px;
     }
-    .Sing .form-area form input[type="submit"] {
+    .Sing .form-area .form input[type="submit"] {
         width: 80px;
         margin-bottom: 20px;
     }
@@ -132,19 +139,47 @@
     .Sing .form-area .form-title {
         font-size: 1.5rem;
     }
-    .Sing .form-area form input[type="text"] {
+    .Sing .form-area .form input[type="text"] {
         width: 198px;
     }
-    .Sing .form-area form input[type="email"],
-    .Sing .form-area form input[type="password"] {
+    .Sing .form-area .form input[type="email"],
+    .Sing .form-area .form input[type="password"] {
         width: 400px;
     }
-    .Sing .form-area form input[type="submit"] {
+    .Sing .form-area .form input[type="submit"] {
         width: 120px;
         margin-bottom: 20px;
     }
     .Sing .pic-area {
         display: none;
+    }
+}
+@media (min-width: 900px) and (max-width: 1024px) {
+    .Sing {
+        height: 80vh;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .Sing .form-area {
+        width: 90%;
+        margin: 20px 0;
+    }
+    .Sing .form-area .form-title {
+        font-size: 1.7rem;
+    }
+    .Sing .form-area .form input[type="text"] {
+        width: 248px;
+    }
+    .Sing .form-area .form input[type="email"],
+    .Sing .form-area .form input[type="password"] {
+        width: 500px;
+    }
+    .Sing .form-area .form input[type="submit"] {
+        width: 120px;
+        margin-bottom: 20px;
+    }
+    .Sing .pic-area {
+        width: 90%;
     }
 }
 /* End Media */
@@ -158,7 +193,7 @@
     font-size: 1.7rem;
     color: #767676;
 }
-.verification_text #email {
+.verification_text #emailPlace {
     color: #1E90FF;
     text-decoration: underline;
 }
