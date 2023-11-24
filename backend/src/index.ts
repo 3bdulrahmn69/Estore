@@ -10,11 +10,33 @@ import * as cors from "cors";
 import AppError from "./utils/appError";
 import handleErrors = require("./controllers/errorController");
 import * as cookieParser from "cookie-parser";
+// import Cloudinary from "./utils/Cloudinary";
+import { upload } from "./middlewares/multer";
+import { v2 as cloudinary } from "cloudinary";
+import { cloud } from "./utils/Cloudinary";
 
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
+// cloudinary.config({
+//   cloud_name: process.env.CLOUD_NAME,
+//   api_key: process.env.CLOUD_API_KEY,
+//   api_secret: process.env.CLOUD_SECRET_KEY,
+// });
+// app
+//   .route("/upload")
+//   .post(
+//     upload.single("image"),
+//     async (req: express.Request, res: express.Response) => {
+//       const { secure_url } = await cloud.uploader.upload(req.file.path, {
+//         folder: "category",
+//       });
+//       console.log(req.file.path);
+
+//       res.send(secure_url);
+//     }
+//   );
 
 app.use("/api", categoryRoute);
 app.use("/api", productRotute);
