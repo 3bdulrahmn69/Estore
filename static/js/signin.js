@@ -11,7 +11,10 @@ function singIn(email, password) {
         data: JSON.stringify(obj),
         success: function(resp) {
             console.log(resp);
+            const token = resp.token;
+            sessionStorage.setItem('userToken', token);
             sessionStorage.setItem('userEmail', email);
+            
             window.location.href = "file:///D:/aProjects/Projects/zMyGutHub/Estore/index.html";
         },
         error: function(err) {

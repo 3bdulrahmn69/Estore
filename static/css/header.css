@@ -2,6 +2,9 @@ header {
     background-color: #F1F1F1;
     width: 100%;
     height: 60px;
+    position: fixed;
+    z-index: 10;
+    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.2);
 }
 header .navbar {
     height: 100%;
@@ -74,7 +77,7 @@ header .navbar .icons {
     /* display: none; */
 }
 header .navbar .icons .icon-item {
-    cursor: pointer;
+    
     width: 40px;
     height: 40px;
     display: flex;
@@ -87,8 +90,14 @@ header .navbar .icons .icon-item {
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
 }
-header .navbar .icons .icon-item a {
+header .navbar .icons .icon-item button {
+    width: 100%;
+    height: 100%;
     color: #03A6EF;
+    border: none;
+    background-color: transparent;
+    font-size: 1.2rem;
+    cursor: pointer;
 }
 header .navbar .account {
     width: 180px;
@@ -184,7 +193,7 @@ header .navbar .dropMenu ul li:hover {
 
 @media (max-width: 320px) {
     header {
-        position: relative;
+        position: fixed;
     }
     header .navbar {
         width: 90%;
@@ -249,7 +258,7 @@ header .navbar .dropMenu ul li:hover {
     header .navbar .account-name {
         position: absolute;
         display: flex;
-        left: 30px;
+        left: -10px;
         top: 70px;
         z-index: 10;
         color: var(--textIcons);
@@ -258,10 +267,11 @@ header .navbar .dropMenu ul li:hover {
         font-weight: bold;
         color: var(--textIcons);
     }
+    
 }
 @media (min-width: 321px) and (max-width: 480px) {
     header {
-        position: relative;
+        position: fixed;
     }
     header .navbar {
         width: 90%;
@@ -338,7 +348,7 @@ header .navbar .dropMenu ul li:hover {
 }
 @media (min-width: 481px) and (max-width: 768px) {
     header {
-        position: relative;
+        position: fixed;
     }
     header .navbar {
         width: 90%;
