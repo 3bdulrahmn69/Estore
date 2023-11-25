@@ -14,6 +14,7 @@ router
     asyncHandler(authentication.authenticated),
     asyncHandler(authentication.authorized),
     upload.single("image"),
+    joiAsyncMiddleWare(categorySchema),
     asyncHandler(categoryController.createCategory)
   );
 

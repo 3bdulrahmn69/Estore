@@ -14,8 +14,8 @@ router
   .post(
     asyncHandler(authentication.authenticated),
     asyncHandler(authentication.authorized),
-
     upload.array("images"),
+    JoiMiddleware(productSchema),
     asyncHandler(productController.createProduct)
   );
 router
