@@ -33,7 +33,7 @@ export class Product extends BaseModel {
   })
   category: Category;
 
-  @ManyToMany(() => Order, (order) => order.products)
+  @ManyToMany(() => Order, (order) => order.products, { onDelete: "CASCADE" })
   orders: Order[];
 
   @OneToMany(() => Image, (image) => image.product)
