@@ -1,30 +1,39 @@
 import { Router } from "express";
 import productController from "../controllers/ProductController";
-import  JoiMiddleware  from "../middlewares/JoiMiddleware";
+import JoiMiddleware from "../middlewares/JoiMiddleware";
 import { productSchema } from "../validators/valiation";
 import asyncHandler from "../utils/asyncHandle";
 import authentication from "../middlewares/authenticate";
+import { upload } from "../middlewares/multer";
 
-const router = Router()
+const router = Router();
 
-router.route('/products')
+router
+  .route("/products")
   .get(asyncHandler(productController.getAllProducts))
   .post(
     asyncHandler(authentication.authenticated),
     asyncHandler(authentication.authorized),
-    JoiMiddleware(productSchema),
+
+    upload.array("images"),
     asyncHandler(productController.createProduct)
-    )
-router.route('/products/:id')
+  );
+router
+  .route("/products/:id")
   .get(asyncHandler(productController.getProductById))
   .delete(
-    asyncHandler(authentication.authenticated), 
+    asyncHandler(authentication.authenticated),
     asyncHandler(authentication.authorized),
-    asyncHandler(productController.deleteProductById))
+    asyncHandler(productController.deleteProductById)
+  )
   .put(
     asyncHandler(authentication.authenticated),
     asyncHandler(authentication.authorized),
-    asyncHandler(productController.updateProduct))
+    asyncHandler(productController.updateProduct)
+  );
 
-router.get('/search-product/:name', asyncHandler(productController.searchAboutProduct))
-export default router
+router.get(
+  "/search-product/:name",
+  asyncHandler(productController.searchAboutProduct)
+);
+export default router;

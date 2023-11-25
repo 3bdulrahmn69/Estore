@@ -35,6 +35,7 @@ export class Product extends BaseModel {
 
   @ManyToMany(() => Order, (order) => order.products)
   orders: Order[];
+
   @OneToMany(() => Image, (image) => image.product)
   images: Image[];
 

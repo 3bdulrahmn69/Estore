@@ -27,14 +27,11 @@ app.use(cors());
 // app
 //   .route("/upload")
 //   .post(
-//     upload.single("image"),
+//     upload.array("images"),
 //     async (req: express.Request, res: express.Response) => {
-//       const { secure_url } = await cloud.uploader.upload(req.file.path, {
-//         folder: "category",
-//       });
-//       console.log(req.file.path);
+//       console.log(req.files);
 
-//       res.send(secure_url);
+//       res.send(req.files);
 //     }
 //   );
 

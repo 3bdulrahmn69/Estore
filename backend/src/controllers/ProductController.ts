@@ -6,7 +6,8 @@ import { Category } from "../entity/Category";
 import { AppDataSource } from "../data-source";
 import AppError from "../utils/appError";
 import { Like } from "typeorm";
-
+import { Image } from "../entity/Image";
+import { cloud } from "../utils/Cloudinary";
 const service = new ApiService(Product);
 
 class ProductController {
@@ -14,6 +15,7 @@ class ProductController {
     const products = await Product.find({
       relations: {
         category: true,
+        images: true,
       },
     });
     return res.status(200).json(products);
@@ -21,7 +23,15 @@ class ProductController {
 
   async getProductById(req: Request, res: Response, next: NextFunction) {
     const { id } = req.params;
-    const product = await service.getOneById(id);
+    const product = await Product.findOne({
+      where: {
+        id: Number(id),
+      },
+      relations: {
+        images: true,
+        category: true,
+      },
+    });
 
     if (!product) next(new AppError("Product not found", 404));
 
@@ -52,20 +62,36 @@ class ProductController {
       category_name,
     });
     if (!category)
-      next(
+      return next(
         new AppError(
           "Category not found you must create it before assign to product",
           404
         )
       );
+
+    if (!req.files) return next(new AppError("Images not found", 500));
     const product = new Product();
+
     product.product_name = product_name;
     product.product_desc = product_desc;
     product.product_price = product_price;
     product.product_amount = product_amount;
     product.category = category;
+    await product.save();
 
-    product.save().then((product) => res.status(200).json(product));
+    for (let i = 0; i < (req.files as any[]).length; i++) {
+      const image = new Image();
+      const { secure_url } = await cloud.uploader.upload(
+        req.files[i].originalname,
+        {
+          folder: `products/${product_name}`,
+        }
+      );
+      image.image = secure_url;
+      image.product = product;
+      await image.save();
+    }
+    res.status(200).json(product);
   };
 
   updateProduct = async (req: Request, res: Response, next: NextFunction) => {
