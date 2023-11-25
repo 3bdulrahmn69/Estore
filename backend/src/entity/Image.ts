@@ -9,7 +9,10 @@ export class Image extends BaseModel {
   @Column({ nullable: false })
   image: string;
 
-  @ManyToOne(() => Product, (product) => product.images)
+  @ManyToOne(() => Product, (product) => product.images, {
+    onUpdate: "CASCADE",
+    onDelete: "CASCADE",
+  })
   product: Product;
 
   @OneToOne(() => Category, (category) => category.image)
