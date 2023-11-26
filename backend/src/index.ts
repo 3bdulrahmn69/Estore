@@ -18,7 +18,12 @@ import { cloud } from "./utils/Cloudinary";
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://127.0.0.1:5500", // Adjust this to match your frontend origin
+    credentials: true,
+  })
+);
 // cloudinary.config({
 //   cloud_name: process.env.CLOUD_NAME,
 //   api_key: process.env.CLOUD_API_KEY,
