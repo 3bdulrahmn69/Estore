@@ -7,29 +7,33 @@ import { CartProduct } from "../entity/CartProduct";
 class CartController {
   async getAllproductOfCard(req: Request, res: Response) {
     const user = (req as any).user;
-    const cart = await Cart.findOne({
+    const cart: any = await Cart.findOne({
       where: {
         id: user.cart.id,
       },
+    });
+    const products = await Product.find({
+      where: {
+        carts: cart.id,
+      },
       relations: {
-        products: true,
+        images: true,
       },
     });
-
     const productCart = await CartProduct.find({
       where: {
         cartId: user.cart.id,
       },
     });
 
-    const total = cart.products.reduce((acc, product, idx) => {
+    const total = products.reduce((acc, product, idx) => {
       return acc + product.product_price * productCart[idx].amount;
     }, 0);
 
     res.status(200).json({
       status: "success",
       total,
-      data: cart.products,
+      data: products,
     });
   }
 
