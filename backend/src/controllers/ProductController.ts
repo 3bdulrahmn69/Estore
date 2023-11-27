@@ -80,13 +80,11 @@ class ProductController {
     await product.save();
 
     for (let i = 0; i < (req.files as any[]).length; i++) {
+      const { path } = req.files[i];
+      const { secure_url } = await cloud.uploader.upload(path, {
+        folder: `Products/${product_name}`,
+      });
       const image = new Image();
-      const { secure_url } = await cloud.uploader.upload(
-        req.files[i].originalname,
-        {
-          folder: `products/${product_name}`,
-        }
-      );
       image.image = secure_url;
       image.product = product;
       await image.save();
