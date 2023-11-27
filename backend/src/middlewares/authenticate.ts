@@ -22,7 +22,7 @@ class Authentication {
     }
 
     const decoded: any = Jwt.verify(token, process.env.JWT_SECRET);
-    const user = await User.findOne({
+    const user: any = await User.findOne({
       where: {
         id: decoded.id,
       },
@@ -35,7 +35,8 @@ class Authentication {
     if (!user) {
       return next(new AppError("You are not authorized", 401));
     }
-
+    delete user.password;
+    delete user.wishlist;
     (req as any).user = user;
     next();
   }
