@@ -7,6 +7,7 @@ import AppError from "../utils/appError";
 import { Like } from "typeorm";
 import { cloud } from "../utils/Cloudinary";
 import { Image } from "../entity/Image";
+import { Product } from "../entity/Product";
 
 const service = new ApiService(Category);
 
@@ -51,16 +52,21 @@ class CategoryController {
     next: NextFunction
   ) => {
     const { name } = req.params;
-    const category = await AppDataSource.getRepository(Category).findOne({
-      relations: {
-        products: true,
-      },
-      where: {
-        category_name: name,
-      },
+    const category: any = await Category.findOneBy({
+      category_name: name,
     });
     if (!category) next(new AppError("Category not found", 404));
-    return res.status(200).json(category.products);
+    const products = await Product.find({
+      where: {
+        category: category.id,
+      },
+      relations: {
+        category: true,
+        images: true,
+      },
+    });
+
+    return res.status(200).json(products);
   };
 
   createCategory = async (req: Request, res: Response, next: NextFunction) => {
