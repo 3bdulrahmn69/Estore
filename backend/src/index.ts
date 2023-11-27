@@ -14,6 +14,7 @@ import { rateLimit } from "express-rate-limit";
 import { upload } from "./middlewares/multer";
 import { v2 as cloudinary } from "cloudinary";
 import { cloud } from "./utils/Cloudinary";
+import helmet from "helmet";
 
 const app = express();
 const limiter = rateLimit({
@@ -23,6 +24,8 @@ const limiter = rateLimit({
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
   // store: ... , // Use an external store for consistency across multiple server instances.
 });
+app.use(helmet());
+
 app.use(express.json());
 app.use(cookieParser());
 app.use("/api", limiter);
