@@ -10,14 +10,22 @@ import * as cors from "cors";
 import AppError from "./utils/appError";
 import handleErrors = require("./controllers/errorController");
 import * as cookieParser from "cookie-parser";
-// import Cloudinary from "./utils/Cloudinary";
+import { rateLimit } from "express-rate-limit";
 import { upload } from "./middlewares/multer";
 import { v2 as cloudinary } from "cloudinary";
 import { cloud } from "./utils/Cloudinary";
 
 const app = express();
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  limit: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
+  standardHeaders: "draft-7", // draft-6: `RateLimit-*` headers; draft-7: combined `RateLimit` header
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
+  // store: ... , // Use an external store for consistency across multiple server instances.
+});
 app.use(express.json());
 app.use(cookieParser());
+app.use("/api", limiter);
 app.use(
   cors({
     origin: "http://127.0.0.1:5500", // Adjust this to match your frontend origin
