@@ -11,29 +11,28 @@ class CartController {
       where: {
         id: user.cart.id,
       },
-    });
-    const products = await Product.find({
-      where: {
-        carts: cart.id,
-      },
       relations: {
-        images: true,
+        products: {
+          images: true,
+        },
       },
     });
+    console.log(cart);
+
     const productCart = await CartProduct.find({
       where: {
         cartId: user.cart.id,
       },
     });
 
-    const total = products.reduce((acc, product, idx) => {
+    const total = cart.products.reduce((acc, product, idx) => {
       return acc + product.product_price * productCart[idx].amount;
     }, 0);
 
     res.status(200).json({
       status: "success",
       total,
-      data: products,
+      data: cart.products,
     });
   }
 
