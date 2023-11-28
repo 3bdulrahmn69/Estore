@@ -62,20 +62,21 @@ header .search-box .form button {
     cursor: pointer;
 }
 header .user {
-    height: 40px;
-    width: 40px;
+    height: fit-content;
+    width: fit-content;
+    padding: 5px 10px;
     font-size: 1.2rem;
     display: flex;
     justify-content: center;
     align-items: center;
     color:  var(--textIcons);
     background-color: var(--primaryColor);
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-    cursor: pointer;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    cursor: default;
 }
 /* End Header */
 
@@ -106,6 +107,7 @@ header .user {
     -ms-transition: all 0.3s;
     -o-transition: all 0.3s;
     z-index: 1;
+    position: relative;
 }
 .nav .nav-title {
     font-size: 2rem;
@@ -159,6 +161,18 @@ header .user {
     justify-content: start;
     align-items: center;
     gap: 20px;
+}
+.nav .elements #logout {
+    background-color: #f00;
+    color: #fff;
+    border: 1px solid #f00;
+    position: absolute;
+    bottom: 40px;
+}
+.nav .elements #logout:hover {
+    background-color: #fff;
+    color: #f00;
+    border: 1px solid #f00;
 }
 /* End Nav */
 
@@ -216,7 +230,8 @@ header .user {
 }
 #New_category,
 #New_product,
-#All_products {
+#All_products,
+#OngoingOrdersBtn {
     cursor: pointer;
 }
 .content .sub-sec .item .catID {
@@ -339,8 +354,32 @@ header .user {
 .content .product-section,
 .content .order-section,
 .content .user-section,
-.content .allProducts-section {
+.content .allProducts-section,
+.content .order-Ongoing-section {
     display: none;
+}
+.content .order-Ongoing-section table {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+.content .order-Ongoing-section table thead {
+    background-color: var(--primaryColor);
+    color: var(--textIcons);
+    font-size: 1.4rem;
+    text-transform: uppercase;
+}
+.content .order-Ongoing-section table tr {
+    margin: 10px 0;
+    border-bottom: 1px solid var(--primaryColor);
+}
+.content .order-Ongoing-section table td{
+    padding: 5px 10px;
+    text-align: center;
+}
+.content .order-Ongoing-section table tbody tr td {
+    font-size: 1.2rem;
+    border-bottom: 1px solid var(--primaryColor);
 }
 /* End Content */
 /* Start Modal */
@@ -405,6 +444,7 @@ header .user {
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
+    margin-top: 10px;
 }
 .modal .modal-content .buttons {
     width: 100%;
@@ -429,6 +469,21 @@ header .user {
     -ms-border-radius: 8px;
     -o-border-radius: 8px;
     margin-bottom: 5px;
+}
+.modal .modal-content .form input[type="file"] {
+    width: 90%;
+    text-align: center;
+    outline: none;
+    border: none;
+    background-color: var(--primaryColor);
+    color: var(--textIcons);
+    padding: 5px 15px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    cursor: pointer;
 }
 .modal .modal-content .form input[type="submit"],
 .modal .modal-content .form input[type="button"],
@@ -560,7 +615,42 @@ header .user {
 /* END edit*/
 
 /* Start Media queries */
-@media (max-width: 480px) {
+@media (max-width: 320px) {
+    header .icon {
+        display: flex;
+    }
+    header .site-name {
+        font-size: 0.7rem;
+    }
+    header .search-box {
+        margin-left: 0;
+    }
+    header .search-box .form input{
+        width: 100px;
+    }
+    header .user {
+        font-size: 0.8rem;
+    }
+    .nav {
+        width: 80%;
+        position: absolute;
+        left: 0;
+        display: none;
+    }
+    .content {
+        width: 100%;
+    }
+    .content .sub-sec  {
+        justify-content: center;
+    }
+    .content .sub-sec .item {
+        width: 90%
+    }
+    .modal .modal-content {
+        width: 80%;
+    }
+}
+@media (min-width: 321px) and (max-width: 480px) {
     header .icon {
         display: flex;
     }
@@ -575,7 +665,6 @@ header .user {
     }
     header .user {
         height: 30px;
-        width: 30px;
         font-size: 1rem;
     }
     .nav {

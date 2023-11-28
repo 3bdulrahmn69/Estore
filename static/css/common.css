@@ -32,13 +32,6 @@ html {
     -ms-border-radius: 8px;
     -o-border-radius: 8px;
 }
-a {
-    text-decoration: none;
-    color: #000;
-}
-ul {
-    list-style: none;
-}
 .hideThings {
     display: none;
 }

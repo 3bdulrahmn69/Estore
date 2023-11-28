@@ -192,9 +192,6 @@ header .navbar .dropMenu ul li:hover {
 }
 
 @media (max-width: 320px) {
-    header {
-        position: fixed;
-    }
     header .navbar {
         width: 90%;
     }
@@ -267,12 +264,25 @@ header .navbar .dropMenu ul li:hover {
         font-weight: bold;
         color: var(--textIcons);
     }
-    
+    header .navbar .dropMenu {
+        position: absolute;
+        top: 100px;
+        right: 22%;
+        background-color: var(--textIcons);
+        z-index: 10;
+        width: 230px;
+        border-radius: 0 0 4px 4px;
+        -webkit-border-radius: 0 0 4px 4px;
+        -moz-border-radius: 0 0 4px 4px;
+        -ms-border-radius: 0 0 4px 4px;
+        -o-border-radius: 0 0 4px 4px;
+        display: none;
+    }
+    header .navbar .dropMenu ul li {
+        color: var(--primaryColor);
+    }
 }
 @media (min-width: 321px) and (max-width: 480px) {
-    header {
-        position: fixed;
-    }
     header .navbar {
         width: 90%;
     }
@@ -309,6 +319,7 @@ header .navbar .dropMenu ul li:hover {
         width: 20%;
     }
     header .navbar .icons {
+        position: absolute;
         display: flex;
         top: 70px;
         right: 20px;
@@ -335,21 +346,34 @@ header .navbar .dropMenu ul li:hover {
     header .navbar .account-name {
         position: absolute;
         display: flex;
-        left: 30px;
+        left: -10px;
         top: 70px;
         z-index: 10;
         color: var(--textIcons);
-        display: none;
     }
     header .navbar .account-name p:nth-child(2) {
         font-weight: bold;
         color: var(--textIcons);
     }
+    header .navbar .dropMenu {
+        position: absolute;
+        top: 100px;
+        left: 9%;
+        background-color: var(--textIcons);
+        z-index: 10;
+        width: 230px;
+        border-radius: 0 0 4px 4px;
+        -webkit-border-radius: 0 0 4px 4px;
+        -moz-border-radius: 0 0 4px 4px;
+        -ms-border-radius: 0 0 4px 4px;
+        -o-border-radius: 0 0 4px 4px;
+        display: none;
+    }
+    header .navbar .dropMenu ul li {
+        color: var(--primaryColor);
+    }
 }
 @media (min-width: 481px) and (max-width: 768px) {
-    header {
-        position: fixed;
-    }
     header .navbar {
         width: 90%;
     }
@@ -386,6 +410,7 @@ header .navbar .dropMenu ul li:hover {
         width: 20%;
     }
     header .navbar .icons {
+        position: absolute;
         display: flex;
         top: 70px;
         right: 20px;
@@ -408,5 +433,39 @@ header .navbar .dropMenu ul li:hover {
     }
     header .navbar .account a {
         color: var(--textIcons);
+    }
+    header .navbar .account-name {
+        position: absolute;
+        display: flex;
+        left: -10px;
+        top: 70px;
+        z-index: 10;
+        color: var(--textIcons);
+    }
+    header .navbar .account-name p:nth-child(2) {
+        font-weight: bold;
+        color: var(--textIcons);
+    }
+    header .navbar .dropMenu {
+        position: absolute;
+        top: 100px;
+        left: 9%;
+        background-color: var(--textIcons);
+        z-index: 10;
+        width: 230px;
+        border-radius: 0 0 4px 4px;
+        -webkit-border-radius: 0 0 4px 4px;
+        -moz-border-radius: 0 0 4px 4px;
+        -ms-border-radius: 0 0 4px 4px;
+        -o-border-radius: 0 0 4px 4px;
+        display: none;
+    }
+    header .navbar .dropMenu ul li {
+        color: var(--primaryColor);
+    }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+    header .navbar .nav-items ul li a {
+        font-size: 1rem;
     }
 }

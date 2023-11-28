@@ -1,7 +1,3 @@
-/* Start all const var */
-const beforeAuth = "Bearer ";
-const authToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzAwNDk2OTMwLCJleHAiOjE3MDMwODg5MzB9.N4F1n5zUx8jN2uCCRomY-WavsdfOSx-BYvLpyo98nCg";
-/* End all const var */
 /* Start nav buttons */
 const categories = document.getElementById("categories");
 const products = document.getElementById("products");
@@ -23,6 +19,7 @@ function showSection(section, button) {
     orders_section.style.cssText = "display: none;";
     users_section.style.cssText = "display: none;";
     $('.allProducts-section').css('display', 'none');
+    $('.order-Ongoing-section').css('display', 'none');
     $('.back_arrow').addClass('hideThings');
 
     // Display the selected section
@@ -62,15 +59,32 @@ $('#All_products').click(function(){
   getProducts();
 });
 
+$('#OngoingOrdersBtn').click(function(){
+  head_title.textContent = "Ongoing Orders"
+  $('.back_arrow').removeClass('hideThings');
+  $('.order-section').css('display','none');
+  $('.order-Ongoing-section').css('display','flex');
+  document.getElementById('Ongoing-section').innerHTML = '';
+  getOrders();
+});
+
 $('.back_arrow').click(function(){
-  head_title.textContent = "Products"
-  $('.back_arrow').addClass('hideThings');
-  $('.product-section').css('display','flex');
-  $('.allProducts-section').css('display','none');
+  if(head_title.textContent == "All Products") {
+    head_title.textContent = "Products"
+    $('.back_arrow').addClass('hideThings');
+    $('.product-section').css('display','flex');
+    $('.allProducts-section').css('display','none');
+  };
+  if (head_title.textContent == "Ongoing Orders") {
+    head_title.textContent = "Orders"
+    $('.back_arrow').addClass('hideThings');
+    $('.order-section').css('display','flex');
+    $('.order-Ongoing-section').css('display','none');
+  };
 });
 
 /* Start Create categories items */
-function createCategoryItem(passedName, passedID) {
+function createCategoryItem(passedName, passedImage, passedID) {
   const categorySection = document.querySelector(".category-section");
   
   const boxItem = document.createElement("div");
@@ -80,7 +94,7 @@ function createCategoryItem(passedName, passedID) {
   boxItemImg.classList.add("pic");
 
   const img = document.createElement("img");
-  img.src = "assets/icons/pc-case-svgrepo-com.svg";
+  img.src = passedImage;
   boxItemImg.appendChild(img);
 
   const details = document.createElement("div");
@@ -109,7 +123,7 @@ function createCategoryItem(passedName, passedID) {
         $('#newCatName').css('border', '1px solid red');
         alert('Please enter a category name');
       }else{
-        updateCategory(categoryID, $('#newCatName').val());
+        updateCategory(catID.textContent, $('#newCatName').val());
       $('#confirmModal').css('display', 'none');
       };
     });
@@ -136,74 +150,8 @@ function createCategoryItem(passedName, passedID) {
   categorySection.appendChild(boxItem);
 }
 /* End Create categories items */
-/* start get Category In Selector */
-function getCatInSelect() {
-  $.get("http://127.0.0.1:3000/api/categories", function (data) {
-      // Assuming data is an array of objects with a 'category_name' property
-      const $productCategorySelect = $("#product_category");
-
-      // Clear existing options
-      $productCategorySelect.empty();
-
-      // Add a default option
-      $productCategorySelect.append('<option value="Choose Category">Choose</option>');
-
-      // Loop through the data and append each category_name as an option
-      data.forEach(function (category) {
-          $productCategorySelect.append(`<option value="${category.category_name}">${category.category_name}</option>`);
-      });
-    });
-}
-/* End get Category In Selector */
-/* Start get Category function */
-function getCategories() {
-  $.get("http://127.0.0.1:3000/api/categories", function (data) {
-    data.forEach(category => {
-      createCategoryItem(category.category_name, category.id);
-    });
-  });
-}
-/* End get Category function */
-/* Start delete Category function */
-function delCategory(CategoryID) {
-  $.ajax({
-    type: "DELETE",
-    beforeSend: function(request) {
-      request.setRequestHeader("Authorization", beforeAuth + authToken);
-    },
-    url: 'http://127.0.0.1:3000/api/categories/' + CategoryID,
-    success: function(resp) {
-      $('#confirmModal').css('display', 'none');
-      $('#success').css('display', 'flex');
-      $(".success-content").append(`<p>Category Deleted Successfully</p>`);
-    },
-  });
-};
-/* End delete Category function */
-/* Start Update Category function */
-function updateCategory(CategoryID, CategoryName) {
-  const obj = {
-    "category_name": CategoryName
-  };
-  $.ajax({
-    type: "PUT",
-    beforeSend: function(request) {
-      request.setRequestHeader("Authorization", beforeAuth + authToken);
-    },
-    url: 'http://127.0.0.1:3000/api/categories/' + CategoryID,
-    contentType: "application/json",
-    Connection: "keep-alive",
-    data: JSON.stringify(obj),
-    success: function(resp) {
-      $('#editModal').css('display', 'none');
-      $('#success').css('display', 'flex');
-      $(".success-content").append(`<p>Category Name Updated Successfully</p>`);
-    },
-  });
-};
-/* End Update Category function */
 /* Start Create Product item */
-function createProductItem(productId, productName,productDescription ,productPrice, productAmount, productCategory) {
+function createProductItem(productId, productName,productDescription ,productPrice, productAmount, productCategory, productImage) {
   const allProducts_section = document.getElementById('allProducts-sce')
   const boxItem = document.createElement("tr");
 
@@ -211,7 +159,7 @@ function createProductItem(productId, productName,productDescription ,productPri
   boxItemImg.classList.add("pImage");
 
   const img = document.createElement("img");
-  img.src = "assets/images/card.png";
+  img.src = productImage[0].image;
   boxItemImg.appendChild(img);
 
   const pId = document.createElement("td");
@@ -258,6 +206,7 @@ function createProductItem(productId, productName,productDescription ,productPri
       $('#Product_quantity').val(productAmount);
       $('#product_category').css('display', 'none');
       $('#createProduct').css('display', 'none');
+      $('#productImages').css('display', 'none');
       const updateProductBtn = $('#modalProduct .buttons input[value="Update"]#updateProduct')
       updateProductBtn.css('display', 'block');
       updateProductBtn.click(function() {
@@ -290,167 +239,55 @@ function createProductItem(productId, productName,productDescription ,productPri
   allProducts_section.appendChild(boxItem);
 };
 /* End  Create Product item */
-/* Start  get Products function*/
-function getProducts() {
-  $.get("http://127.0.0.1:3000/api/products", function (data) {
-    data.forEach(product => {
-      createProductItem(product.id, product.product_name, product.product_desc, product.product_price, product.product_amount, product.category.category_name);
-    });
+/* Start Ongoing Order */
+function createOrderItem(orderId, orderItems, orderTotal, orderDate, orderStatus) {
+  const OngoingOrderSection = document.querySelector(".order-Ongoing-section table tbody");
+
+  const boxItem = document.createElement("tr");
+  OngoingOrderSection.appendChild(boxItem);
+
+  const orderIdTd = document.createElement("td");
+  orderIdTd.innerText = orderId;
+  boxItem.appendChild(orderIdTd);
+
+  const orderItemsTd = document.createElement("td");
+  orderItems.forEach(item => {
+    orderItemsTd.innerHTML += `<span>${item.product_name}<br></span>`;
   });
+  boxItem.appendChild(orderItemsTd);
+
+  const orderTotalTd = document.createElement("td");
+  orderTotalTd.innerText = orderTotal;
+  boxItem.appendChild(orderTotalTd);
+
+  const orderDateTd = document.createElement("td");
+  orderDateTd.innerText = orderDate.split("T")[0];
+  boxItem.appendChild(orderDateTd);
+
+  const orderStatusTd = document.createElement("td");
+  orderStatusTd.innerText = orderStatus;
+  boxItem.appendChild(orderStatusTd);
 };
-/* End get Products function */
-/* Start delete Product function */
-function deleteProduct(productId){
-  $.ajax({
-    type: "DELETE",
-    beforeSend: function(request) {
-      request.setRequestHeader("Authorization", beforeAuth + authToken);
-    },
-    url: 'http://127.0.0.1:3000/api/products/' + productId  ,
-    success: function(resp) {
-      $('#confirmModal').css('display', 'none');
-      $('#success').css('display', 'flex');
-      $(".success-content").append(`<p>Product Deleted Successfully</p>`);
-    },
-  });
-};
-/* End delete Product function */
-/* Start Update Product function */
-function updateProduct(productId, productName, productDescription, productPrice, productAmount, productCategory) {
-  const obj = {
-    "product_name": productName,
-    "product_desc": productDescription,
-    "product_amount": productAmount,
-    "product_price": productPrice,
-    "category_name": productCategory
-  };
-  $.ajax({
-    type: "PUT",
-    beforeSend: function(request) {
-      request.setRequestHeader("Authorization", beforeAuth + authToken);
-    },
-    url: 'http://127.0.0.1:3000/api/products/' + productId,
-    contentType: "application/json",
-    Connection: "keep-alive",
-    data: JSON.stringify(obj),
-    success: function(resp) {
-      $('#editModal').css('display', 'none');
-      $('#success').css('display', 'flex');
-      $(".success-content").append(`<p>Product Updated Successfully</p>`);
-      console.log(resp)
-    },
-  });
-};
-/* End Update Product function */
+/* End Ongoing Order */
+
 
 $(document).ready(function() {
     getCategories();
     /* start get option */
     $('#New_product').click(getCatInSelect());
     /* End get option */
+
     $("#createCategory").click(function() {
       if ($("#category_name").val() == "") {
         $("#category_name").css("border", "1px solid red");
         alert("Please enter a category name");
-      }else {
-        const obj = {
-          "category_name": $("#category_name").val()
-        };
-  
-        $.ajax({
-          type: "POST",
-          beforeSend: function(request) {
-            request.setRequestHeader("Authorization", beforeAuth + authToken);
-          },
-          url: "http://127.0.0.1:3000/api/categories",
-          contentType: "application/json",
-          Connection: "keep-alive",
-          data: JSON.stringify(obj),
-          success: function(resp) {
-            $('#modalCategory').css('display', 'none');
-            $('#success').css('display', 'flex');
-            const $successContent = $(".success-content");
-            for (const key in resp) {
-                if (resp.hasOwnProperty(key)) {
-                    const $para = $("<p>").text(`${key}:`);
-                    const $spa = $("<span>").text(resp[key]);
-
-                    $para.append($spa);
-                    $successContent.append($para);
-                }
-            }
-          },
-        });
-        $("#category_name").val("");
-      }
+      } else {
+        createCategory($("#category_name").val(), $("#createCategoryFileInput")[0].files[0]);
+      };
     });
-    $("#createProduct").click(function() {
-      if ($("#product_name").val() == "") {
-        $("#product_name").css("border", "1px solid red");
-        alert("Please enter a product name");
-      } 
-      if ($("#product_description").val() == "") {
-        $("#product_description").css("border", "1px solid red");
-        alert("Please enter a product description");
-      }
-      if ($("#product_price").val() == "") {
-        $("#product_price").css("border", "1px solid red");
-        alert("Please enter a product price");
-      }
-      if ($("#Product_quantity").val() == "") {
-        $("#Product_quantity").css("border", "1px solid red");
-        alert("Please enter a product quantity");
-      }
-      if ($("#product_category").val() == "Choose Category") {
-        $("#product_category").css("border", "1px solid red");
-        alert("Please Choose a product category");
-      }
-      const obj = {
-        "product_name": $("#product_name").val(),
-        "product_desc": $("#product_description").val(),
-        "product_price": $("#product_price").val(),
-        "product_amount": $("#Product_quantity").val(),
-        "category_name": $("#product_category").val(),
-    };
+    
+    document.getElementById("createProduct").addEventListener("click", sendProductData);
 
-    $.ajax({
-      type: "POST",
-      beforeSend: function(request) {
-        request.setRequestHeader("Authorization", beforeAuth + authToken);
-      },
-      url: "http://127.0.0.1:3000/api/products",
-      contentType: "application/json",
-      data: JSON.stringify(obj),
-      success: function(resp) {
-          $('#modalCategory').css('display', 'none');
-          $('#success').css('display', 'flex');
-          const $successContent = $(".success-content");
-          for (const key in resp) {
-            let $spa;
-              if (resp.hasOwnProperty(key)) {
-                  if (key === "category") {
-                    $spa = $("<span>").text(resp[key].category_name);
-                  }else{
-                    $spa = $("<span>").text(resp[key]);
-                  }
-                  const $para = $("<p>").text(`${key}:`);
-  
-                  $para.append($spa);
-                  $successContent.append($para);
-              }
-          }
-          console.log(resp);
-      },
-      error: function(xhr, status, error) {
-        console.error("AJAX request failed:", status, error);
-        // Handle the error, maybe show an error message to the user
-      }
-      });
-      $("#product_name").val("");
-      $("#product_description").val("");
-      $("#product_price").val("");
-      $("#product_category").val("Choose Category");
-    });
     /* Start NavBar Hider*/
     $('#ic-show').click(function () {
       $('#nav').animate({width: 'toggle'}, 350);
@@ -505,4 +342,288 @@ $(document).ready(function() {
       window.location.reload();
     });
     /* End modal */
+    /* start check if there is user or not */
+    if (localStorage.getItem("userRole") != "admin") {
+      window.location.href = "../../index.html";
+    }else {
+      document.querySelector("header .user").innerHTML = `<span>${localStorage.getItem("userFirstName")}</span>`;
+    };
+    /* End check if there is user or not */
+
+    document.getElementById('logout').addEventListener('click', logout)
 });
+
+/* API Functions */
+
+/* start get Category In Selector */
+function getCatInSelect() {
+  $.get("http://127.0.0.1:3000/api/categories", function (data) {
+      // Assuming data is an array of objects with a 'category_name' property
+      const $productCategorySelect = $("#product_category");
+
+      // Clear existing options
+      $productCategorySelect.empty();
+
+      // Add a default option
+      $productCategorySelect.append('<option value="Choose Category">Choose</option>');
+
+      // Loop through the data and append each category_name as an option
+      data.forEach(function (category) {
+          $productCategorySelect.append(`<option value="${category.category_name}">${category.category_name}</option>`);
+      });
+    });
+}
+/* End get Category In Selector */
+/* Start get Category function */
+function getCategories() {
+  $.get("http://127.0.0.1:3000/api/categories", function (data) {
+    data.forEach(category => {
+      createCategoryItem(category.category_name, category.image.image, category.id);
+    });
+  });
+};
+/* End get Category function */
+/* Start Post Category function */
+function createCategory(catName, catImage) {
+  const formData = new FormData();
+  formData.append("category_name", catName);
+  formData.append("image", catImage)
+
+  $.ajax({
+    type: "POST",
+    xhrFields: {
+      withCredentials: true,
+    },
+    url: "http://127.0.0.1:3000/api/categories",
+    contentType: false, // let jQuery handle the content type
+    processData: false, // prevent jQuery from transforming the data
+    enctype: 'multipart/form-data',
+    data: formData,
+    success: function(resp) {
+      $('#modalCategory').css('display', 'none');
+      $('#success').css('display', 'flex');
+      const $successContent = $(".success-content");
+      for (const key in resp) {
+        if (resp.hasOwnProperty(key)) {
+          const $para = $("<p>").text(`${key}:`);
+          const $spa = $("<span>").text(resp[key]);
+
+          $para.append($spa);
+          $successContent.append($para);
+        }
+      }
+    },
+  });
+};
+/* End Post Category function */
+/* Start delete Category function */
+function delCategory(CategoryID) {
+  $.ajax({
+    type: "DELETE",
+    xhrFields: {
+      withCredentials: true,
+    },
+    url: 'http://127.0.0.1:3000/api/categories/' + CategoryID,
+    success: function(resp) {
+      $('#confirmModal').css('display', 'none');
+      $('#success').css('display', 'flex');
+      $(".success-content").append(`<p>Category Deleted Successfully</p>`);
+    },
+  });
+};
+/* End delete Category function */
+/* Start Update Category function */
+function updateCategory(CategoryID, CategoryName) {
+  const obj = {
+    "category_name": CategoryName
+  };
+  $.ajax({
+    type: "PUT",
+    url: 'http://127.0.0.1:3000/api/categories/' + CategoryID,
+    xhrFields: {
+      withCredentials: true,
+    },
+    contentType: "application/json",
+    Connection: "keep-alive",
+    data: JSON.stringify(obj),
+    success: function(resp) {
+      $('#editModal').css('display', 'none');
+      $('#success').css('display', 'flex');
+      $(".success-content").append(`<p>Category Name Updated Successfully</p>`);
+    },
+    error: function(xhr, status, error) {
+      console.error(xhr, status, error);
+    }
+  });
+};
+/* End Update Category function */
+/* Start  get Products function*/
+function getProducts() {
+  fetch("http://127.0.0.1:3000/api/products")
+    .then(response => response.json())
+    .then(data => {
+      data.forEach(product => {
+        createProductItem(product.id, product.product_name, product.product_desc, product.product_price, product.product_amount, product.category.category_name, product.images);
+      });
+    })
+    .catch(error => {
+      console.error("Fetch request failed:", error);
+      // Handle the error, maybe show an error message to the user
+    });
+};
+/* End get Products function */
+/* Start send product data */
+function sendProductData() {
+  // Create FormData object
+  const formData = new FormData();
+  formData.append("product_name", document.getElementById("product_name").value);
+  formData.append("product_desc", document.getElementById("product_description").value);
+  formData.append("product_price", document.getElementById("product_price").value);
+  formData.append("product_amount", document.getElementById("Product_quantity").value);
+  formData.append("category_name", document.getElementById("product_category").value);
+
+  // Get the image file
+  const imageInput = document.getElementById("productImages");
+  const imageFile = imageInput.files[0];
+  if (imageFile) {
+      formData.append("images", imageFile);
+  }
+
+  // Send fetch request with FormData
+  fetch("http://127.0.0.1:3000/api/products", {
+    method: "POST",
+    credentials: "include", // Equivalent to xhrFields: { withCredentials: true }
+    body: formData
+  })
+  .then(response => response.json())
+  .then(resp => {
+    // Handle success response
+    document.getElementById('modalCategory').style.display = 'none';
+    document.getElementById('success').style.display = 'flex';
+    const successContent = document.querySelector(".success-content");
+    for (const key in resp) {
+      if (resp.hasOwnProperty(key)) {
+        const span = document.createElement("span");
+        span.textContent = (key === "category") ? resp[key].category_name : resp[key];
+
+        const para = document.createElement("p");
+        para.textContent = `${key}:`;
+        para.appendChild(span);
+
+        successContent.appendChild(para);
+      }
+    }
+    console.log(resp);
+  })
+  .catch(error => {
+    console.error("Fetch request failed:", error);
+    // Handle the error, maybe show an error message to the user
+  });
+
+  // Reset form fields
+  document.getElementById("product_name").value = "";
+  document.getElementById("product_description").value = "";
+  document.getElementById("product_price").value = "";
+  document.getElementById("Product_quantity").value = "";
+  document.getElementById("product_category").value = "Choose Category";
+  document.getElementById("productImages").value = ""; // Clear the input file field
+};
+/* End send product data */
+/* Start delete Product function */
+function deleteProduct(productId) {
+  fetch(`http://127.0.0.1:3000/api/products/${productId}`, {
+    method: "DELETE",
+    credentials: "include" // Equivalent to xhrFields: { withCredentials: true }
+  })
+  .then(response => response.json())
+  .then(resp => {
+    document.getElementById('confirmModal').style.display = 'none';
+    document.getElementById('success').style.display = 'flex';
+    const successContent = document.querySelector(".success-content");
+    successContent.innerHTML = "<p>Product Deleted Successfully</p>";
+    console.log(resp);
+  })
+  .catch(error => {
+    console.error("Fetch request failed:", error);
+    // Handle the error, maybe show an error message to the user
+  });
+}
+/* End delete Product function */
+/* Start Update Product function */
+function updateProduct(productId, productName, productDescription, productPrice, productAmount, productCategory) {
+  const obj = {
+    "product_name": productName,
+    "product_desc": productDescription,
+    "product_amount": productAmount,
+    "product_price": productPrice,
+    "category_name": productCategory
+  };
+
+  fetch(`http://127.0.0.1:3000/api/products/${productId}`, {
+    method: "PUT",
+    credentials: "include", // Equivalent to xhrFields: { withCredentials: true }
+    headers: {
+      "Content-Type": "application/json",
+      "Connection": "keep-alive"
+    },
+    body: JSON.stringify(obj)
+  })
+  .then(response => response.json())
+  .then(resp => {
+    document.getElementById('editModal').style.display = 'none';
+    document.getElementById('success').style.display = 'flex';
+    const successContent = document.querySelector(".success-content");
+    successContent.innerHTML = "<p>Product Updated Successfully</p>";
+    console.log(resp);
+  })
+  .catch(error => {
+    console.error("Fetch request failed:", error);
+    // Handle the error, maybe show an error message to the user
+  });
+}
+/* End Update Product function */
+/* Start get Orders function */
+function getOrders() {
+  fetch("http://127.0.0.1:3000/api/order", {
+      method: "GET",
+      credentials: "include",
+      headers: {
+          "Content-Type": "application/json",
+          "Connection": "keep-alive"
+      },
+  })
+  .then((response) => response.json())
+  .then((data) => {
+      data.data.forEach((order) => {
+        createOrderItem(order.id, order.products, order.total, order.created_at, order.status);
+      });
+  })
+  .catch((error) => {
+      console.error("Error:", error);
+  });
+};
+/* End get Orders function */
+/* Start logout */
+function logout() {
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "http://127.0.0.1:3000/api/logout", true);
+  xhr.withCredentials = true;
+
+  localStorage.removeItem("userFirstName");
+  localStorage.removeItem("userRole");
+
+  xhr.onload = function () {
+      if (xhr.status === 200) {
+          var response = JSON.parse(xhr.responseText);
+      }
+  };
+
+  xhr.onerror = function (error) {
+      console.error("Error:", error);
+  };
+
+  xhr.send();
+
+  window.location.reload();
+}
+/* End logout */

@@ -24,7 +24,6 @@
             </div>
         </div>
         <div class="user" title="Account">
-            <i class="fa-solid fa-user"></i>
         </div>
     </header>
     <section class="content-area">
@@ -67,6 +66,15 @@
                             <i class="fa-solid fa-users"></i>
                         </div>
                         <p>Users</p>
+                    </div>
+                </div>
+
+                <div class="item" id="logout">
+                    <div class="main">
+                        <div class="icon">
+                            <i class="fa-solid fa-door-open"></i>
+                        </div>
+                        <p>Logout</p>
                     </div>
                 </div>
             </div>
@@ -129,7 +137,7 @@
             </div>
 
             <div class="sub-sec order-section" data-title="Orders">
-                <div class="item">
+                <div class="item" id="OngoingOrdersBtn">
                     <div class="pic">
                         <i class="fa-solid fa-truck"></i>
                     </div>
@@ -146,6 +154,22 @@
                         <p>Orders History</p>
                     </div>
                 </div>
+            </div>
+
+            <div class="sub-sec order-Ongoing-section" data-title="Ongoing Orders">
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Id</td>
+                            <td>products</td>
+                            <td>total</td>
+                            <td>created at</td>
+                            <td>Statues</td>
+                        </tr>
+                    </thead>
+                    <tbody id="Ongoing-section">
+                    </tbody>
+                </table>
             </div>
 
             <div class="sub-sec user-section" data-title="Users">
@@ -177,6 +201,7 @@
                 <div class="modal-form">
                     <div class="form">
                         <input type="text" name="category_name" id="category_name" placeholder="Category Name" required>
+                        <input type="file" accept="image/*" id="createCategoryFileInput">
                         <div class="buttons">
                             <input type="submit" value="Create" id="createCategory">
                             <input type="button" value="Cancel" class="cancel">
@@ -200,6 +225,7 @@
                         <select name="Category" id="product_category">
                             <option value="Choose Category">Choose</option>
                         </select>
+                        <input type="file" accept="image/*" multiple id="productImages">
                         <div class="buttons">
                             <input type="submit" value="Create" id="createProduct">
                             <input type="submit" value="Update" id="updateProduct">

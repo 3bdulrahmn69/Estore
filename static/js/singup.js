@@ -6,65 +6,53 @@ function createUser(firstName, lastName, email, password) {
     email: email,
     password: password,
   };
-  $.ajax({
-    type: "POST",
-    url: "http://127.0.0.1:3000/api/signup/",
-    contentType: "application/json",
-    Connection: "keep-alive",
-    data: JSON.stringify(obj),
-    xhrFields: {
-      withCredentials: true, // Include cookies in the request
-    },
-    success: function (resp) {
-      // wanna handle duplicate email error
+
+  const xhr = new XMLHttpRequest();
+  xhr.open("POST", "http://127.0.0.1:3000/api/signup/", true);
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.withCredentials = true;
+
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      const resp = JSON.parse(xhr.responseText);
       console.log(resp);
-      window.location.href =
-        "file:///D:/aProjects/Projects/zMyGutHub/Estore/Templates/Verfication.html";
-    },
-  });
+      window.location.href = "SingIn.html";
+    } else if (xhr.status === 409) {
+      console.log("Duplicate email error");
+      // Handle duplicate email error here
+    }
+  };
+
+  xhr.onerror = function (err) {
+    console.error("Request failed", err);
+  };
+
+  xhr.send(JSON.stringify(obj));
 }
 
-$("#createUserBtn").click(function () {
-  if (
-    $("#Fname").val() === "" ||
-    $("#Lname").val() === "" ||
-    $("#email").val() === "" ||
-    $("#Password").val() === "" ||
-    $("#cPassword").val() === ""
-  ) {
+document.getElementById("createUserBtn").addEventListener("click", function () {
+  const firstName = document.getElementById("Fname").value;
+  const lastName = document.getElementById("Lname").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("Password").value;
+  const confirmPassword = document.getElementById("cPassword").value;
+
+  if (firstName === "" || lastName === "" || email === "" || password === "" || confirmPassword === "") {
     alert("Please fill all the fields.");
-    if ($("#Fname").val() === "") {
-      $("#Fname").css("border", "1px solid red");
-    } else {
-      $("#Fname").css("border", "1px solid #ced4da");
-    }
-    if ($("#Lname").val() === "") {
-      $("#Lname").css("border", "1px solid red");
-    } else {
-      $("#Lname").css("border", "1px solid #ced4da");
-    }
-    if ($("#email").val() === "") {
-      $("#email").css("border", "1px solid red");
-    } else {
-      $("#email").css("border", "1px solid #ced4da");
-    }
-    if ($("#Password").val() === "") {
-      $("#Password").css("border", "1px solid red");
-    } else {
-      $("#Password").css("border", "1px solid #ced4da");
-    }
-    if ($("#cPassword").val() === "") {
-      $("#cPassword").css("border", "1px solid red");
-    } else {
-      $("#cPassword").css("border", "1px solid #ced4da");
-    }
+
+    document.getElementById("Fname").style.border = firstName === "" ? "1px solid red" : "1px solid #ced4da";
+    document.getElementById("Lname").style.border = lastName === "" ? "1px solid red" : "1px solid #ced4da";
+    document.getElementById("email").style.border = email === "" ? "1px solid red" : "1px solid #ced4da";
+    document.getElementById("Password").style.border = password === "" ? "1px solid red" : "1px solid #ced4da";
+    document.getElementById("cPassword").style.border = confirmPassword === "" ? "1px solid red" : "1px solid #ced4da";
+
     return;
   }
-  let password = $("#Password").val();
-  let confirmPassword = $("#cPassword").val();
+
   if (password !== confirmPassword) {
     alert("Passwords do not match.");
     return;
   }
-  createUser($("#Fname").val(), $("#Lname").val(), $("#email").val(), password);
+
+  createUser(firstName, lastName, email, password);
 });
