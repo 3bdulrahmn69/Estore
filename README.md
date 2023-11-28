@@ -90,7 +90,7 @@ Check out the [live demo](https://Estore.com) to experience E-Store in action!
     .\index.html
     ```
 
-- Be sure that you have npm, MySQL installed or follow this links
+- Be sure that you have npm, MySQL installed or follow this links  
     https://nodejs.org/en/download  
     https://www.mysql.com/downloads/    
 
