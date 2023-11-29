@@ -26,6 +26,6 @@ export class Order extends BaseModel {
   @JoinTable({ name: "order_product" })
   products: Product[];
 
-  @ManyToOne(() => User, (user) => user.orders)
+  @ManyToOne(() => User, (user) => user.orders, { onDelete: "CASCADE" })
   user: User;
 }

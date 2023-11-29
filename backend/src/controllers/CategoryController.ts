@@ -52,21 +52,20 @@ class CategoryController {
     next: NextFunction
   ) => {
     const { name } = req.params;
-    const category: any = await Category.findOneBy({
-      category_name: name,
-    });
-    if (!category) next(new AppError("Category not found", 404));
-    const products = await Product.find({
+    const category: any = await Category.findOne({
       where: {
-        category: category.id,
+        category_name: name,
       },
       relations: {
-        category: true,
-        images: true,
+        products: {
+          images: true,
+          category: true,
+        },
       },
     });
+    if (!category) next(new AppError("Category not found", 404));
 
-    return res.status(200).json(products);
+    return res.status(200).json(category.products);
   };
 
   createCategory = async (req: Request, res: Response, next: NextFunction) => {

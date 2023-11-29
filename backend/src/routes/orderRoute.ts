@@ -16,6 +16,7 @@ router
   .route("/order/:id")
   .delete(asyncHandler(orderController.deleteOrderOfUser));
 
-router.use(asyncHandler(authentication.authorized));
-router.route("/orders").get(orderController.getAllOrders);
+router
+  .route("/orders")
+  .get(asyncHandler(authentication.authorized), orderController.getAllOrders);
 export default router;

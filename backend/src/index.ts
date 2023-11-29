@@ -6,6 +6,7 @@ import productRotute from "./routes/productRoute";
 import authRouter from "./routes/authRoute";
 import cartRoute from "./routes/cartRotue";
 import orderRoter from "./routes/orderRoute";
+import userRoute from "./routes/userRoute";
 import * as cors from "cors";
 import AppError from "./utils/appError";
 import handleErrors = require("./controllers/errorController");
@@ -50,12 +51,13 @@ app.use(
 //       res.send(req.files);
 //     }
 //   );
-
+app.use("/api", authRouter);
 app.use("/api", categoryRoute);
 app.use("/api", productRotute);
-app.use("/api", authRouter);
 app.use("/api", cartRoute);
+
 app.use("/api", orderRoter);
+app.use("/api", userRoute);
 
 app.all("*", (req, res, next) => {
   // const err: any= new Error(`Cant't find ${req.originalUrl} on server`);
