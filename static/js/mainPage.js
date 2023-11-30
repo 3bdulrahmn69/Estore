@@ -651,7 +651,9 @@ function setUpCategoryProductsPage() {
 function createProductPage(prodId, prodName, prodDecs, prodPrice, prodImage) {
     if(window.location.pathname == "/Templates/productPage.html"){
 
-        console.log(prodImage);
+        const title = document.createElement("title");
+        title.textContent = `E-Store | ${prodName}`;
+        document.head.appendChild(title);
 
         prodImage.forEach(image => {
             const imagesBox = document.querySelector(".images-box");
