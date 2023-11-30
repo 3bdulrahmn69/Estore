@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../assets/images/All.png" type="image/x-icon">
+    <title>E-Store | Product Name</title>
+    <link rel="shortcut icon" href="assets/images/All.png" type="image/x-icon">
+    <link rel="stylesheet" href="../static/css/all.min.css">
+    <link rel="stylesheet" href="../static/css/common.css">
+    <link rel="stylesheet" href="../static/css/header.css">
+    <link rel="stylesheet" href="../static/css/mainPage.css">
+    <link rel="stylesheet" href="../static/css/Sing-Pages/productPage.css">
+    <link rel="stylesheet" href="../static/css/footer.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-items">
+                <ul>
+                    <li><a href="../index.html#shop" title="Shop">Shop</a></li>
+                    <li><a href="../index.html#aboutus " title="About Us">About Us</a></li>
+                    <li><a href="../index.html#contactus" title="Contact Us">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="icon-bars">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <div class="search-box" title="Search">
+                <input type="text" placeholder="Search">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            <div class="icons">
+                <div class="icon-item" title="Wishlist">
+                    <button><i class="fas fa-heart"></i></button>
+                </div>
+                <div class="icon-item" title="Cart">
+                    <button id="CartBtn"><i class="fas fa-shopping-cart"></i></button>
+                </div>
+            </div>
+            <div class="account">
+                <ul>
+                    <li><a href="SingIn.html" title="Sing In">Sing In</a></li>
+                    <li>/</li>
+                    <li><a href="SingUp.html" title="Sing Up">Sing Up</a></li>
+                </ul>
+            </div>
+            <div class="account-name">
+                <p class="accountPassedName"></p>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="dropMenu">
+                <ul>
+                    <li>My Account</li>
+                    <li id="accountLogout">Log Out</li>
+                </ul>
+            </div>
+            <div class="cart-section-father">
+                <i class="fa-solid fa-minus hide-cart-section-father" title="Hide"></i>
+                <div class="title">
+                    <h4>Cart</h4>
+                    <i class="fas fa-shopping-cart"></i>
+                    <i class="fa-solid fa-trash RemoveAllBtn" title="Remove All"></i>
+                </div>
+                <div class="cart-section">
+                </div>
+                <p class="totalPrice">Total Price:&ThickSpace;<span></span> EGP</p>
+                <button id="CheckoutBtn" title="Checkout">Checkout</button>
+            </div>
+        </nav>
+    </header>
+    <section class=productPage>
+        <div class="container">
+            <div class="productPage-content">
+                <div class="image-con">
+                    <div class="images-box">
+                    </div>
+                    <button onclick="scrollLeftBy('.images-box')"><i class="fa-solid fa-arrow-left"></i></button>
+                    <button onclick="scrollRightBy('.images-box')"><i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+                <div class="details-box">
+                    <div class="details-name">
+                    </div>
+                    <div class="price-box">
+                    </div>
+                    <div class="buttons">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h4 class="main-name">E-Store</h4>
+                <ul>
+                    <li>Subscribe</li>
+                    <li>get 10% of your first order</li>
+                    <form>
+                        <input type="email" placeholder="Email">
+                        <button><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </ul>
+            </div>
+
+            <div>
+                <h4>Support</h4>
+                <ul>
+                    <li>Online Service 24/7</li>
+                    <li>support@estore.com</li>
+                    <li>+2 123456789</li>
+                </ul>
+            </div>
+
+            <div>
+                <h4>Account</h4>
+                <ul>
+                    <li><a href="#">My Account</a></li>
+                    <li><a href="Templates/SingIn.html">Sing In</a> / <a href="Templates/SingUp.html">Sing Up</a></li>
+                    <li><a href="#">Cart</a></li>
+                    <li><a href="#">Wishlist</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <div class="copy-rights">
+            <p>&copy; 2023 E-Store. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="../static/js/mainPage.js"></script>
+</body>
+</html>

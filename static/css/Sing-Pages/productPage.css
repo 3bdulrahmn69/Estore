@@ -1,0 +1,113 @@
+.productPage {
+    width: 100%;
+    height: 100%;
+}
+.productPage-content {
+    width: 100%;
+    height: calc(100vh - 150px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding-top: 70px;
+}
+.productPage-content .image-con {
+    position: relative;
+    width: 240px;
+    height: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    overflow: hidden;
+}
+.productPage-content .image-con button {
+    position: absolute;
+    bottom: 0;
+    width: 120px;
+    height: 40px;
+    background-color: #7b7b7b;
+    color: var(--textIcons);
+    border: none;
+    transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    cursor: pointer;
+}
+.productPage-content .image-con button:hover {
+    opacity: 0.8;
+}
+.productPage-content .image-con button:nth-child(2) {
+    left: 0;
+}
+.productPage-content .image-con button:nth-child(3) {
+    right: 0;
+}
+.productPage-content .images-box {
+    width: 240px;
+    height: 240px;
+    display: flex;
+    overflow: auto;
+}
+.productPage-content .images-box::-webkit-scrollbar {
+    height: 0;
+}
+.productPage-content .images-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.productPage-content .details-box {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+}
+.productPage-content .details-box h4 {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.productPage-content .details-box button {
+    width: 120px;
+    height: 40px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    cursor: pointer;
+    margin-left: 5px;
+}
+.productPage-content .details-box .AddToCartBtn {
+    background-color: var(--primaryColor);
+    color: var(--textIcons);
+    border: 1px solid var(--primaryColor);
+}
+.details-box .AddToCartBtn:hover {
+    background-color: var(--textIcons);
+    color: var(--primaryColor);
+}
+.productPage-content .details-box .AddToWishlistBtn {
+    background-color: #f00;
+    color: var(--textIcons);
+    border: 1px solid #f00;
+}
+.details-box .AddToWishlistBtn:hover {
+    background-color: var(--textIcons);
+    color: #f00;
+}

@@ -399,7 +399,7 @@ header .user {
 }
 .modal .modal-content {
     width: 40%;
-    height: 400px;
+    min-height: 400px;
     background-color: #fff;
     display: flex;
     justify-content: center;
@@ -413,6 +413,10 @@ header .user {
     position: relative;
     animation: modal 0.3s ease-in-out;
     -webkit-animation: modal 0.3s ease-in-out;
+    overflow: auto;
+}
+.filesInput {
+    width: 90%;
 }
 @keyframes modal {
     from {
@@ -440,6 +444,7 @@ header .user {
     -o-border-radius: 16px 16px 0 0;
 }
 .modal .modal-content .form {
+    padding-top: 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -541,6 +546,9 @@ header .user {
 }
 .modal .modal-content .success-title {
     background-color: #5cb85c;
+}
+.modal .modal-content .success-content {
+    padding-top: 50px;
 }
 .modal .modal-content .success-content p {
     font-size: 1.3rem;
