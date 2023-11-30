@@ -17,7 +17,6 @@ class CartController {
         },
       },
     });
-    console.log(cart);
 
     const productCart = await CartProduct.find({
       where: {
