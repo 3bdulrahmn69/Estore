@@ -270,6 +270,18 @@ function createOrderItem(orderId, orderItems, orderTotal, orderDate, orderStatus
 };
 /* End Ongoing Order */
 
+/* Start some */
+function addNewInput() {
+  var newInput = document.createElement('input');
+  newInput.type = 'file';
+  newInput.accept = 'image/*';
+  newInput.className = 'productImages';
+  newInput.onchange = addNewInput;
+
+  document.querySelector('.filesInput').appendChild(newInput);
+}
+/* End some */
+
 
 $(document).ready(function() {
     getCategories();
@@ -483,11 +495,13 @@ function sendProductData() {
   formData.append("category_name", document.getElementById("product_category").value);
 
   // Get the image file
-  const imageInput = document.getElementById("productImages");
-  const imageFile = imageInput.files[0];
-  if (imageFile) {
-      formData.append("images", imageFile);
-  }
+  const imageInputs = document.querySelectorAll('.productImages');
+  imageInputs.forEach((input) => {
+    const files = input.files;
+    if (files.length > 0) {
+      formData.append("images", files[0]);
+    }
+  });
 
   // Send fetch request with FormData
   fetch("http://127.0.0.1:3000/api/products", {
@@ -526,7 +540,9 @@ function sendProductData() {
   document.getElementById("product_price").value = "";
   document.getElementById("Product_quantity").value = "";
   document.getElementById("product_category").value = "Choose Category";
-  document.getElementById("productImages").value = ""; // Clear the input file field
+  document.querySelectorAll('.productImages').forEach(
+    value=> value = ""
+  ); // Clear the input file field
 };
 /* End send product data */
 /* Start delete Product function */

@@ -15,7 +15,7 @@
             <i class="fa-solid fa-bars"></i>
         </div>
         <div class="site-name">
-            <h1>E-Store</h1>
+            <a href="index.html"><h1>E-Store</h1></a>
         </div>
         <div class="search-box" title="Search">
             <div class="form">
@@ -225,7 +225,9 @@
                         <select name="Category" id="product_category">
                             <option value="Choose Category">Choose</option>
                         </select>
-                        <input type="file" accept="image/*" multiple id="productImages">
+                        <div class="filesInput">
+                            <input type="file" accept="image/*" class="productImages" onchange="addNewInput()">
+                        </div>
                         <div class="buttons">
                             <input type="submit" value="Create" id="createProduct">
                             <input type="submit" value="Update" id="updateProduct">
