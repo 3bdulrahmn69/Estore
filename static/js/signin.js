@@ -78,3 +78,83 @@ window.onload = function () {
     }
   }
 };
+
+document.querySelector(".icon-bars").addEventListener("click", function () {
+  if (document.querySelector(".nav-items ul").style.display == "flex") {
+      document.querySelector(".nav-items ul").style.display = "none"
+  } else {
+      document.querySelector(".nav-items ul").style.display = "flex";
+  }
+});
+
+/* Start Search box */
+function createSearchItem(prodId, prodName, prodImage) {
+  const itemBox = document.createElement("div");
+  itemBox.className = "product-search-box";
+  itemBox.style.cssText = "cursor: pointer;";
+    itemBox.addEventListener('click',function(){
+        window.location.href = `productPage.html?productId=${prodId}`;
+    });
+
+  const itemImage = document.createElement("div");
+  itemImage.className = "pic-search-box";
+  itemBox.appendChild(itemImage);
+
+  const img = document.createElement("img");
+  img.src = "../assets/images/card.png"
+  itemImage.appendChild(img);
+
+  const name = document.createElement("p");
+  name.textContent = prodName;
+  itemBox.appendChild(name);
+
+  document.querySelector(".search-section").appendChild(itemBox);
+};
+function searchProducts(prodName) {
+  fetch("http://127.0.0.1:3000/api/search-product/"+prodName, {
+      method: "GET",
+      credentials: "include"
+  })
+  .then(response => {
+      if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+  })
+  .then(response => {
+          document.querySelector(".search-section").innerHTML = "";
+          document.querySelector(".search-section").style.display = "flex";
+          if (response.length > 0) {
+              response.forEach(product => {
+                  createSearchItem(
+                    product.id,
+                      product.product_name,
+                      product.images,
+                  );
+              });
+          }else {
+              document.querySelector(".search-section").innerHTML = "<span>Nothing Found !</span>";
+          }
+  })
+  .catch(error => {
+      console.log(error);
+  })
+};
+const searchInput = document.getElementById('searchInput');
+var timeoutId;
+searchInput.addEventListener('keyup', function () {
+  clearTimeout(timeoutId);
+
+  timeoutId = setTimeout(function () {
+      // Get the input value
+      var inputValue = searchInput.value;
+
+      if(inputValue.length >= 3){
+          searchProducts(inputValue);
+      } else{
+          document.querySelector(".search-section").style.display = "none";
+      }
+      
+  }, 400);
+});
+/* End Search box */

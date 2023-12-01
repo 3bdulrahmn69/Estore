@@ -1,6 +1,7 @@
 .productPage {
     width: 100%;
     height: 100%;
+    overflow: hidden;
 }
 .productPage-content {
     width: 100%;
@@ -54,6 +55,11 @@
     height: 240px;
     display: flex;
     overflow: auto;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
 }
 .productPage-content .images-box::-webkit-scrollbar {
     height: 0;
@@ -63,7 +69,6 @@
     height: 100%;
     object-fit: cover;
 }
-
 .productPage-content .details-box {
     width: 400px;
     display: flex;
@@ -76,7 +81,6 @@
     font-weight: 500;
     margin-bottom: 20px;
 }
-
 .productPage-content .details-box button {
     width: 120px;
     height: 40px;
@@ -110,4 +114,22 @@
 .details-box .AddToWishlistBtn:hover {
     background-color: var(--textIcons);
     color: #f00;
+}
+
+@media (max-width: 480px) {
+    .productPage-content {
+        flex-direction: column;
+        padding-top: 70px;
+    }
+    .productPage-content .image-con {
+        align-items: center;
+    }
+    .productPage-content .details-box {
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+    }
 }

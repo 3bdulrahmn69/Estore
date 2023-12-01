@@ -68,21 +68,89 @@ header .navbar .search-box button {
     cursor: pointer;
     color: #03A6EF
 }
+header .navbar .icon-bars {
+    width: 45px;
+    height: 45px;
+    background-color: var(--primaryColor);
+    color: var(--textIcons);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    display: none;
+}
 
-@media (max-width: 768px) {
+@media (max-width: 320px) {
     header .navbar {
         width: 90%;
     }
-    header .navbar .icon-bars {
+    header .navbar .nav-items {
+        width: 0;
+    }
+    header .navbar .nav-items ul {
+        position: absolute;
+        top: 60px;
+        right: 0px;
         display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-        cursor: pointer;
+        align-items: start;
+        justify-content: start;
+        flex-direction: column;
+        background-color: var(--primaryColor);
+        width: 100%;
+        height: fit-content;
+        gap: 10px;
+        padding: 10px 30px;
+        z-index: 9;
+        display: none;
+    }
+    header .navbar .nav-items ul a {
+        color: var(--textIcons);
+    }
+    header .navbar .search-box {
+        width: 80%;
+    }
+    header .navbar .search-box input {
+        width: 80%;
+    }
+    header .navbar .search-box button {
         width: 20%;
+    }   
+    header .navbar .icon-bars {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        margin-right: 5px;
+    }
+}
+@media (min-width: 321px) and (max-width: 480px) {
+    header .navbar {
+        width: 90%;
     }
     header .navbar .nav-items {
+        width: 0;
+    }
+    header .navbar .nav-items ul {
+        position: absolute;
+        top: 60px;
+        right: 0px;
+        display: flex;
+        align-items: start;
+        justify-content: start;
+        flex-direction: column;
+        background-color: var(--primaryColor);
+        width: 100%;
+        height: fit-content;
+        gap: 10px;
+        padding: 10px 30px;
+        z-index: 9;
         display: none;
+    }
+    header .navbar .nav-items ul a {
+        color: var(--textIcons);
     }
     header .navbar .search-box {
         width: 80%;
@@ -93,4 +161,99 @@ header .navbar .search-box button {
     header .navbar .search-box button {
         width: 20%;
     }
+    header .navbar .icon-bars {
+        width: 40px;
+        height: 40px;
+        display: flex;
+    }
+}
+@media (min-width: 481px) and (max-width: 768px) {
+    header .navbar {
+        width: 90%;
+    }
+    header .navbar .nav-items {
+        width: 0;
+    }
+    header .navbar .nav-items ul {
+        position: absolute;
+        top: 60px;
+        right: 0px;
+        display: flex;
+        align-items: start;
+        justify-content: start;
+        flex-direction: column;
+        background-color: var(--primaryColor);
+        width: 100%;
+        height: fit-content;
+        gap: 10px;
+        padding: 10px 30px;
+        z-index: 9;
+        display: none;
+    }
+    header .navbar .nav-items ul a {
+        color: var(--textIcons);
+    }
+    header .navbar .search-box {
+        width: 80%;
+    }
+    header .navbar .search-box input {
+        width: 80%;
+    }
+    header .navbar .icon-bars {
+        width: 40px;
+        height: 40px;
+        display: flex;
+    }
+}
+
+.search-section {
+    width: 100%;
+    height: 200px;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    background-color: #fff;
+    z-index: 10;
+    box-shadow: 0px 5px 10px 0px rgb(97, 97, 97);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 20px;
+    gap: 10px;
+    overflow: auto;
+    display: none;
+}
+.search-section .product-search-box {
+    width: 300px;
+    height: 90%;
+    overflow: hidden;
+    background-color: #f00;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.search-section .product-search-box  .pic-search-box {
+    width: 100%;
+    height: 100px;
+    position: relative;
+}
+.product-search-box .pic-search-box  img {
+    width: 100%;
+    height: 100%;
+    user-select: none;
+    -webkit-user-drag: none;
+    object-fit: contain;
+}
+.product-search-box p {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--textIcons);
+    padding: 5px 0;
 }
