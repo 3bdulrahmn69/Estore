@@ -755,7 +755,7 @@ function createSearchItem(prodId, prodName, prodImage) {
     itemBox.appendChild(itemImage);
 
     const img = document.createElement("img");
-    img.src = "../assets/images/card.png"
+    img.src = prodImage[0].image
     itemImage.appendChild(img);
 
     const name = document.createElement("p");
