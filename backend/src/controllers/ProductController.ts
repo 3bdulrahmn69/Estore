@@ -115,6 +115,9 @@ class ProductController {
       where: {
         product_name: Like(`%${name}%`),
       },
+      relations: {
+        images: true,
+      },
       take: 5,
     });
     return res.status(200).json(products);

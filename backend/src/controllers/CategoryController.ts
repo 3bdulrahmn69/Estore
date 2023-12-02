@@ -111,6 +111,9 @@ class CategoryController {
       where: {
         category_name: Like(`%${name}%`),
       },
+      relations: {
+        image: true,
+      },
       take: 5,
     });
     return res.status(200).json(categories);
