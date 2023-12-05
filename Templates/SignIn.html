@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../assets/images/All.png" type="image/x-icon">
-    <link rel="shortcut icon" href="assets/images/All.png" type="image/x-icon">
+    <title>E-Store | Sign In</title>
     <link rel="stylesheet" href="../static/css/all.min.css">
     <link rel="stylesheet" href="../static/css/common.css">
-    <link rel="stylesheet" href="../static/css/header.css">
-    <link rel="stylesheet" href="../static/css/mainPage.css">
-    <link rel="stylesheet" href="../static/css/Sing-Pages/productPage.css">
+    <link rel="stylesheet" href="../static/css/Sing-Pages/header.css">
+    <link rel="stylesheet" href="../static/css/Sing-Pages/landing.css">
     <link rel="stylesheet" href="../static/css/footer.css">
 </head>
 <body>
@@ -27,69 +26,35 @@
             </div>
             <div class="search-box" title="Search">
                 <input type="text" placeholder="Search" id="searchInput">
-                <button><i class="fas fa-search"></i></button>
-            </div>
-            <div class="icons">
-                <div class="icon-item" title="Wishlist">
-                    <button><i class="fas fa-heart"></i></button>
-                </div>
-                <div class="icon-item" title="Cart">
-                    <button id="CartBtn"><i class="fas fa-shopping-cart"></i></button>
-                </div>
-            </div>
-            <div class="account">
-                <ul>
-                    <li><a href="SignIn.html" title="Sing In">Sing In</a></li>
-                    <li>/</li>
-                    <li><a href="SignUp.html" title="Sing Up">Sing Up</a></li>
-                </ul>
-            </div>
-            <div class="account-name">
-                <p class="accountPassedName"></p>
-                <i class="fa-solid fa-chevron-down"></i>
-            </div>
-            <div class="dropMenu">
-                <ul>
-                    <li>My Account</li>
-                    <li id="accountLogout">Log Out</li>
-                </ul>
-            </div>
-            <div class="cart-section-father">
-                <i class="fa-solid fa-minus hide-cart-section-father" title="Hide"></i>
-                <div class="title">
-                    <h4>Cart</h4>
-                    <i class="fas fa-shopping-cart"></i>
-                    <i class="fa-solid fa-trash RemoveAllBtn" title="Remove All"></i>
-                </div>
-                <div class="cart-section">
-                </div>
-                <p class="totalPrice">Total Price:&ThickSpace;<span></span> EGP</p>
-                <button id="CheckoutBtn" title="Checkout">Checkout</button>
+                <button id="testSsss"><i class="fas fa-search"></i></button>
             </div>
         </nav>
         <div class="search-section">
         </div>
     </header>
-    <section class=productPage>
-        <div class="container">
-            <div class="productPage-content">
-                <div class="image-con">
-                    <div class="images-box">
-                    </div>
-                    <button onclick="scrollLeftBy('.images-box')"><i class="fa-solid fa-arrow-left"></i></button>
-                    <button onclick="scrollRightBy('.images-box')"><i class="fa-solid fa-arrow-right"></i></button>
+    <div class="container">
+        <section class="Sing">
+            <div class="pic-area">
+                <img src="../assets/images/singin.jpg" alt="Sing-in Pic">
+            </div>
+
+            <div class="form-area">
+                <div class="form-title">
+                    <h3>Sing In</h3>
+                    <i class="fa-solid fa-right-to-bracket"></i>
                 </div>
-                <div class="details-box">
-                    <div class="details-name">
-                    </div>
-                    <div class="price-box">
-                    </div>
-                    <div class="buttons">
-                    </div>
+                <div class="form-items">
+                    <div class="form">
+                        <input type="email" placeholder="Email" id="email" required>
+                        <input type="password" placeholder="Password" id="password" required>
+                        <input type="submit" value="Sing In" id="singInBtn">
+                    </>
+                    <p>Need an account ? <a href="SignUp.html">Sing Up</a></p>
                 </div>
             </div>
-        </div>
-    </section>
+
+        </section>
+    </div>
     <footer>
         <div class="footer-content">
             <div>
@@ -138,6 +103,6 @@
             <p>&copy; 2023 E-Store. All rights reserved.</p>
         </div>
     </footer>
-    <script src="../static/js/mainPage.js"></script>
+    <script src="../static/js/signin.js"></script>
 </body>
 </html>

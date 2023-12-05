@@ -1,4 +1,5 @@
 const userFirstName = localStorage.getItem("userFirstName");
+const lesIp = '34.224.17.42'
 
 /* Normal functions */
 function createCategoryBox(catName, catImage, catId) {
@@ -285,7 +286,7 @@ function cartProductItem(prodId, prodName, prodImage, prodPrice, prodDecs) {
     DeleteProductBtn.title = "Remove Product";
     DeleteProductBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
     DeleteProductBtn.onclick = function () { 
-        fetch("http://127.0.0.1:3000/api/cart/" + prodIdInCart, {
+        fetch(`http://${lesIp}:3000/api/cart/` + prodIdInCart, {
             method: "DELETE",
             credentials: "include"
         })
@@ -330,7 +331,7 @@ function roleChecker(item) {
 
 /* API functions */
 function getCategories() {
-    fetch("http://127.0.0.1:3000/api/categories")
+    fetch(`http://${lesIp}:3000/api/categories`)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -353,7 +354,7 @@ function getCategories() {
 };
 
 function getProductsInCategory(catName, sectionName, limit) {
-    var apiUrl = "http://127.0.0.1:3000/api/category/" + catName;
+    var apiUrl = `http://${lesIp}:3000/api/category/` + catName;
 
     // Check if limit is specified and not 'all'
     if (limit !== 'all') {
@@ -394,7 +395,7 @@ function getProductsInCategory(catName, sectionName, limit) {
 };
 
 function logout() {
-    fetch("http://127.0.0.1:3000/api/logout", {
+    fetch(`http://${lesIp}:3000/api/logout`, {
         method: "GET",
         credentials: "include"
     })
@@ -422,7 +423,7 @@ function getCart() {
     var cartSectionFather = document.querySelector(".cart-section-father");
     cartSectionFather.querySelector(".cart-section").innerHTML = "";
 
-    fetch("http://127.0.0.1:3000/api/cart/", {
+    fetch(`http://${lesIp}:3000/api/cart/`, {
         method: "GET",
         credentials: "include"
     })
@@ -458,7 +459,7 @@ function getCart() {
 };
 
 function postCart(prodId) {
-    fetch("http://127.0.0.1:3000/api/cart/" + prodId, {
+    fetch(`http://${lesIp}:3000/api/cart/` + prodId, {
         method: "POST",
         credentials: "include",
         headers: {
@@ -484,7 +485,7 @@ function postCart(prodId) {
 };
 
 function postOrder(total) {
-    fetch("http://127.0.0.1:3000/api/order", {
+    fetch(`http://${lesIp}:3000/api/order`, {
         method: "POST",
         credentials: "include",
         headers: {
@@ -508,7 +509,7 @@ function postOrder(total) {
 };
 
 function emptyCart() {
-    fetch("http://127.0.0.1:3000/api/cart/", {
+    fetch(`http://${lesIp}:3000/api/cart/`, {
         method: "DELETE",
         credentials: "include"
     })
@@ -720,7 +721,7 @@ function setUpProductPage() {
     };
 };
 function getProductDetails(productId) {
-    fetch("http://127.0.0.1:3000/api/products/" + productId)
+    fetch(`http://${lesIp}:3000/api/products/` + productId)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -765,7 +766,7 @@ function createSearchItem(prodId, prodName, prodImage) {
     document.querySelector(".search-section").appendChild(itemBox);
 };
 function searchProducts(prodName) {
-    fetch("http://127.0.0.1:3000/api/search-product/"+prodName, {
+    fetch(`http://${lesIp}:3000/api/search-product/`+prodName, {
         method: "GET",
         credentials: "include"
     })

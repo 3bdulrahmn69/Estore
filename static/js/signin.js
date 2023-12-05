@@ -1,34 +1,41 @@
-function singIn(email, password) {
+const lesIp = '34.224.17.42'
+
+function signIn(email, password) {
   const obj = {
     email: email,
     password: password,
   };
 
-  const xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://127.0.0.1:3000/api/signin/", true);
-  xhr.setRequestHeader("Content-Type", "application/json");
-  xhr.withCredentials = true;
-
-  xhr.onload = function () {
-    if (xhr.status === 200) {
-      const resp = JSON.parse(xhr.responseText);
+  fetch(`http://${lesIp}:3000/api/signin/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify(obj),
+  })
+    .then((response) => {
+      if (response.status === 200) {
+        return response.json();
+      } else if (response.status === 401) {
+        console.log("Unauthorized");
+        throw new Error("Unauthorized");
+      } else {
+        throw new Error("Something went wrong");
+      }
+    })
+    .then((resp) => {
       localStorage.setItem("userFirstName", resp.data.user.first_name);
       localStorage.setItem("userRole", resp.data.user.role);
       if (resp.data.user.role === "admin") {
         window.location.href = "../../dashboard.html";
-      }else {
+      } else {
         window.location.href = "../../index.html";
       }
-    } else if (xhr.status === 401) {
-      console.log("Unauthorized");
-    }
-  };
-
-  xhr.onerror = function (err) {
-    console.error("Request failed", err);
-  };
-
-  xhr.send(JSON.stringify(obj));
+    })
+    .catch((err) => {
+      console.error("Request failed", err);
+    });
 }
 
 function filedCheck() {
@@ -45,7 +52,7 @@ document.getElementById("singInBtn").addEventListener("click", function () {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
   if (filedCheck()) {
-    singIn(email, password);
+    signIn(email, password);
   }
 });
 
@@ -54,7 +61,7 @@ document.getElementById("password").addEventListener("keypress", function (e) {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     if (filedCheck()) {
-      singIn(email, password);
+      signIn(email, password);
     }
   }
 });
@@ -64,7 +71,7 @@ document.getElementById("email").addEventListener("keypress", function (e) {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     if (filedCheck()) {
-      singIn(email, password);
+      signIn(email, password);
     }
   }
 });
@@ -111,7 +118,7 @@ function createSearchItem(prodId, prodName, prodImage) {
   document.querySelector(".search-section").appendChild(itemBox);
 };
 function searchProducts(prodName) {
-  fetch("http://127.0.0.1:3000/api/search-product/"+prodName, {
+  fetch(`http://${lesIp}:3000/api/search-product/`+prodName, {
       method: "GET",
       credentials: "include"
   })

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../assets/images/All.png" type="image/x-icon">
-    <title>E-Store | Verification</title>
+    <title>E-Store | Sign Up</title>
     <link rel="stylesheet" href="../static/css/all.min.css">
     <link rel="stylesheet" href="../static/css/common.css">
     <link rel="stylesheet" href="../static/css/Sing-Pages/header.css">
@@ -13,7 +13,7 @@
 </head>
 <body>
     <header>
-        <div class="navbar">
+        <nav class="navbar">
             <div class="nav-items">
                 <ul>
                     <li><a href="../index.html#shop">Shop</a></li>
@@ -21,23 +21,44 @@
                     <li><a href="../index.html#contactus">Contact Us</a></li>
                 </ul>
             </div>
-            <div class="search-box" title="Search">
-                <input type="text" placeholder="Search">
-                <button><i class="fas fa-search"></i></button>
-            </div>
             <div class="icon-bars">
                 <i class="fa-solid fa-bars"></i>
             </div>
-    </div>
+            <div class="search-box" title="Search">
+                <input type="text" placeholder="Search" id="searchInput">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </nav>
+        <div class="search-section">
+        </div>
     </header>
-    
     <div class="container">
-        <section class="verification_text">
-            <p>We have sent a verification link to your email <span id="emailPlace">example@some.com</span> check your inbox or spam, 
-                <span><a href="#">Resend</a></span> or <span><a href="#">Change Email</a></span></p>
+        <section class="Sing">
+            <div class="form-area">
+                <div class="form-title">
+                    <h3>Sing Up</h3>
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                </div>
+                <div class="form-items">
+                    <div class="form">
+                        <div class="names">
+                            <input type="text" placeholder="First Name" id="Fname" maxlength="16" required>
+                            <input type="text" placeholder="Last Name" id="Lname" maxlength="16" required>
+                        </div>
+                        <input type="email" placeholder="Email" id="email" required>
+                        <input type="password" placeholder="Password" id="Password" required>
+                        <input type="password" placeholder="Confirm Password" id="cPassword" required>
+                        <input type="submit" value="Sing Up" id="createUserBtn">
+                    </div>
+                    <p>Have an account ? <a href="SignIn.html">Sing In</a></p>
+                </div>
+            </div>
+
+            <div class="pic-area">
+                <img src="../assets/images/singup.jpg" alt="Sing-Up Pic">
+            </div>
         </section>
     </div>
-
     <footer>
         <div class="footer-content">
             <div>
@@ -86,6 +107,6 @@
             <p>&copy; 2023 E-Store. All rights reserved.</p>
         </div>
     </footer>
-    <script src="../static/js/singup.js"></script>
+    <script src="../static/js/signup.js"></script>
 </body>
 </html>

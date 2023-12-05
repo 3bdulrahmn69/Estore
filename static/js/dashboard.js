@@ -1,3 +1,4 @@
+const lesIp = '34.224.17.42'
 /* Start nav buttons */
 const categories = document.getElementById("categories");
 const products = document.getElementById("products");
@@ -369,7 +370,7 @@ $(document).ready(function() {
 
 /* start get Category In Selector */
 function getCatInSelect() {
-  $.get("http://127.0.0.1:3000/api/categories", function (data) {
+  $.get(`http://${lesIp}:3000/api/categories`, function (data) {
       // Assuming data is an array of objects with a 'category_name' property
       const $productCategorySelect = $("#product_category");
 
@@ -388,7 +389,7 @@ function getCatInSelect() {
 /* End get Category In Selector */
 /* Start get Category function */
 function getCategories() {
-  $.get("http://127.0.0.1:3000/api/categories", function (data) {
+  $.get(`http://${lesIp}:3000/api/categories`, function (data) {
     data.forEach(category => {
       createCategoryItem(category.category_name, category.image.image, category.id);
     });
@@ -406,7 +407,7 @@ function createCategory(catName, catImage) {
     xhrFields: {
       withCredentials: true,
     },
-    url: "http://127.0.0.1:3000/api/categories",
+    url: `http://${lesIp}:3000/api/categories`,
     contentType: false, // let jQuery handle the content type
     processData: false, // prevent jQuery from transforming the data
     enctype: 'multipart/form-data',
@@ -435,7 +436,7 @@ function delCategory(CategoryID) {
     xhrFields: {
       withCredentials: true,
     },
-    url: 'http://127.0.0.1:3000/api/categories/' + CategoryID,
+    url: `http://${lesIp}:3000/api/categories/` + CategoryID,
     success: function(resp) {
       $('#confirmModal').css('display', 'none');
       $('#success').css('display', 'flex');
@@ -451,7 +452,7 @@ function updateCategory(CategoryID, CategoryName) {
   };
   $.ajax({
     type: "PUT",
-    url: 'http://127.0.0.1:3000/api/categories/' + CategoryID,
+    url: `http://${lesIp}:3000/api/categories/` + CategoryID,
     xhrFields: {
       withCredentials: true,
     },
@@ -471,7 +472,7 @@ function updateCategory(CategoryID, CategoryName) {
 /* End Update Category function */
 /* Start  get Products function*/
 function getProducts() {
-  fetch("http://127.0.0.1:3000/api/products")
+  fetch(`http://${lesIp}:3000/api/products`)
     .then(response => response.json())
     .then(data => {
       data.forEach(product => {
@@ -504,7 +505,7 @@ function sendProductData() {
   });
 
   // Send fetch request with FormData
-  fetch("http://127.0.0.1:3000/api/products", {
+  fetch(`http://${lesIp}:3000/api/products`, {
     method: "POST",
     credentials: "include", // Equivalent to xhrFields: { withCredentials: true }
     body: formData
@@ -547,7 +548,7 @@ function sendProductData() {
 /* End send product data */
 /* Start delete Product function */
 function deleteProduct(productId) {
-  fetch(`http://127.0.0.1:3000/api/products/${productId}`, {
+  fetch(`http://${lesIp}:3000/api/products/${productId}`, {
     method: "DELETE",
     credentials: "include" // Equivalent to xhrFields: { withCredentials: true }
   })
@@ -575,7 +576,7 @@ function updateProduct(productId, productName, productDescription, productPrice,
     "category_name": productCategory
   };
 
-  fetch(`http://127.0.0.1:3000/api/products/${productId}`, {
+  fetch(`http://${lesIp}:3000/api/products/${productId}`, {
     method: "PUT",
     credentials: "include", // Equivalent to xhrFields: { withCredentials: true }
     headers: {
@@ -600,7 +601,7 @@ function updateProduct(productId, productName, productDescription, productPrice,
 /* End Update Product function */
 /* Start get Orders function */
 function getOrders() {
-  fetch("http://127.0.0.1:3000/api/order", {
+  fetch(`http://${lesIp}:3000/api/order`, {
       method: "GET",
       credentials: "include",
       headers: {
@@ -622,7 +623,7 @@ function getOrders() {
 /* Start logout */
 function logout() {
   var xhr = new XMLHttpRequest();
-  xhr.open("GET", "http://127.0.0.1:3000/api/logout", true);
+  xhr.open("GET", `http://${lesIp}:3000/api/logout`, true);
   xhr.withCredentials = true;
 
   localStorage.removeItem("userFirstName");
