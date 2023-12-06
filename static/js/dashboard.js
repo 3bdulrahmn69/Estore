@@ -370,105 +370,165 @@ $(document).ready(function() {
 
 /* start get Category In Selector */
 function getCatInSelect() {
-  $.get(`http://${lesIp}:3000/api/categories`, function (data) {
-      // Assuming data is an array of objects with a 'category_name' property
-      const $productCategorySelect = $("#product_category");
+  fetch(`http://${lesIp}:3000/api/categories`, {
+    method: "GET",
+    headers: {
+      "Accept": "application/json",
+    },
+    credentials: "include",
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error(`Failed to get categories (${response.status})`);
+      }
+    })
+    .then((data) => {
+      const productCategorySelect = document.getElementById('product_category');
 
       // Clear existing options
-      $productCategorySelect.empty();
-
-      // Add a default option
-      $productCategorySelect.append('<option value="Choose Category">Choose</option>');
+      productCategorySelect.innerHTML = '<option value="Choose Category">Choose</option>';
 
       // Loop through the data and append each category_name as an option
       data.forEach(function (category) {
-          $productCategorySelect.append(`<option value="${category.category_name}">${category.category_name}</option>`);
+        const option = document.createElement('option');
+        option.value = category.category_name;
+        option.textContent = category.category_name;
+        productCategorySelect.appendChild(option);
       });
+    })
+    .catch((error) => {
+      console.error(error);
     });
 }
 /* End get Category In Selector */
 /* Start get Category function */
 function getCategories() {
-  $.get(`http://${lesIp}:3000/api/categories`, function (data) {
-    data.forEach(category => {
-      createCategoryItem(category.category_name, category.image.image, category.id);
+  fetch(`http://${lesIp}:3000/api/categories`, {
+    method: "GET",
+    headers: {
+      "Accept": "application/json",
+    },
+    credentials: "include",
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error(`Failed to get categories (${response.status})`);
+      }
+    })
+    .then((data) => {
+      data.forEach(category => {
+        createCategoryItem(category.category_name, category.image.image, category.id);
+      });
+    })
+    .catch((error) => {
+      console.error(error);
     });
-  });
-};
+}
 /* End get Category function */
 /* Start Post Category function */
 function createCategory(catName, catImage) {
   const formData = new FormData();
   formData.append("category_name", catName);
-  formData.append("image", catImage)
+  formData.append("image", catImage);
 
-  $.ajax({
-    type: "POST",
-    xhrFields: {
-      withCredentials: true,
+  fetch(`http://${lesIp}:3000/api/categories`, {
+    method: "POST",
+    headers: {
+      "Accept": "application/json",
     },
-    url: `http://${lesIp}:3000/api/categories`,
-    contentType: false, // let jQuery handle the content type
-    processData: false, // prevent jQuery from transforming the data
-    enctype: 'multipart/form-data',
-    data: formData,
-    success: function(resp) {
-      $('#modalCategory').css('display', 'none');
-      $('#success').css('display', 'flex');
-      const $successContent = $(".success-content");
+    credentials: "include",
+    body: formData,
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error(`Failed to create category (${response.status})`);
+      }
+    })
+    .then((resp) => {
+      document.getElementById('modalCategory').style.display = 'none';
+      document.getElementById('success').style.display = 'flex';
+      const successContent = document.querySelector('.success-content');
+      
       for (const key in resp) {
         if (resp.hasOwnProperty(key)) {
-          const $para = $("<p>").text(`${key}:`);
-          const $spa = $("<span>").text(resp[key]);
-
-          $para.append($spa);
-          $successContent.append($para);
+          const para = document.createElement("p");
+          para.textContent = `${key}:`;
+          
+          const span = document.createElement("span");
+          span.textContent = resp[key];
+          
+          para.appendChild(span);
+          successContent.appendChild(para);
         }
       }
-    },
-  });
-};
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
 /* End Post Category function */
 /* Start delete Category function */
 function delCategory(CategoryID) {
-  $.ajax({
-    type: "DELETE",
-    xhrFields: {
-      withCredentials: true,
+  fetch(`http://${lesIp}:3000/api/categories/` + CategoryID, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
     },
-    url: `http://${lesIp}:3000/api/categories/` + CategoryID,
-    success: function(resp) {
-      $('#confirmModal').css('display', 'none');
-      $('#success').css('display', 'flex');
-      $(".success-content").append(`<p>Category Deleted Successfully</p>`);
-    },
-  });
-};
+    credentials: "include",
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error(`Failed to delete category (${response.status})`);
+      }
+    })
+    .then((resp) => {
+      document.getElementById('confirmModal').style.display = 'none';
+      document.getElementById('success').style.display = 'flex';
+      document.querySelector('.success-content').innerHTML = '<p>Category Deleted Successfully</p>';
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
 /* End delete Category function */
 /* Start Update Category function */
 function updateCategory(CategoryID, CategoryName) {
   const obj = {
-    "category_name": CategoryName
+    category_name: CategoryName,
   };
-  $.ajax({
-    type: "PUT",
-    url: `http://${lesIp}:3000/api/categories/` + CategoryID,
-    xhrFields: {
-      withCredentials: true,
+
+  fetch(`http://${lesIp}:3000/api/categories/` + CategoryID, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
     },
-    contentType: "application/json",
-    Connection: "keep-alive",
-    data: JSON.stringify(obj),
-    success: function(resp) {
-      $('#editModal').css('display', 'none');
-      $('#success').css('display', 'flex');
-      $(".success-content").append(`<p>Category Name Updated Successfully</p>`);
-    },
-    error: function(xhr, status, error) {
-      console.error(xhr, status, error);
-    }
-  });
-};
+    credentials: "include",
+    body: JSON.stringify(obj),
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error(`Failed to update category (${response.status})`);
+      }
+    })
+    .then((resp) => {
+      document.getElementById('editModal').style.display = 'none';
+      document.getElementById('success').style.display = 'flex';
+      document.querySelector('.success-content').innerHTML = '<p>Category Name Updated Successfully</p>';
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
 /* End Update Category function */
 /* Start  get Products function*/
 function getProducts() {
@@ -622,25 +682,27 @@ function getOrders() {
 /* End get Orders function */
 /* Start logout */
 function logout() {
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", `http://${lesIp}:3000/api/logout`, true);
-  xhr.withCredentials = true;
+  fetch(`http://${lesIp}:3000/api/logout`, {
+      method: "GET",
+      credentials: "include"
+  })
+  .then(response => {
+      if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+  })
+  .then(data => {
+      console.log(data);
+  })
+  .catch(error => {
+      console.error("Error:", error);
+  });
 
   localStorage.removeItem("userFirstName");
   localStorage.removeItem("userRole");
 
-  xhr.onload = function () {
-      if (xhr.status === 200) {
-          var response = JSON.parse(xhr.responseText);
-      }
-  };
-
-  xhr.onerror = function (error) {
-      console.error("Error:", error);
-  };
-
-  xhr.send();
-
+  hideAccountName();
   window.location.reload();
-}
+};
 /* End logout */
