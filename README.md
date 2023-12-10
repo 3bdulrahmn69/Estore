@@ -43,7 +43,7 @@ E-Store is an e-commerce website for ALX Africa foundations curriculum that spec
 - [Abdelmaguid Saif](https://github.com/Magedsaif) - frontend developer
 
 ## Live Demo
-Check out the [live demo](https://Estore.com) to experience E-Store in action!
+Check out the [live demo](http://walidblog.tech/) to experience E-Store in action!
 
 ## Screenshots
 
